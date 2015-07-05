@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="@android:color/black">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game #1"
+                android:id="@+id/matchTitleTextView"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:45"
+                android:id="@+id/matchDateTextView"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Les Dragons de Montréal - A.D. KCB Kin-Ball Team - Kin-Ball Hannut Lincent"
+                android:id="@+id/matchNameTextView"
+                android:textSize="13sp"
+                android:padding="2dp"
+                android:maxLines="3" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView5"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/team1"
+                    android:textColor="@color/team1_font" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView6"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/team2"
+                    android:textColor="@color/team2_font" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView7"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/team3"
+                    android:textColor="@color/team3_font" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="directo"
+                    android:id="@+id/matchLiveTextView"
+                    android:textColor="@color/live_font"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/background_live"
+                    android:layout_centerInParent="true"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="1"
+                        android:id="@+id/matchScore1TextView"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@color/team1"
+                        android:textColor="@color/team1_font" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="2"
+                        android:id="@+id/matchScore2TextView"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@color/team2"
+                        android:textColor="@color/team2_font" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="3"
+                        android:id="@+id/matchScore3TextView"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@color/team3"
+                        android:textColor="@color/team3_font" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game #1"
+                android:id="@+id/matchTitleTextView"
+                android:textColor="@color/black"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="directo"
+                android:id="@+id/matchLiveTextView"
+                android:textColor="@color/live_font"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_live"
+                android:layout_centerInParent="true"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11:45"
+                android:id="@+id/matchDateTextView"
+                android:textColor="@color/black"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/team1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Les Dragons de Montréal"
+                    android:id="@+id/matchTeam1NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:maxLines="2"
+                    android:gravity="center"
+                    android:textColor="@color/team1_font"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:id="@+id/matchTeam1ScoreTextView"
+                    android:gravity="center"
+                    android:textColor="@color/team1_font" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/team2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A.D. KCB Kin-Ball Team"
+                    android:id="@+id/matchTeam2NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:maxLines="2"
+                    android:gravity="center"
+                    android:textColor="@color/team2_font"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:id="@+id/matchTeam2ScoreTextView"
+                    android:gravity="center"
+                    android:textColor="@color/team2_font" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/team3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kin-Ball Hannut Lincent"
+                    android:id="@+id/matchTeam3NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:maxLines="2"
+                    android:gravity="center"
+                    android:textColor="@color/team3_font"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:id="@+id/matchTeam3ScoreTextView"
+                    android:gravity="center"
+                    android:textColor="@color/team3_font" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
