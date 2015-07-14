@@ -2,25 +2,15 @@ package com.mvc.kinballwc.ui.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.koushikdutta.ion.Ion;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
-import com.mvc.kinballwc.model.Player;
-import com.mvc.kinballwc.model.Team;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

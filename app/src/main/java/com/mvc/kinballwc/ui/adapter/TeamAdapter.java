@@ -1,17 +1,13 @@
 package com.mvc.kinballwc.ui.adapter;
 
-import android.app.LauncherActivity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.koushikdutta.ion.Ion;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Player;
 import com.mvc.kinballwc.model.Team;
@@ -51,10 +47,10 @@ public class TeamAdapter extends ArrayAdapter<Team> {
 
         Team team = getItem(position);
         viewHolder.listItemNameTextView.setText(team.getName());
-        Ion.with(viewHolder.listItemImageView)
-                .placeholder(android.R.drawable.ic_popup_sync)
-                .error(android.R.drawable.ic_delete)
-                .load(team.getLogo());
+//        Ion.with(viewHolder.listItemImageView)
+//                .placeholder(android.R.drawable.ic_popup_sync)
+//                .error(android.R.drawable.ic_delete)
+//                .load(team.getLogo());
         if (team.getPlayers() == null) {
             ArrayList<Player> players = new ArrayList<>();
             Player player = new Player();

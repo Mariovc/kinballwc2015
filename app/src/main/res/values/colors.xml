@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="blue_team">#0040FF</color>
-    <color name="grey_team">#848484</color>
-    <color name="black_team">#151515</color>
-    <color name="green_live">#01DF01</color>
-    <color name="red_live">#FF0000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
     <color name="black">#000000</color>
     <color name="black_transparent">#88000000</color>
-    <color name="transparent">#00000000</color>
+    <color name="black_team">#151515</color>
+    <color name="grey_team">#848484</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue_team">#0040FF</color>
+    <color name="green_live">#01DF01</color>
+    <color name="yellow_wc">#fced1c</color>
+    <color name="red">#F44336</color>
+    <color name="red_dark_1">#E53935</color>
+    <color name="red_dark_2">#D32F2F</color>
+    <color name="red_dark_3">#C62828</color>
+    <color name="red_dark_5">#6e1413</color>
 
+
+    <!-- Main -->
+    <color name="primary_color">@color/red_dark_1</color>
+    <color name="primary_color_dark">@color/red_dark_3</color>
+    <color name="text_primary_color">@color/white</color>
+
+    <!-- SlidingTab -->
+    <color name="sliding_tab_indicator">@color/sliding_tab_text</color>
+    <color name="sliding_tab_divider">@color/transparent</color>
+    <color name="sliding_tab_text">@color/text_primary_color</color>
+
+    <!-- Matches -->
     <color name="team1">@color/blue_team</color>
     <color name="team2">@color/grey_team</color>
     <color name="team3">@color/black_team</color>
     <color name="team1_font">@color/white</color>
     <color name="team2_font">@color/white</color>
     <color name="team3_font">@color/white</color>
-    <color name="live_font">@color/red_live</color>
+    <color name="live_font">@color/red</color>
     <color name="live_background">@color/transparent</color>
-    <color name="live_border">@color/red_live</color>
+    <color name="live_border">@color/red</color>
+
+
 </resources>

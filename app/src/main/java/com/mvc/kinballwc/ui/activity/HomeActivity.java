@@ -1,21 +1,21 @@
 package com.mvc.kinballwc.ui.activity;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 
+import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.MatchesFragment;
 import com.mvc.kinballwc.ui.fragment.NavigationDrawerFragment;
-import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 
 
@@ -50,19 +50,17 @@ public class HomeActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (position == 0) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
+            transaction
                     .replace(R.id.container, MatchesFragment.newInstance(position + 1))
                     .commit();
         } else if (position == 1) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
+            transaction
                     .replace(R.id.container, TeamsFragment.newInstance(position + 1))
                     .commit();
         } else {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
+            transaction
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                     .commit();
         }
@@ -146,7 +144,7 @@ public class HomeActivity extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_matches, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
             return rootView;
         }
 

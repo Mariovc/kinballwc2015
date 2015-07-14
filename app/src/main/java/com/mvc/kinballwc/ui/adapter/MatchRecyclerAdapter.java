@@ -9,65 +9,52 @@ import android.widget.TextView;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
 
-import java.util.ArrayList;
+import java.util.List;
 
-
+/**
+ * Created by Mario on 08/07/2015.
+ */
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
-
-    private ArrayList<Match> matches;
-
-    public MatchRecyclerAdapter(ArrayList<Match> matches) {
-        this.matches = matches;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parentViewGroup, int i) {
-
-        View rowView = LayoutInflater.from(parentViewGroup.getContext())
-                .inflate(R.layout.item_match2, parentViewGroup, false);
-
-        return new ViewHolder(rowView);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-
-        final Match match = matches.get(position);
-        viewHolder.titleTextView.setText(match.getTitle());
-
-        viewHolder.itemView.setTag(match);
-    }
-
-
-    @Override
-    public int getItemCount() {
-
-        return matches.size();
-    }
-
-    public void removeData(int position) {
-
-        matches.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    public void addItem(int positionToAdd) {
-
-        matches.add(positionToAdd, new Match());
-        notifyItemInserted(positionToAdd);
-    }
-
+    private List<Match> mMatchList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView titleTextView;
+        public TextView mTeam1NameTV;
+        public TextView mTeam2NameTV;
+        public TextView mTeam3NameTV;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            titleTextView = (TextView) itemView.findViewById(
-                    R.id.matchTitleTextView);
+        public ViewHolder(View v) {
+            super(v);
+            mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
+            mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
+            mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
         }
     }
 
+    public MatchRecyclerAdapter(List<Match> matchList) {
+        mMatchList = matchList;
+    }
+
+    @Override
+    public MatchRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_match2, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Match match = mMatchList.get(position);
+//        holder.mTeam1NameTV.setText(match.getTeam1().getName());
+//        holder.mTeam2NameTV.setText(match.getTeam2().getName());
+//        holder.mTeam3NameTV.setText(match.getTeam3().getName());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mMatchList.size();
+    }
 }
