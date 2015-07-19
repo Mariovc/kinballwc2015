@@ -35,6 +35,7 @@ public class MatchesTabFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+        mRecyclerView.setAdapter(null);
 
 //        mRecyclerView.setHasFixedSize(true);
 

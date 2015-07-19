@@ -51,13 +51,13 @@ public class MatchesFragment extends Fragment {
 
         return view;
     }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((HomeActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
-    }
+//
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        ((HomeActivity) activity).onSectionAttached(
+//                getArguments().getInt(ARG_SECTION_NUMBER));
+//    }
 
 
 

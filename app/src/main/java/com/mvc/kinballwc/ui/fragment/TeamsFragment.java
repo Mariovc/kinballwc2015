@@ -55,13 +55,13 @@ public class TeamsFragment extends Fragment {
         listView = (ListView) rootView.findViewById(R.id.listView);
         return rootView;
     }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((HomeActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
-    }
+//
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        ((HomeActivity) activity).onSectionAttached(
+//                getArguments().getInt(ARG_SECTION_NUMBER));
+//    }
 
     @Override
     public void onResume() {

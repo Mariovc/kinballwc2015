@@ -6,10 +6,16 @@
     <color name="black_transparent">#88000000</color>
     <color name="black_team">#151515</color>
     <color name="grey_team">#848484</color>
+    <color name="white_dark_1">#F5F5F5</color>
     <color name="white">#FFFFFF</color>
     <color name="blue_team">#0040FF</color>
     <color name="green_live">#01DF01</color>
-    <color name="yellow_wc">#fced1c</color>
+    <color name="yellow_light_5">#FFFDE7</color>
+    <color name="yellow_light_4">#FFF9C4</color>
+    <color name="yellow_light_3">#FFF59D</color>
+    <color name="yellow_light_2">#FFF176</color>
+    <color name="yellow_light_1">#FFEE58</color>
+    <color name="yellow">#FFEB3B</color>
     <color name="red">#F44336</color>
     <color name="red_dark_1">#E53935</color>
     <color name="red_dark_2">#D32F2F</color>
@@ -20,7 +26,9 @@
     <!-- Main -->
     <color name="primary_color">@color/red_dark_1</color>
     <color name="primary_color_dark">@color/red_dark_3</color>
-    <color name="text_primary_color">@color/white</color>
+    <color name="accent">@color/yellow</color>
+    <color name="text_primary_color">@color/white</color><!--  -->
+    <color name="window_background">@color/white_dark_1</color>
 
     <!-- SlidingTab -->
     <color name="sliding_tab_indicator">@color/sliding_tab_text</color>

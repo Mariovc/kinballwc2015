@@ -1,13 +1,16 @@
 package com.mvc.kinballwc.ui.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
+import com.mvc.kinballwc.ui.activity.MatchActivity;
 
 import java.util.List;
 
@@ -17,19 +20,6 @@ import java.util.List;
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     private List<Match> mMatchList;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView mTeam1NameTV;
-        public TextView mTeam2NameTV;
-        public TextView mTeam3NameTV;
-
-        public ViewHolder(View v) {
-            super(v);
-            mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
-            mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
-            mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
-        }
-    }
 
     public MatchRecyclerAdapter(List<Match> matchList) {
         mMatchList = matchList;
@@ -56,5 +46,36 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     @Override
     public int getItemCount() {
         return mMatchList.size();
+    }
+
+
+
+
+
+
+
+
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        public TextView mTeam1NameTV;
+        public TextView mTeam2NameTV;
+        public TextView mTeam3NameTV;
+
+        public ViewHolder(View v) {
+            super(v);
+            v.setOnClickListener(this);
+            mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
+            mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
+            mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
+        }
+
+        @Override
+        public void onClick(View view) {
+//            Toast.makeText(view.getContext(),"hola", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(view.getContext(), MatchActivity.class);
+            view.getContext().startActivity(intent);
+        }
     }
 }
