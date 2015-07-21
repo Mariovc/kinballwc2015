@@ -12,4 +12,32 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_match">MatchActivity</string>
+
+
+    <!--NavigationView Menu-->
+    <string name="navigation_drawer_matches">Matches</string>
+    <string name="navigation_drawer_teams">Teams</string>
+
+
+    <!--<string-array name="days">-->
+        <!--<item>18/08</item>-->
+        <!--<item>19/08</item>-->
+        <!--<item>20/08</item>-->
+        <!--<item>21/08</item>-->
+        <!--<item>22/08</item>-->
+    <!--</string-array>-->
+    <string-array name="days">
+        <item>Day 1</item>
+        <item>Day 2</item>
+        <item>Day 3</item>
+        <item>Day 4</item>
+        <item>Day 5</item>
+    </string-array>
+    <!--<string-array name="days">-->
+        <!--<item>Day 1</item>-->
+        <!--<item>Day 2</item>-->
+        <!--<item>Day 3</item>-->
+        <!--<item>Semifinals</item>-->
+        <!--<item>Finals</item>-->
+    <!--</string-array>-->
 </resources>

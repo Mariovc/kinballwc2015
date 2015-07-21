@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.MatchesTabFragment;
@@ -55,10 +54,11 @@ public class HomeActivity extends AppCompatActivity {
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         if (viewPager != null) {
             setupViewPager(viewPager);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+//            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+            tabLayout.setupWithViewPager(viewPager);
         }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -78,10 +78,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        String[] daysArray = getResources().getStringArray(R.array.days);
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new MatchesTabFragment(), "Día 1");
-        adapter.addFragment(new MatchesTabFragment(), "Día 2");
-        adapter.addFragment(new MatchesTabFragment(), "Día 3");
+        for (int i = 0; i < daysArray.length; i++) {
+            adapter.addFragment(MatchesTabFragment.newInstance(i+1), daysArray[i]);
+        }
         viewPager.setAdapter(adapter);
     }
 
@@ -108,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
         HomeActivity.this.setTitle(menuItem.getTitle());
 //        getSupportFragmentManager().beginTransaction()
 //                .replace(R.id.conta) // TODO
-        Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
     }
 
 

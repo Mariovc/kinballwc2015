@@ -1,7 +1,8 @@
 package com.mvc.kinballwc.ui.fragment;
 
-import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,12 +24,29 @@ import java.util.List;
  */
 public class MatchesTabFragment extends Fragment{
 
+    private static final String ARG_TAB_NUMBER = "tab_number";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private int tabNumber;
+
+    public static MatchesTabFragment newInstance(int tabNumber) {
+        MatchesTabFragment fragment = new MatchesTabFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_TAB_NUMBER, tabNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public MatchesTabFragment() {
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        tabNumber = getArguments().getInt(ARG_TAB_NUMBER);
     }
 
     @Override
@@ -53,6 +71,7 @@ public class MatchesTabFragment extends Fragment{
         // Define our query conditions
         //query.whereEqualTo("owner", ParseUser.getCurrentUser());
         // Execute the find asynchronously
+        // TODO make query with date
         query.include("team1");
         query.include("team2");
         query.include("team3");

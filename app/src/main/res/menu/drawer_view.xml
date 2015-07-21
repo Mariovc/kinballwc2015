@@ -20,19 +20,11 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@android:drawable/ic_btn_speak_now"
-            android:title="Home" />
+            android:title="@string/navigation_drawer_matches" />
         <item
             android:id="@+id/nav_messages"
             android:icon="@android:drawable/ic_dialog_dialer"
-            android:title="Messages" />
-        <item
-            android:id="@+id/nav_friends"
-            android:icon="@android:drawable/ic_input_delete"
-            android:title="Friends" />
-        <item
-            android:id="@+id/nav_discussion"
-            android:icon="@android:drawable/ic_dialog_email"
-            android:title="Discussion" />
+            android:title="@string/navigation_drawer_teams" />
     </group>
 
 
