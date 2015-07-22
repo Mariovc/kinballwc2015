@@ -2,25 +2,20 @@ package com.mvc.kinballwc.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.mvc.kinballwc.R;
-import com.mvc.kinballwc.ui.fragment.MatchesTabFragment;
+import com.mvc.kinballwc.ui.fragment.MatchesFragment;
 import com.mvc.kinballwc.ui.fragment.NavigationDrawerFragment;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,27 +32,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        if (navigationView != null) {
-            setupDrawerContent(navigationView);
-        }
+        setupDrawerContent(navigationView);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        if (viewPager != null) {
-            setupViewPager(viewPager);
-            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-            tabLayout.setupWithViewPager(viewPager);
-        }
 
     }
 
@@ -77,26 +55,20 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        String[] daysArray = getResources().getStringArray(R.array.days);
-        Adapter adapter = new Adapter(getSupportFragmentManager());
-        for (int i = 0; i < daysArray.length; i++) {
-            adapter.addFragment(MatchesTabFragment.newInstance(i+1), daysArray[i]);
-        }
-        viewPager.setAdapter(adapter);
-    }
 
     private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        onNavigationItemSelection(menuItem);
-                        return true;
-                    }
-                });
-        MenuItem menuItem = navigationView.getMenu().getItem(INITIAL_SECTION);
-        onNavigationItemSelection(menuItem);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(
+                    new NavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(MenuItem menuItem) {
+                            onNavigationItemSelection(menuItem);
+                            return true;
+                        }
+                    });
+            MenuItem initialMenuItem = navigationView.getMenu().getItem(INITIAL_SECTION);
+            onNavigationItemSelection(initialMenuItem);
+        }
     }
 
     private void onNavigationItemSelection(MenuItem menuItem) {
@@ -106,40 +78,33 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void changeFragment(MenuItem menuItem) {
-        HomeActivity.this.setTitle(menuItem.getTitle());
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.conta) // TODO
-//        Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+        setTitle(menuItem.getTitle());
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, getFragmentForMenuItem(menuItem))
+                .commit();
+//        Toast.makeText(this, menuItem.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
 
-    static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
-
-        public Adapter(FragmentManager fm) {
-            super(fm);
+    private Fragment getFragmentForMenuItem(MenuItem menuItem) {
+        Fragment fragment = null;
+        switch (menuItem.getItemId()) {
+            case R.id.nav_matches:
+                fragment = new MatchesFragment();
+                break;
+            case R.id.nav_messages:
+                fragment = new TeamsFragment();
+                break;
         }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragments.add(fragment);
-            mFragmentTitles.add(title);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitles.get(position);
-        }
+        return fragment;
     }
 
+    public void setupToolbar(View view) {
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
 }

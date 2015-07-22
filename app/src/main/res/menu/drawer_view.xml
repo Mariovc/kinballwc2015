@@ -18,7 +18,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_matches"
             android:icon="@android:drawable/ic_btn_speak_now"
             android:title="@string/navigation_drawer_matches" />
         <item

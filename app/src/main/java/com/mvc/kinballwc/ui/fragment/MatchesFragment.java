@@ -1,12 +1,20 @@
 package com.mvc.kinballwc.ui.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mario on 27/6/15.
@@ -35,54 +43,55 @@ public class MatchesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
-//        ViewPager pager = (ViewPager) view.findViewById(R.id.viewpager);
-//        pager.setAdapter(new MatchesPagerAdapter(getFragmentManager()));
-//
-//        // Bind the tabs to the ViewPager
-//        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
-//        tabs.setViewPager(pager);
-//        tabs.setTextColor(getResources().getColor(R.color.sliding_tab_text));
 
+        ((HomeActivity) getActivity()).setupToolbar(view);
+
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            setupViewPager(viewPager);
+            TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+//            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+            tabLayout.setupWithViewPager(viewPager);
+        }
         return view;
     }
-//
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        ((HomeActivity) activity).onSectionAttached(
-//                getArguments().getInt(ARG_SECTION_NUMBER));
-//    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        String[] daysArray = getResources().getStringArray(R.array.days);
+        Adapter adapter = new Adapter(getActivity().getSupportFragmentManager());
+        for (int i = 0; i < daysArray.length; i++) {
+            adapter.addFragment(MatchesTabFragment.newInstance(i+1), daysArray[i]);
+        }
+        viewPager.setAdapter(adapter);
+    }
 
 
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
 
-//
-//    /**
-//     * Created by Mario on 12/07/2015.
-//     */
-//    private class MatchesPagerAdapter extends FragmentPagerAdapter {
-//
-//        private final String[] TITLES = { "Categories", "Home", "Top Paid", "Top Free", "Top Grossing", "Top New Paid",
-//                "Top New Free", "Trending" };
-//
-//        public MatchesPagerAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return TITLES[position];
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return TITLES.length;
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            return new MatchesTabFragment(position+1);
-//        }
-//
-//    }
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
 
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+    }
 }

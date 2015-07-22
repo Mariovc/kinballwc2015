@@ -1,13 +1,11 @@
 package com.mvc.kinballwc.ui.fragment;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,7 +16,6 @@ import com.mvc.kinballwc.ui.adapter.TeamAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -28,22 +25,8 @@ import java.util.List;
 public class TeamsFragment extends Fragment {
 
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
-
-    private Adapter adapter;
     private ListView listView;
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static TeamsFragment newInstance(int sectionNumber) {
-        TeamsFragment fragment = new TeamsFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     public TeamsFragment() {
     }
@@ -53,15 +36,10 @@ public class TeamsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_teams, container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
+
+        ((HomeActivity) getActivity()).setupToolbar(rootView);
         return rootView;
     }
-//
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        ((HomeActivity) activity).onSectionAttached(
-//                getArguments().getInt(ARG_SECTION_NUMBER));
-//    }
 
     @Override
     public void onResume() {
