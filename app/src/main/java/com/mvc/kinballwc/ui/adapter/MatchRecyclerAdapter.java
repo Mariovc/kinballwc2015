@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,15 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
                 .inflate(R.layout.item_match2, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        ViewHolder viewHolder = new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view, new ViewHolder.MatchViewHolderClicks() {
+            @Override
+            public void onClick(View view, int position) {
+                String matchId = mMatchList.get(position).getObjectId();
+                Intent intent = new Intent(view.getContext(), MatchActivity.class);
+                intent.putExtra(MatchActivity.MATCH_ID_EXTRA, matchId);
+                view.getContext().startActivity(intent);
+            }
+        });
         return viewHolder;
     }
 
@@ -59,23 +68,27 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        public MatchViewHolderClicks mListener;
         public TextView mTeam1NameTV;
         public TextView mTeam2NameTV;
         public TextView mTeam3NameTV;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v, MatchViewHolderClicks onClickListener) {
             super(v);
-            v.setOnClickListener(this);
+            mListener = onClickListener;
             mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
             mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
             mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
+            v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-//            Toast.makeText(view.getContext(),"hola", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(view.getContext(), MatchActivity.class);
-            view.getContext().startActivity(intent);
+            mListener.onClick(view, getPosition()); // TODO deprecated
+        }
+
+        public interface MatchViewHolderClicks {
+            void onClick(View view, int position);
         }
     }
 }

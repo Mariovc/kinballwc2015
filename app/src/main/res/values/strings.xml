@@ -1,23 +1,25 @@
 <resources>
-    <string name="app_name">Kin-ball WC\'15</string>
+    <string name="app_name">KinBall WC\'15</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_example">Example action</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_match">MatchActivity</string>
+    <!--Activities-->
+    <string name="title_activity_match">Match</string>
 
 
     <!--NavigationView Menu-->
     <string name="navigation_drawer_matches">Matches</string>
     <string name="navigation_drawer_teams">Teams</string>
 
+    <!--Match-->
+    <string name="team1_color">Blue</string>
+    <string name="team2_color">Grey</string>
+    <string name="team3_color">Black</string>
+    <string name="default_score">-</string>
+    <string name="period_points">Period points</string>
+    <string name="match_points">Match points</string>
+    <string name="sportsmanship_points">Sportsmanship Points</string>
+    <string name="total_points">Total points</string>
 
     <!--<string-array name="days">-->
         <!--<item>18/08</item>-->

@@ -66,8 +66,10 @@ public class TeamsFragment extends Fragment {
 
 
     private void onTeamsReceived(List<Team> itemList) {
-        TeamAdapter mAdapter = new TeamAdapter(getActivity(), itemList);
-        listView.setAdapter(mAdapter);
+        if (listView != null) {
+            TeamAdapter mAdapter = new TeamAdapter(getActivity(), itemList);
+            listView.setAdapter(mAdapter);
+        }
     }
 
 }

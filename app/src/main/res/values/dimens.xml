@@ -15,4 +15,14 @@
     <dimen name="card_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_item_avatar_size">40dp</dimen>
+
+
+
+
+    <!--match-->
+    <dimen name="team_logo_height">40dp</dimen>
+    <dimen name="logo_margin_top">4dp</dimen>
+    <dimen name="points_width">100dp</dimen>
+    <dimen name="total_points_font_size">18sp</dimen>
+    <dimen name="match_activity_margin">8dp</dimen>
 </resources>

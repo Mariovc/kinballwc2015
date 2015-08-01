@@ -17,12 +17,15 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mario on 13/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 13/07/2015
+ * Email: m3ario@gmail.com
  */
-public class MatchesTabFragment extends Fragment{
+public class MatchesTabFragment extends Fragment {
 
     private static final String ARG_TAB_NUMBER = "tab_number";
 
@@ -31,6 +34,7 @@ public class MatchesTabFragment extends Fragment{
     private RecyclerView.LayoutManager mLayoutManager;
 
     private int tabNumber;
+    private List<Match> mMatchList;
 
     public static MatchesTabFragment newInstance(int tabNumber) {
         MatchesTabFragment fragment = new MatchesTabFragment();
@@ -50,10 +54,16 @@ public class MatchesTabFragment extends Fragment{
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setAdapter(null);
+        mAdapter = new MatchRecyclerAdapter(new ArrayList<Match>());
+        mRecyclerView.setAdapter(mAdapter);
 
 //        mRecyclerView.setHasFixedSize(true);
 
@@ -78,7 +88,7 @@ public class MatchesTabFragment extends Fragment{
         query.include("team1Points");
         query.include("team2Points");
         query.include("team3Points");
-        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.findInBackground(new FindCallback<Match>() {
             public void done(List<Match> itemList, ParseException e) {
                 if (e == null) {
@@ -95,7 +105,10 @@ public class MatchesTabFragment extends Fragment{
 
 
     private void onMatchesReceived(List<Match> itemList) {
+        mMatchList = itemList;
         mAdapter = new MatchRecyclerAdapter(itemList);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.swapAdapter(mAdapter, false);
     }
+
+
 }

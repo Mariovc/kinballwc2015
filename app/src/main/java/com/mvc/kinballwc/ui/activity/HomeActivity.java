@@ -14,18 +14,19 @@ import android.view.View;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.MatchesFragment;
-import com.mvc.kinballwc.ui.fragment.NavigationDrawerFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 
-
+/**
+ * Author: Mario Velasco Casquero
+ * Date: 27/6/15
+ * Email: m3ario@gmail.com
+ */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 0;
+    private static final int INITIAL_SECTION = 1;
 
-    private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    private CharSequence mTitle;
     private DrawerLayout mDrawerLayout;
+    private int currentMenuItemSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.sample_actions, menu);
-        return true;
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -74,7 +74,10 @@ public class HomeActivity extends AppCompatActivity {
     private void onNavigationItemSelection(MenuItem menuItem) {
         menuItem.setChecked(true);
         mDrawerLayout.closeDrawers();
-        changeFragment(menuItem);
+        if (menuItem.getItemId() != currentMenuItemSelected){
+            currentMenuItemSelected = menuItem.getItemId();
+            changeFragment(menuItem);
+        }
     }
 
     public void changeFragment(MenuItem menuItem) {
