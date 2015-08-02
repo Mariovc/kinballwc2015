@@ -22,10 +22,9 @@ import com.mvc.kinballwc.ui.fragment.TeamsFragment;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 0;
+    private static final int INITIAL_SECTION = 1;
 
     private DrawerLayout mDrawerLayout;
-    private int currentMenuItemSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +67,7 @@ public class HomeActivity extends AppCompatActivity {
     private void onNavigationItemSelection(MenuItem menuItem) {
         menuItem.setChecked(true);
         mDrawerLayout.closeDrawers();
-        if (menuItem.getItemId() != currentMenuItemSelected){
-            currentMenuItemSelected = menuItem.getItemId();
-            changeFragment(menuItem);
-        }
+        changeFragment(menuItem);
     }
 
     public void changeFragment(MenuItem menuItem) {

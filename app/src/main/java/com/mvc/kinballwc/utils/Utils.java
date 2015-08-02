@@ -29,4 +29,9 @@ public class Utils {
         }
         return categoryName;
     }
+
+    public static String[] getCategories() {
+        String[] categories = {NATIONS_MAN, NATIONS_WOMAN, CLUBS_PRO, CLUBS_AMATEUR};
+        return categories;
+    }
 }

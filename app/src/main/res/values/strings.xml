@@ -37,18 +37,26 @@
         <!--<item>21/08</item>-->
         <!--<item>22/08</item>-->
     <!--</string-array>-->
-    <string-array name="days">
-        <item>Day 1</item>
-        <item>Day 2</item>
-        <item>Day 3</item>
-        <item>Day 4</item>
-        <item>Day 5</item>
-    </string-array>
     <!--<string-array name="days">-->
         <!--<item>Day 1</item>-->
         <!--<item>Day 2</item>-->
         <!--<item>Day 3</item>-->
-        <!--<item>Semifinals</item>-->
-        <!--<item>Finals</item>-->
+        <!--<item>Day 4</item>-->
+        <!--<item>Day 5</item>-->
     <!--</string-array>-->
+    <string-array name="days">
+        <item>Day 1</item>
+        <item>Day 2</item>
+        <item>Day 3</item>
+        <item>Semifinals</item>
+        <item>Finals</item>
+    </string-array>
+
+
+    <string-array name="categories">
+        <item>@string/category_nations_man</item>
+        <item>@string/category_nations_woman</item>
+        <item>@string/category_clubs_pro</item>
+        <item>@string/category_clubs_amateur</item>
+    </string-array>
 </resources>

@@ -27,39 +27,24 @@ import java.util.List;
  */
 public class MatchesTabFragment extends Fragment {
 
-    private static final String ARG_TAB_NUMBER = "tab_number";
+    private static final String TAG = "MatchesTabFragment";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private int tabNumber;
-    private List<Match> mMatchList;
 
     public static MatchesTabFragment newInstance(int tabNumber) {
         MatchesTabFragment fragment = new MatchesTabFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_TAB_NUMBER, tabNumber);
-        fragment.setArguments(args);
+        fragment.tabNumber = tabNumber;
         return fragment;
     }
 
-    public MatchesTabFragment() {
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        tabNumber = getArguments().getInt(ARG_TAB_NUMBER);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         mAdapter = new MatchRecyclerAdapter(new ArrayList<Match>());
@@ -76,6 +61,7 @@ public class MatchesTabFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "ParseQuery get matches, tab: " + tabNumber);
         // Define the class we would like to query
         ParseQuery<Match> query = ParseQuery.getQuery(Match.class);
         // Define our query conditions
@@ -88,10 +74,11 @@ public class MatchesTabFragment extends Fragment {
         query.include("team1Points");
         query.include("team2Points");
         query.include("team3Points");
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.findInBackground(new FindCallback<Match>() {
             public void done(List<Match> itemList, ParseException e) {
                 if (e == null) {
+                    Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
                     // Access the array of results here
                     onMatchesReceived(itemList);
                     //String firstItemId = itemList.get(0).getName();
@@ -105,7 +92,6 @@ public class MatchesTabFragment extends Fragment {
 
 
     private void onMatchesReceived(List<Match> itemList) {
-        mMatchList = itemList;
         mAdapter = new MatchRecyclerAdapter(itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }
