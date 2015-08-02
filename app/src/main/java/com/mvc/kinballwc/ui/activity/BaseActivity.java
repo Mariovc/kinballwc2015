@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import com.mvc.kinballwc.R;
 
 /**
- * Created by Mario on 19/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 19/07/2015
+ * Email: m3ario@gmail.com
  */
 public class BaseActivity extends AppCompatActivity {
 

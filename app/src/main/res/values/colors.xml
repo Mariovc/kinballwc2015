@@ -51,4 +51,6 @@
     <color name="period_background">@color/red_transparent</color>
     <color name="period_footer">@color/red</color>
     <color name="period_text">@color/black</color>
+    <color name="scoreboard_background">@color/yellow_light_4</color>
+    <color name="scoreboard_team_background">@color/white</color>
 </resources>

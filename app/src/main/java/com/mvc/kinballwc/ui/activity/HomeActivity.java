@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -23,7 +22,7 @@ import com.mvc.kinballwc.ui.fragment.TeamsFragment;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 1;
+    private static final int INITIAL_SECTION = 0;
 
     private DrawerLayout mDrawerLayout;
     private int currentMenuItemSelected;
@@ -38,11 +37,6 @@ public class HomeActivity extends AppCompatActivity {
         setupDrawerContent(navigationView);
 
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -95,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.nav_matches:
                 fragment = new MatchesFragment();
                 break;
-            case R.id.nav_messages:
+            case R.id.nav_teams:
                 fragment = new TeamsFragment();
                 break;
         }

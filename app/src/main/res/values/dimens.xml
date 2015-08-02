@@ -20,9 +20,14 @@
 
 
     <!--match-->
-    <dimen name="team_logo_height">40dp</dimen>
+    <dimen name="team_logo_height">80dp</dimen>
     <dimen name="logo_margin_top">4dp</dimen>
     <dimen name="points_width">100dp</dimen>
     <dimen name="total_points_font_size">18sp</dimen>
     <dimen name="match_activity_margin">8dp</dimen>
+    <dimen name="period_scoreboard_heigh">110dp</dimen>
+    <dimen name="period_color_heigh">20dp</dimen>
+    <dimen name="period_score_width">60dp</dimen>
+    <dimen name="period_scoreboard_margin">2dp</dimen>
+
 </resources>

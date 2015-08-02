@@ -1,55 +1,50 @@
 package com.mvc.kinballwc.ui.adapter;
 
 /**
- * Created by Mario on 31/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 31/07/2015
+ * Email: m3ario@gmail.com
  */
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mvc.kinballwc.R;
-import com.viewpagerindicator.IconPagerAdapter;
+import com.mvc.kinballwc.model.MatchPeriod;
+import com.mvc.kinballwc.ui.fragment.PeriodFragment;
 
-public class PeriodFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-    protected static final String[] CONTENT = new String[] { "Period 1", "Period 2", "Period 3", "Period 4", };
-    protected static final int[] ICONS = new int[] {
-            R.drawable.abc_ab_share_pack_mtrl_alpha,
-            R.drawable.abc_ab_share_pack_mtrl_alpha,
-            R.drawable.abc_ab_share_pack_mtrl_alpha,
-            R.drawable.abc_ab_share_pack_mtrl_alpha
-    };
+import java.util.List;
 
-    private int mCount = CONTENT.length;
+public class PeriodFragmentAdapter extends FragmentPagerAdapter {
 
-    public PeriodFragmentAdapter(FragmentManager fm) {
+    private Context context;
+    private List<MatchPeriod> periods;
+
+    public PeriodFragmentAdapter(FragmentManager fm, Context context, List<MatchPeriod> periods) {
         super(fm);
+        this.context = context;
+        this.periods = periods;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return TestFragment.newInstance(CONTENT[position % CONTENT.length]);
+        return PeriodFragment.newInstance(periods.get(position));
     }
 
     @Override
     public int getCount() {
-        return mCount;
+        return periods.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return PeriodFragmentAdapter.CONTENT[position % CONTENT.length];
+        return context.getString(R.string.period_title, position+1);
     }
 
-    @Override
-    public int getIconResId(int index) {
-        return ICONS[index % ICONS.length];
-    }
-
-    public void setCount(int count) {
-        if (count > 0 && count <= 10) {
-            mCount = count;
-            notifyDataSetChanged();
-        }
+    public void setPeriods(List<MatchPeriod> periods) {
+        this.periods = periods;
+        notifyDataSetChanged();
     }
 }

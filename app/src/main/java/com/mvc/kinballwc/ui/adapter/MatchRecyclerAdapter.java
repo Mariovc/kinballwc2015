@@ -5,9 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
@@ -16,7 +14,9 @@ import com.mvc.kinballwc.ui.activity.MatchActivity;
 import java.util.List;
 
 /**
- * Created by Mario on 08/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 08/07/2015
+ * Email: m3ario@gmail.com
  */
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     private List<Match> mMatchList;
@@ -29,8 +29,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     @Override
     public MatchRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_match2, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+                .inflate(R.layout.item_match, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(view, new ViewHolder.MatchViewHolderClicks() {
             @Override

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">KinBall WC\'15</string>
 
+    <!--Categories-->
+    <string name="category_nations_man">NATIONS MAN</string>
+    <string name="category_nations_woman">NATIONS WOMAN</string>
+    <string name="category_clubs_pro">CLUBS PRO</string>
+    <string name="category_clubs_amateur">CLUBS AMATEUR</string>
 
 
     <!--Activities-->
@@ -15,11 +20,15 @@
     <string name="team1_color">Blue</string>
     <string name="team2_color">Grey</string>
     <string name="team3_color">Black</string>
+    <string name="period_title">Period %1$d</string>
     <string name="default_score">-</string>
     <string name="period_points">Period points</string>
     <string name="match_points">Match points</string>
     <string name="sportsmanship_points">Sportsmanship Points</string>
     <string name="total_points">Total points</string>
+    <string name="date_format">dd/MM</string>
+    <string name="hour_format">HH:mm</string>
+
 
     <!--<string-array name="days">-->
         <!--<item>18/08</item>-->
