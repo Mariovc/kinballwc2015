@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
@@ -15,7 +14,9 @@ import com.mvc.kinballwc.ui.activity.MatchActivity;
 import java.util.List;
 
 /**
- * Created by Mario on 08/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 08/07/2015
+ * Email: m3ario@gmail.com
  */
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     private List<Match> mMatchList;
@@ -28,10 +29,17 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     @Override
     public MatchRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_match2, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+                .inflate(R.layout.item_match, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view, new ViewHolder.MatchViewHolderClicks() {
+            @Override
+            public void onClick(View view, int position) {
+                String matchId = mMatchList.get(position).getObjectId();
+                Intent intent = new Intent(view.getContext(), MatchActivity.class);
+                intent.putExtra(MatchActivity.MATCH_ID_EXTRA, matchId);
+                view.getContext().startActivity(intent);
+            }
+        });
         return viewHolder;
     }
 
@@ -59,23 +67,27 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        public MatchViewHolderClicks mListener;
         public TextView mTeam1NameTV;
         public TextView mTeam2NameTV;
         public TextView mTeam3NameTV;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v, MatchViewHolderClicks onClickListener) {
             super(v);
-            v.setOnClickListener(this);
+            mListener = onClickListener;
             mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
             mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
             mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
+            v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-//            Toast.makeText(view.getContext(),"hola", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(view.getContext(), MatchActivity.class);
-            view.getContext().startActivity(intent);
+            mListener.onClick(view, getPosition()); // TODO deprecated
+        }
+
+        public interface MatchViewHolderClicks {
+            void onClick(View view, int position);
         }
     }
 }

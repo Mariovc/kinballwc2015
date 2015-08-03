@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.mvc.kinballwc.model.Match;
+import com.mvc.kinballwc.model.MatchPeriod;
 import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.MatchScore;
 import com.mvc.kinballwc.model.Player;
@@ -42,6 +43,7 @@ public class App extends Application{
         ParseObject.registerSubclass(Player.class);
         ParseObject.registerSubclass(Match.class);
         ParseObject.registerSubclass(MatchPoints.class);
+        ParseObject.registerSubclass(MatchPeriod.class);
 
         // Initialize the instance of Parse
         Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);

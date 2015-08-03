@@ -19,11 +19,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_matches"
-            android:icon="@android:drawable/ic_btn_speak_now"
+            android:icon="@drawable/ic_score"
             android:title="@string/navigation_drawer_matches" />
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@android:drawable/ic_dialog_dialer"
+            android:id="@+id/nav_teams"
+            android:icon="@drawable/ic_team"
             android:title="@string/navigation_drawer_teams" />
     </group>
 

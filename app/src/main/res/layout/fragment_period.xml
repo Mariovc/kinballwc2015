@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/scoreboard_background"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/scoreboard_team_background"
+        android:orientation="vertical"
+        android:layout_marginRight="@dimen/period_scoreboard_margin"
+        android:layout_marginEnd="@dimen/period_scoreboard_margin">
+
+        <TextSwitcher
+            android:id="@+id/team1Score"
+            android:layout_width="@dimen/period_score_width"
+            android:layout_height="@dimen/period_score_width"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/period_color_heigh"
+            android:src="@color/team1"
+            android:id="@+id/imageView2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/scoreboard_team_background"
+        android:layout_marginRight="@dimen/period_scoreboard_margin"
+        android:layout_marginEnd="@dimen/period_scoreboard_margin"
+        android:orientation="vertical" >
+
+        <TextSwitcher
+            android:id="@+id/team2Score"
+            android:layout_width="@dimen/period_score_width"
+            android:layout_height="@dimen/period_score_width" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/period_color_heigh"
+            android:src="@color/team2"
+            android:id="@+id/imageView3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/scoreboard_team_background"
+        android:orientation="vertical" >
+
+        <TextSwitcher
+            android:id="@+id/team3Score"
+            android:layout_width="@dimen/period_score_width"
+            android:layout_height="@dimen/period_score_width" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/period_color_heigh"
+            android:src="@color/team3"
+            android:id="@+id/imageView4" />
+    </LinearLayout>
+</LinearLayout>

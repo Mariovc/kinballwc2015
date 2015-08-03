@@ -17,14 +17,17 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mario on 13/07/2015.
+ * Author: Mario Velasco Casquero
+ * Date: 13/07/2015
+ * Email: m3ario@gmail.com
  */
-public class MatchesTabFragment extends Fragment{
+public class MatchesTabFragment extends Fragment {
 
-    private static final String ARG_TAB_NUMBER = "tab_number";
+    private static final String TAG = "MatchesTabFragment";
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -34,26 +37,18 @@ public class MatchesTabFragment extends Fragment{
 
     public static MatchesTabFragment newInstance(int tabNumber) {
         MatchesTabFragment fragment = new MatchesTabFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_TAB_NUMBER, tabNumber);
-        fragment.setArguments(args);
+        fragment.tabNumber = tabNumber;
         return fragment;
     }
 
-    public MatchesTabFragment() {
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        tabNumber = getArguments().getInt(ARG_TAB_NUMBER);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mRecyclerView.setAdapter(null);
+        mAdapter = new MatchRecyclerAdapter(new ArrayList<Match>());
+        mRecyclerView.setAdapter(mAdapter);
 
 //        mRecyclerView.setHasFixedSize(true);
 
@@ -66,6 +61,7 @@ public class MatchesTabFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+        Log.d(TAG, "ParseQuery get matches, tab: " + tabNumber);
         // Define the class we would like to query
         ParseQuery<Match> query = ParseQuery.getQuery(Match.class);
         // Define our query conditions
@@ -82,6 +78,7 @@ public class MatchesTabFragment extends Fragment{
         query.findInBackground(new FindCallback<Match>() {
             public void done(List<Match> itemList, ParseException e) {
                 if (e == null) {
+                    Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
                     // Access the array of results here
                     onMatchesReceived(itemList);
                     //String firstItemId = itemList.get(0).getName();
@@ -96,6 +93,8 @@ public class MatchesTabFragment extends Fragment{
 
     private void onMatchesReceived(List<Match> itemList) {
         mAdapter = new MatchRecyclerAdapter(itemList);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.swapAdapter(mAdapter, false);
     }
+
+
 }

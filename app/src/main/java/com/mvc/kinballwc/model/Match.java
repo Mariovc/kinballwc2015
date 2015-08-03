@@ -4,6 +4,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by mario on 28/6/15.
@@ -51,6 +52,10 @@ public class Match extends ParseObject{
         return (MatchPoints) getParseObject("team3Points");
     }
 
+    public List<MatchPeriod> getPeriods(){
+        return getList("periods");
+    }
+
     public void setState(String state){
         put("state", state);
     }
@@ -89,5 +94,9 @@ public class Match extends ParseObject{
 
     public void setTeam3Points(MatchPoints matchPoints3) {
         put("team3Points", matchPoints3);
+    }
+
+    public void setPeriods(List<MatchPeriod> periods) {
+        put("periods", periods);
     }
 }
