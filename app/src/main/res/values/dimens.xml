@@ -29,7 +29,7 @@
 
 
     <!--matches list-->
-    <dimen name="logo_margin_top">4dp</dimen>
+    <dimen name="matches_logo_margin_top">4dp</dimen>
     <dimen name="team_margin">4dp</dimen>
     <dimen name="score_margin">12dp</dimen>
 </resources>
