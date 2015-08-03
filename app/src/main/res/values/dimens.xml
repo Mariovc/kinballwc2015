@@ -28,4 +28,9 @@
     <dimen name="period_score_width">60dp</dimen>
     <dimen name="period_scoreboard_margin">2dp</dimen>
 
+
+    <!--matches list-->
+    <dimen name="matches_logo_margin_top">4dp</dimen>
+    <dimen name="team_margin">4dp</dimen>
+    <dimen name="score_margin">12dp</dimen>
 </resources>

@@ -16,6 +16,7 @@ import android.widget.FrameLayout.LayoutParams;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+import android.widget.ViewSwitcher.ViewFactory;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.MatchPeriod;
@@ -52,10 +53,8 @@ public final class PeriodFragment extends Fragment {
 
     private void setupSwitcher(TextSwitcher switcher) {
         switcher.setFactory(switcherFactory);
-        Animation in = AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_in);
-        Animation out = AnimationUtils.loadAnimation(getActivity(),android.R.anim.fade_out);
+        Animation in = AnimationUtils.loadAnimation(getActivity(),R.anim.zoom_in);
         switcher.setInAnimation(in);
-        switcher.setOutAnimation(out);
     }
 
     private void setText(TextSwitcher switcher, int score) {
@@ -64,7 +63,7 @@ public final class PeriodFragment extends Fragment {
     }
 
 
-    private ViewSwitcher.ViewFactory switcherFactory = new ViewSwitcher.ViewFactory() {
+    private ViewFactory switcherFactory = new ViewSwitcher.ViewFactory() {
         @Override
         public View makeView() {
             TextView t = new TextView(getActivity());
