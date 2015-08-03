@@ -1,5 +1,7 @@
 package com.mvc.kinballwc.ui.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Team;
+import com.mvc.kinballwc.ui.activity.TeamActivity;
 
 import java.util.List;
 
@@ -55,17 +58,16 @@ public class TeamsRecyclerAdapter
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Team team = mTeams.get(position);
+        final Team team = mTeams.get(position);
         holder.mTextView.setText(team.getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    Context context = v.getContext();
-//                    Intent intent = new Intent(context, CheeseDetailActivity.class);
-//                    intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
-// TODO
-//                    context.startActivity(intent);
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, TeamActivity.class);
+                    intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
+                    context.startActivity(intent);
             }
         });
 

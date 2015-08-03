@@ -25,6 +25,10 @@
             android:name=".ui.activity.MatchActivity"
             android:label="@string/title_activity_match" >
         </activity>
+        <activity
+            android:name=".ui.activity.TeamActivity"
+            android:label="@string/title_activity_team" >
+        </activity>
     </application>
 
 </manifest>

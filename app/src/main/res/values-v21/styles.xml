@@ -19,8 +19,10 @@
 
 
     <style name="AppTheme" parent="Base.AppTheme">
-        <item name="colorPrimary">@color/primary_color</item>
-        <item name="colorPrimaryDark">@color/primary_color_dark</item>
+        <!--<item name="colorPrimary">@color/primary_color</item>-->
+        <!--<item name="colorPrimaryDark">@color/primary_color_dark</item>-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>
