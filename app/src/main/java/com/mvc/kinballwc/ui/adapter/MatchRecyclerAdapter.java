@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mvc.kinballwc.R;
@@ -46,9 +47,9 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Match match = mMatchList.get(position);
-//        holder.mTeam1NameTV.setText(match.getTeam1().getName());
-//        holder.mTeam2NameTV.setText(match.getTeam2().getName());
-//        holder.mTeam3NameTV.setText(match.getTeam3().getName());
+        holder.mTeam1NameTV.setText(match.getTeam1().getName());
+        holder.mTeam2NameTV.setText(match.getTeam2().getName());
+        holder.mTeam3NameTV.setText(match.getTeam3().getName());
     }
 
     @Override
@@ -71,6 +72,12 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         public TextView mTeam1NameTV;
         public TextView mTeam2NameTV;
         public TextView mTeam3NameTV;
+        public TextView mTeam1ScoreTV;
+        public TextView mTeam2ScoreTV;
+        public TextView mTeam3ScoreTV;
+        public ImageView mTeam1LogoIV;
+        public ImageView mTeam2LogoIV;
+        public ImageView mTeam3LogoIV;
 
         public ViewHolder(View v, MatchViewHolderClicks onClickListener) {
             super(v);
@@ -78,6 +85,12 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
             mTeam1NameTV = (TextView) v.findViewById(R.id.matchTeam1NameTextView);
             mTeam2NameTV = (TextView) v.findViewById(R.id.matchTeam2NameTextView);
             mTeam3NameTV = (TextView) v.findViewById(R.id.matchTeam3NameTextView);
+            mTeam1ScoreTV = (TextView) v.findViewById(R.id.matchTeam1ScoreTextView);
+            mTeam2ScoreTV = (TextView) v.findViewById(R.id.matchTeam2ScoreTextView);
+            mTeam3ScoreTV = (TextView) v.findViewById(R.id.matchTeam3ScoreTextView);
+            mTeam1LogoIV = (ImageView) v.findViewById(R.id.matchTeam1LogoIV);
+            mTeam2LogoIV = (ImageView) v.findViewById(R.id.matchTeam2LogoIV);
+            mTeam3LogoIV = (ImageView) v.findViewById(R.id.matchTeam3LogoIV);
             v.setOnClickListener(this);
         }
 

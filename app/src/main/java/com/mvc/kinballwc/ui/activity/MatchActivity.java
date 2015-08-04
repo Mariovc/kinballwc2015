@@ -1,8 +1,9 @@
 package com.mvc.kinballwc.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPeriod;
+import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.adapter.PeriodFragmentAdapter;
 import com.mvc.kinballwc.utils.Utils;
 import com.parse.GetCallback;
@@ -18,16 +20,17 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.viewpagerindicator.TitlePageIndicator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MatchActivity extends BaseActivity {
 
     public static final String MATCH_ID_EXTRA = "matchId";
+
+
+    private Match mMatch;
 
     private ViewPager mPager;
     private PeriodFragmentAdapter mAdapter;
@@ -128,6 +131,7 @@ public class MatchActivity extends BaseActivity {
     }
 
     private void onMatchReceived(Match match) {
+        mMatch = match;
         setToolbarTitle(match.getTitle());
         categoryTV.setText(Utils.getCategoryName(this, match.getCategory()));
         SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.getDefault());
@@ -152,13 +156,17 @@ public class MatchActivity extends BaseActivity {
         team1TotalPointsTV.setText(String.valueOf(match.getTeam1Points().getTotalPoints()));
         team2TotalPointsTV.setText(String.valueOf(match.getTeam2Points().getTotalPoints()));
         team3TotalPointsTV.setText(String.valueOf(match.getTeam3Points().getTotalPoints()));
+        team1NameTV.setOnClickListener(onClickTeam1);
+        team1NameTV.setOnClickListener(onClickTeam2);
+        team1NameTV.setOnClickListener(onClickTeam3);
 //        ParseObject period1 = ParseObject.create("MatchPeriod");
 //        period1.put("team1Score", 11);
 //        period1.put("team2Score", 9);
 //        period1.put("team3Score", 7);
 //        ParseObject period2 = ParseObject.create("MatchPeriod");
 //        period2.put("team1Score", 4);
-//        period2.put("team2Score", 4);
+//        period2.put("team2Score", 4
+// );
 //        period2.put("team3Score", 4);
 //        ArrayList<ParseObject> periods = new ArrayList<>();
 //        periods.add(period1);
@@ -181,5 +189,30 @@ public class MatchActivity extends BaseActivity {
                 .into(imageView);
     }
 
+    private void launchTeamActivity(Team team) {
+        Intent intent = new Intent(this, TeamActivity.class);
+        intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
+        startActivity(intent);
+    }
 
+    private View.OnClickListener onClickTeam1 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            launchTeamActivity(mMatch.getTeam1());
+        }
+    };
+
+    private View.OnClickListener onClickTeam2 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            launchTeamActivity(mMatch.getTeam2());
+        }
+    };
+
+    private View.OnClickListener onClickTeam3 = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            launchTeamActivity(mMatch.getTeam3());
+        }
+    };
 }
