@@ -59,4 +59,8 @@
         <item>@string/category_clubs_pro</item>
         <item>@string/category_clubs_amateur</item>
     </string-array>
+    <string name="title_activity_team">Team</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -3,6 +3,9 @@
     <style name="AppTheme" parent="Base.AppTheme">
     </style>
 
+    <style name="TraslucentStatus" parent="Base.AppTheme">
+    </style>
+
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
@@ -14,5 +17,12 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">26sp</item>
+        <!--<item name="android:textColor">@color/red</item>-->
+        <item name="android:textStyle">bold</item>
+
     </style>
 </resources>
