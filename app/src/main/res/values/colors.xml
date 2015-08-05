@@ -16,6 +16,7 @@
     <color name="yellow_light_2">#FFF176</color>
     <color name="yellow_light_1">#FFEE58</color>
     <color name="yellow">#FFEB3B</color>
+    <color name="red_light_3">#EF9A9A</color>
     <color name="red">#F44336</color>
     <color name="red_transparent">#18F44336</color>
     <color name="red_dark_1">#E53935</color>
@@ -53,4 +54,7 @@
     <color name="period_text">@color/black</color>
     <color name="scoreboard_background">@color/yellow_light_4</color>
     <color name="scoreboard_team_background">@color/white</color>
+
+    <!--Team-->
+    <color name="matches_button_text_color">@color/white</color>
 </resources>

@@ -78,8 +78,6 @@ public class TeamsTabFragment extends Fragment {
         ParseQuery<Team> query = ParseQuery.getQuery(Team.class);
         //query.whereEqualTo("owner", ParseUser.getCurrentUser());
         // TODO make query with date
-//     TODO include players
-        query.include("team1");
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.findInBackground(new FindCallback<Team>() {
             public void done(List<Team> itemList, ParseException e) {

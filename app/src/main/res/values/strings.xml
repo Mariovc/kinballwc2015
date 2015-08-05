@@ -7,6 +7,12 @@
     <string name="category_clubs_pro">CLUBS PRO</string>
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
 
+    <!--Roles-->
+    <string name="role_player">Player</string>
+    <string name="role_coach">Coach</string>
+    <string name="role_first_assistant_coach">First Assistant Coach</string>
+    <string name="role_second_assistant_coach">Second Assistant Coach</string>
+    <string name="role_medical_assistant">Medical Assistant</string>
 
     <!--Activities-->
     <string name="title_activity_match">Match</string>
@@ -63,4 +69,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="show_matches">Show matches</string>
 </resources>

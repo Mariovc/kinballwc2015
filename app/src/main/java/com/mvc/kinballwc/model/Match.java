@@ -7,7 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by mario on 28/6/15.
+ * Author: Mario Velasco Casquero
+ * Date: 28/6/15
+ * Email: m3ario@gmail.com
  */
 @ParseClassName("Match")
 public class Match extends ParseObject{

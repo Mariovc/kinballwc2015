@@ -6,7 +6,9 @@ import com.parse.ParseObject;
 import java.util.List;
 
 /**
- * Created by mario on 27/6/15.
+ * Author: Mario Velasco Casquero
+ * Date: 27/6/15
+ * Email: m3ario@gmail.com
  */
 @ParseClassName("Team")
 public class Team extends ParseObject {
