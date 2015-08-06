@@ -174,10 +174,10 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         if (player.getName() != null) {
             completeName.append(player.getName());
         }
-        if (player.getSurname() != null) {
-            completeName.append(" ");
-            completeName.append(player.getSurname());
-        }
+//        if (player.getSurname() != null) {
+//            completeName.append(" ");
+//            completeName.append(player.getSurname());
+//        }
         return completeName.toString();
     }
 }

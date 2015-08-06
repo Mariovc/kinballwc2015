@@ -13,7 +13,6 @@ import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Player;
 import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.adapter.PlayerRecyclerAdapter;
-import com.mvc.kinballwc.ui.view.ControllableAppBarLayout;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -25,7 +24,6 @@ public class TeamActivity extends BaseActivity {
 
     public static final String EXTRA_TEAM_ID = "teamId";
 
-    private ControllableAppBarLayout appBarLayout;
     private CollapsingToolbarLayout collapsingToolbar;
 
     private Team mTeam;
@@ -59,14 +57,6 @@ public class TeamActivity extends BaseActivity {
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-
-        appBarLayout = (ControllableAppBarLayout) findViewById(R.id.app_bar_layout);
-        appBarLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                appBarLayout.expandToolbar(true);
-            }
-        });
 
         String teamObjectId = getIntent().getStringExtra(EXTRA_TEAM_ID);
         if (teamObjectId != null) {

@@ -18,10 +18,6 @@ public class Player extends ParseObject {
         return getString("name");
     }
 
-    public String getSurname(){
-        return getString("surname");
-    }
-
     public String getNationality(){
         return getString("nationality");
     }
@@ -40,10 +36,6 @@ public class Player extends ParseObject {
 
     public void setName(String name){
         put("name", name);
-    }
-
-    public void setSurname(String surname){
-        put("surname", surname);
     }
 
     public void setNationality(String nationality){

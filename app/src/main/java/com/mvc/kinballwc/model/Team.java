@@ -17,10 +17,6 @@ public class Team extends ParseObject {
         return getString("name");
     }
 
-    public String getMotto(){
-        return getString("motto");
-    }
-
     public String getLogo(){
         return getString("logo");
     }
@@ -35,10 +31,6 @@ public class Team extends ParseObject {
 
     public void setName(String name){
         put("name", name);
-    }
-
-    public void setMotto(String motto){
-        put("motto", motto);
     }
 
     public void setLogo(String logo){

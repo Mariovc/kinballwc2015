@@ -8,12 +8,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.MatchesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
+import com.mvc.kinballwc.utils.Utils;
 
 /**
  * Author: Mario Velasco Casquero
@@ -35,7 +37,15 @@ public class HomeActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         setupDrawerContent(navigationView);
 
+        if (Utils.isFistTime(this)) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+            Utils.setFistTime(this, false);
+        }
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -100,4 +110,5 @@ public class HomeActivity extends AppCompatActivity {
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
     }
+
 }

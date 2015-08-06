@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KinBall WC\'15</string>
+    <string name="app_name">Kin-Ball WC\'15</string>
 
     <!--Categories-->
     <string name="category_nations_man">NATIONS MAN</string>
@@ -9,10 +9,9 @@
 
     <!--Roles-->
     <string name="role_player">Player</string>
-    <string name="role_coach">Coach</string>
+    <string name="role_coach">Head Coach</string>
     <string name="role_first_assistant_coach">First Assistant Coach</string>
     <string name="role_second_assistant_coach">Second Assistant Coach</string>
-    <string name="role_medical_assistant">Medical Assistant</string>
 
     <!--Activities-->
     <string name="title_activity_match">Match</string>
