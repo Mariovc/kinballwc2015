@@ -18,6 +18,7 @@ import com.bumptech.glide.request.target.Target;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Player;
 import com.mvc.kinballwc.model.Role;
+import com.mvc.kinballwc.ui.activity.TeamActivity;
 import com.mvc.kinballwc.utils.Utils;
 
 import java.util.List;
@@ -33,9 +34,11 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
+    private TeamActivity activity;
     private List<Player> mPlayers;
 
-    public PlayerRecyclerAdapter(List<Player> players) {
+    public PlayerRecyclerAdapter(TeamActivity activity, List<Player> players) {
+        this.activity = activity;
         this.mPlayers = players;
     }
 
@@ -67,17 +70,20 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 String rolesString = getRoleString(itemHolder.mRole.getContext(), player.getRoles());
                 itemHolder.mRole.setText(rolesString);
 
-                itemHolder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                Context context = v.getContext();
-//                Intent intent = new Intent(context, TeamActivity.class);
-//                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
-//                context.startActivity(intent);
-                        Log.d(TAG, getCompleteName(player));
-                        Toast.makeText(v.getContext(), getCompleteName(player), Toast.LENGTH_SHORT).show();
-                    }
-                });
+                View.OnClickListener onClickListener =
+                        activity.new ExpandOnClickListener(itemHolder.mImageView, player.getImage());
+                itemHolder.mView.setOnClickListener(onClickListener);
+//                itemHolder.mView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+////                Context context = v.getContext();
+////                Intent intent = new Intent(context, TeamActivity.class);
+////                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
+////                context.startActivity(intent);
+//                        Log.d(TAG, getCompleteName(player));
+//                        Toast.makeText(v.getContext(), getCompleteName(player), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
                 loadImage(itemHolder.mImageView, player.getImage());
             } catch (Exception e) {
                 return;
