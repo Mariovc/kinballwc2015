@@ -53,6 +53,7 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 //            ImageView iv = new ImageView(parent.getContext());
 //            iv.setImageResource(R.drawable.placeholder);
 //            tv.setText("header");
+            // TODO
             return new VHHeader(tv);
         }
 
@@ -73,17 +74,6 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 View.OnClickListener onClickListener =
                         activity.new ExpandOnClickListener(itemHolder.mImageView, player.getImage());
                 itemHolder.mView.setOnClickListener(onClickListener);
-//                itemHolder.mView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-////                Context context = v.getContext();
-////                Intent intent = new Intent(context, TeamActivity.class);
-////                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
-////                context.startActivity(intent);
-//                        Log.d(TAG, getCompleteName(player));
-//                        Toast.makeText(v.getContext(), getCompleteName(player), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
                 loadImage(itemHolder.mImageView, player.getImage());
             } catch (Exception e) {
                 return;

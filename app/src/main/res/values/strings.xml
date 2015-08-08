@@ -13,6 +13,22 @@
     <string name="role_first_assistant_coach">First Assistant Coach</string>
     <string name="role_second_assistant_coach">Second Assistant Coach</string>
 
+    <!--Countries-->
+    <string name="country_austria">Austria</string>
+    <string name="country_belgium">Belgium</string>
+    <string name="country_czech_republic">Czech Republic</string>
+    <string name="country_switzerland">Switzerland</string>
+    <string name="country_japan">Japan</string>
+    <string name="country_canada">Canada</string>
+    <string name="country_slovakia">Slovakia</string>
+    <string name="country_south_korea">South Korea</string>
+    <string name="country_spain">Spain</string>
+    <string name="country_france">France</string>
+    <string name="country_china">China</string>
+    <string name="country_denmark">Denmark</string>
+
+
+
     <!--Activities-->
     <string name="title_activity_match">Match</string>
 

@@ -1,8 +1,13 @@
 package com.mvc.kinballwc.model;
 
+import android.app.Application;
+
+import com.mvc.kinballwc.application.App;
+import com.mvc.kinballwc.utils.Utils;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -43,5 +48,14 @@ public class Team extends ParseObject {
 
     public void setPlayers(List<Player> players) {
         put("players", players);
+    }
+
+    public static class NameComparator implements Comparator<Team> {
+        @Override
+        public int compare(Team team1, Team team2) {
+            String team1Name = Utils.getTranslatedCountry(App.getAppContext(), team1.getName());
+            String team2Name = Utils.getTranslatedCountry(App.getAppContext(), team2.getName());
+            return team1Name.compareTo(team2Name);
+        }
     }
 }

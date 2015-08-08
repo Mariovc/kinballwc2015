@@ -17,6 +17,7 @@ import com.bumptech.glide.request.target.Target;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.activity.TeamActivity;
+import com.mvc.kinballwc.utils.Utils;
 
 import java.util.List;
 
@@ -64,15 +65,15 @@ public class TeamsRecyclerAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Team team = mTeams.get(position);
-        holder.mTextView.setText(team.getName());
+        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), team.getName()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, TeamActivity.class);
-                    intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
-                    context.startActivity(intent);
+                Context context = v.getContext();
+                Intent intent = new Intent(context, TeamActivity.class);
+                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
+                context.startActivity(intent);
             }
         });
 

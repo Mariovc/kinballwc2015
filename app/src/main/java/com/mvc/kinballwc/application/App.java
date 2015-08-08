@@ -1,6 +1,7 @@
 package com.mvc.kinballwc.application;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.mvc.kinballwc.model.Match;
@@ -24,11 +25,14 @@ public class App extends Application{
     public static final String PARSE_APPLICATION_ID = "FCHZ57kyg8w90onvgWwSlooVix0rXhabgii5ogm9";
     public static final String PARSE_CLIENT_KEY = "A1Tf4HM97nufDKb0A9IEWlyllwRJgcMV1TwDO0LK";
 
+    private static Context context;
+
     @Override
     public void onCreate()
     {
         super.onCreate();
 
+        App.context = getApplicationContext();
         // Initialize the singletons so their instances
         // are bound to the application process.
         initParse();
@@ -52,7 +56,7 @@ public class App extends Application{
 
     }
 
-    private void subscribePushNotifications(){
+    private void subscribePushNotifications() {
         ParsePush.subscribeInBackground("", new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -63,5 +67,9 @@ public class App extends Application{
                 }
             }
         });
+    }
+
+    public static Context getAppContext() {
+        return App.context;
     }
 }

@@ -132,24 +132,6 @@ public class TeamActivity extends BaseActivity {
     }
 
 
-    public class ExpandOnClickListener implements View.OnClickListener {
-
-        private View mThumbImage;
-        private String mUrl;
-
-        public ExpandOnClickListener(View view, String url) {
-            this.mThumbImage = view;
-            this.mUrl = url;
-        }
-
-        @Override
-        public void onClick(View v) {
-            zoomImageFromThumb(mThumbImage, mUrl);
-        }
-
-    }
-
-
 
     private void zoomImageFromThumb(final View thumbView, String url) {
         if (thumbView == null || TextUtils.isEmpty(url)){
@@ -299,5 +281,25 @@ public class TeamActivity extends BaseActivity {
         });
         set.start();
         mCurrentAnimator = set;
+    }
+
+
+
+
+    public class ExpandOnClickListener implements View.OnClickListener {
+
+        private View mThumbImage;
+        private String mUrl;
+
+        public ExpandOnClickListener(View view, String url) {
+            this.mThumbImage = view;
+            this.mUrl = url;
+        }
+
+        @Override
+        public void onClick(View v) {
+            zoomImageFromThumb(mThumbImage, mUrl);
+        }
+
     }
 }
