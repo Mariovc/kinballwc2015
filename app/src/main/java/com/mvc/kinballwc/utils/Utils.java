@@ -13,8 +13,8 @@ import com.mvc.kinballwc.R;
  */
 public class Utils {
 
-    private static final String NATIONS_MAN = "NATIONS MAN";
-    private static final String NATIONS_WOMAN = "NATIONS WOMAN";
+    private static final String NATIONS_MAN = "NATIONS MEN";
+    private static final String NATIONS_WOMAN = "NATIONS WOMEN";
     private static final String CLUBS_PRO = "CLUBS PRO";
     private static final String CLUBS_AMATEUR = "CLUBS AMATEUR";
 
@@ -28,7 +28,7 @@ public class Utils {
     private static final String PREF_IS_FIRST_TIME = "isFirstTime";
 
 
-    public static String getCategoryName(Context context, String category) {
+    public static String getTranslatedCategory(Context context, String category) {
         String categoryName;
         if (category.equalsIgnoreCase(NATIONS_MAN)) {
             categoryName = context.getString(R.string.category_nations_man);
@@ -49,7 +49,7 @@ public class Utils {
         return categories;
     }
 
-    public static String getRoleName(Context context, String role) {
+    public static String getTranslatedRole(Context context, String role) {
         String roleName;
         if (role.equalsIgnoreCase(ROLE_PLAYER)) {
             roleName = context.getString(R.string.role_player);

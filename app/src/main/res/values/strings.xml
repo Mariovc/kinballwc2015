@@ -2,8 +2,8 @@
     <string name="app_name">Kin-Ball WC\'15</string>
 
     <!--Categories-->
-    <string name="category_nations_man">NATIONS MAN</string>
-    <string name="category_nations_woman">NATIONS WOMAN</string>
+    <string name="category_nations_man">NATIONS MEN</string>
+    <string name="category_nations_woman">NATIONS WOMEN</string>
     <string name="category_clubs_pro">CLUBS PRO</string>
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
 

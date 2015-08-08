@@ -9,6 +9,7 @@
         android:id="@+id/playerImage"
         android:layout_width="@dimen/player_image_width"
         android:layout_height="@dimen/player_image_width"
+        android:src="@drawable/placeholder"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginRight="16dp"
@@ -28,7 +29,7 @@
             android:textSize="20sp"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="Sara Temprano Carazo" />
+            android:text="@string/role_player" />
 
         <TextView
             android:id="@+id/playerRole"
@@ -37,7 +38,7 @@
             android:textSize="14sp"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="Player" />
+            android:text="@string/role_player" />
     </LinearLayout>
 
 

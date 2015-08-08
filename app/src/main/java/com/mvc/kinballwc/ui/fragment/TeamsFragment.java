@@ -47,11 +47,11 @@ public class TeamsFragment extends Fragment {
         String[] categoryNames = getResources().getStringArray(R.array.categories);
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getChildFragmentManager());
         for (int i = 0; i < categoryNames.length; i++) {
-            tabPagerAdapter.addFragment(new TeamsTabFragment(), categoryNames[i]);
-//            tabPagerAdapter.addFragment(MatchesTabFragment.newInstance(i + 1), categoryNames[i]);
+//            tabPagerAdapter.addFragment(new TeamsTabFragment(), categoryNames[i]);
+            tabPagerAdapter.addFragment(TeamsTabFragment.newInstance(categoryQueries[i]), categoryNames[i]);
         }
         viewPager.setAdapter(tabPagerAdapter);
-//        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.post(new Runnable() {
             @Override
             public void run() {

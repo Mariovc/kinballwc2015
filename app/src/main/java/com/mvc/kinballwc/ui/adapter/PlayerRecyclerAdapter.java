@@ -60,25 +60,29 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof VHItem) {
             VHItem itemHolder = (VHItem) holder;
-            final Player player = mPlayers.get(position - 1);
-            itemHolder.mName.setText(getCompleteName(player));
-            String rolesString = getRoleString(itemHolder.mRole.getContext(), player.getRoles());
-            itemHolder.mRole.setText(rolesString);
+            try {
+                final Player player = mPlayers.get(position - 1);
 
-            itemHolder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                itemHolder.mName.setText(getCompleteName(player));
+                String rolesString = getRoleString(itemHolder.mRole.getContext(), player.getRoles());
+                itemHolder.mRole.setText(rolesString);
+
+                itemHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //                Context context = v.getContext();
 //                Intent intent = new Intent(context, TeamActivity.class);
 //                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
 //                context.startActivity(intent);
-                    Log.d(TAG, getCompleteName(player));
-                    Toast.makeText(v.getContext(), getCompleteName(player), Toast.LENGTH_SHORT).show();
-                }
-            });
+                        Log.d(TAG, getCompleteName(player));
+                        Toast.makeText(v.getContext(), getCompleteName(player), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                loadImage(itemHolder.mImageView, player.getImage());
+            } catch (Exception e) {
+                return;
+            }
 
-
-            loadImage(itemHolder.mImageView, player.getImage());
         } else if (holder instanceof VHHeader) {
             //cast holder to VHHeader and set data for header.
         }
@@ -162,7 +166,7 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 if (i > 0) {
                     rolesString.append(" | ");
                 }
-                String roleName = Utils.getRoleName(context, roles.get(i).getName());
+                String roleName = Utils.getTranslatedRole(context, roles.get(i).getName());
                 rolesString.append(roleName);
             }
         }

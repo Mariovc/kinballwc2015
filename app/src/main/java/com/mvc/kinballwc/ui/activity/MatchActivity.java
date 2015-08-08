@@ -133,7 +133,7 @@ public class MatchActivity extends BaseActivity {
     private void onMatchReceived(Match match) {
         mMatch = match;
         setToolbarTitle(match.getTitle());
-        categoryTV.setText(Utils.getCategoryName(this, match.getCategory()));
+        categoryTV.setText(Utils.getTranslatedCategory(this, match.getCategory()));
         SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.getDefault());
         SimpleDateFormat hourFormat = new SimpleDateFormat(getString(R.string.hour_format), Locale.getDefault());
         dateTV.setText(dateFormat.format(match.getDate()));
