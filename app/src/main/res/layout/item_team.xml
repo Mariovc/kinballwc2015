@@ -23,10 +23,12 @@
     android:paddingRight="16dp"
     android:paddingTop="8dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.mvc.kinballwc.ui.view.RoundedCornersImageView
+        xmlns:customNS="http://schemas.android.com/apk/res/com.mvc.kinballwc"
         android:id="@+id/avatar"
         android:layout_width="@dimen/team_logo_width"
         android:layout_height="@dimen/team_logo_width"
+        customNS:cornerRadius="20"
         android:layout_marginRight="16dp" />
 
     <TextView

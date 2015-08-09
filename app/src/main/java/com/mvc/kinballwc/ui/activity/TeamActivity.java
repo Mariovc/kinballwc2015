@@ -11,12 +11,13 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -24,6 +25,7 @@ import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Player;
 import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.adapter.PlayerRecyclerAdapter;
+import com.mvc.kinballwc.utils.Utils;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -39,6 +41,7 @@ public class TeamActivity extends BaseActivity {
     private Team mTeam;
 
     private PlayerRecyclerAdapter mAdapter;
+    private RecyclerView mRecyclerView;
     private Animator mCurrentAnimator;
     private View lastThumbImage;
     private Rect startBounds;
@@ -48,6 +51,7 @@ public class TeamActivity extends BaseActivity {
     private ImageView imageIV;
     private ImageView expandedImageView;
     private ImageView logoIV;
+    private ProgressBar progressBar;
     private CollapsingToolbarLayout collapsingToolbar;
 
     @Override
@@ -62,6 +66,7 @@ public class TeamActivity extends BaseActivity {
 
         logoIV = (ImageView) findViewById(R.id.teamLogo);
         imageIV = (ImageView) findViewById(R.id.backdrop);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         expandedImageView = (ImageView) findViewById(R.id.expanded_image);
 
         imageIV.setOnClickListener(new ExpandOnClickListener(imageIV, null));
@@ -70,15 +75,15 @@ public class TeamActivity extends BaseActivity {
 //        collapsingToolbar.setExpandedTitleColor(Color.YELLOW);
         collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mAdapter = new PlayerRecyclerAdapter(this, new ArrayList<Player>());
-        recyclerView.setAdapter(mAdapter);
-        recyclerView.setClipToPadding(false);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setClipToPadding(false);
 
 //        mRecyclerView.setHasFixedSize(true);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
         String teamObjectId = getIntent().getStringExtra(EXTRA_TEAM_ID);
         if (teamObjectId != null) {
@@ -111,20 +116,27 @@ public class TeamActivity extends BaseActivity {
         });
     }
 
-    private void onTeamReceived(Team team) {
+    private void onTeamReceived(final Team team) {
         mTeam = team;
+
         mAdapter.setPlayers(team.getPlayers());
         mAdapter.notifyDataSetChanged();
+        mRecyclerView.invalidate();
+//        mAdapter = new PlayerRecyclerAdapter(this, team.getPlayers());
+//        mRecyclerView.setAdapter(mAdapter);
 
-        collapsingToolbar.setTitle(team.getName());
+        collapsingToolbar.setTitle(Utils.getTranslatedCountry(this, team.getName()));
 
         Glide.with(this)
                 .load(team.getImage())
+                .placeholder(R.drawable.placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(imageIV);
         Glide.with(this)
                 .load(team.getLogo())
                 .placeholder(R.drawable.placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .into(logoIV);
 
@@ -134,11 +146,12 @@ public class TeamActivity extends BaseActivity {
 
 
     private void zoomImageFromThumb(final View thumbView, String url) {
-        if (thumbView == null || TextUtils.isEmpty(url)){
+        if (thumbView == null) { // || TextUtils.isEmpty(url)){
             return;
         }
         lastThumbImage = thumbView;
 
+        progressBar.setVisibility(View.VISIBLE);
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.
         if (mCurrentAnimator != null) {
@@ -148,9 +161,24 @@ public class TeamActivity extends BaseActivity {
         // Load the high-resolution "zoomed-in" image.
         Glide.with(this)
                 .load(url)
-                .placeholder(android.R.drawable.ic_popup_sync)
-                .error(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.ic_error)
                 .fitCenter()
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        expandedImageView.setImageDrawable(resource);
+                        return false;
+                    }
+                })
                 .into(expandedImageView);
 
         // Calculate the starting and ending bounds for the zoomed-in image.
@@ -244,6 +272,8 @@ public class TeamActivity extends BaseActivity {
     }
 
     private void zoomOutImage(final View thumbView) {
+        progressBar.setVisibility(View.GONE);
+
         if (mCurrentAnimator != null) {
             mCurrentAnimator.cancel();
         }

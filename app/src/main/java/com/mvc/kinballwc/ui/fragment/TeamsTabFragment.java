@@ -66,7 +66,7 @@ public class TeamsTabFragment extends Fragment {
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(new TeamsRecyclerAdapter(new ArrayList<Team>()));
+        recyclerView.setAdapter(new TeamsRecyclerAdapter(getActivity(), new ArrayList<Team>()));
         mRecyclerView.setHasFixedSize(true);
     }
 
@@ -96,7 +96,7 @@ public class TeamsTabFragment extends Fragment {
 
     private void onTeamsReceived(List<Team> itemList) {
         Collections.sort(itemList, new Team.NameComparator());
-        mAdapter = new TeamsRecyclerAdapter(itemList);
+        mAdapter = new TeamsRecyclerAdapter(getActivity(), itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }
 

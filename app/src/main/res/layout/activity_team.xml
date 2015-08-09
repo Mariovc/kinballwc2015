@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <com.mvc.kinballwc.ui.view.ControllableAppBarLayout
+        <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_backdrop_height"
@@ -57,7 +57,7 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
 
-        </com.mvc.kinballwc.ui.view.ControllableAppBarLayout>
+        </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -91,5 +91,20 @@
         android:id="@+id/expanded_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:elevation="@dimen/matches_expanded_image_elevation"
+        android:src="@color/black"
+        android:background="@color/black_transparent" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:elevation="@dimen/matches_expanded_image_elevation"
+        android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
