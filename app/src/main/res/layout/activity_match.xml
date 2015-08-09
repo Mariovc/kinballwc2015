@@ -70,19 +70,18 @@
                         android:text="@string/team1_color"
                         android:textColor="@color/team1_font" />
 
+                    <ImageView
+                        android:id="@+id/matchTeam1LogoIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/team_logo_height" />
+
                     <TextView
                         android:id="@+id/matchTeam1NameTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/logo_margin_top"
+                        android:layout_margin="@dimen/logo_margin_top"
                         android:gravity="center"
                         android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam1LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_margin="@dimen/logo_margin_top"
-                        android:layout_height="@dimen/team_logo_height" />
 
                 </LinearLayout>
 
@@ -103,6 +102,11 @@
                         android:text="@string/team2_color"
                         android:textColor="@color/team2_font" />
 
+                    <ImageView
+                        android:id="@+id/matchTeam2LogoIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/team_logo_height" />
+
 
                     <TextView
                         android:id="@+id/matchTeam2NameTV"
@@ -111,11 +115,6 @@
                         android:layout_margin="@dimen/logo_margin_top"
                         android:gravity="center"
                         android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam2LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/team_logo_height" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,6 +134,11 @@
                         android:text="@string/team3_color"
                         android:textColor="@color/team3_font" />
 
+                    <ImageView
+                        android:id="@+id/matchTeam3LogoIV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/team_logo_height" />
+
 
                     <TextView
                         android:id="@+id/matchTeam3NameTV"
@@ -143,11 +147,6 @@
                         android:layout_margin="@dimen/logo_margin_top"
                         android:gravity="center"
                         android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam3LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/team_logo_height" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -156,7 +155,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/match_activity_margin">
 
                 <com.viewpagerindicator.TitlePageIndicator
                     android:id="@+id/indicator"
@@ -172,7 +172,6 @@
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
-                    android:padding="@dimen/match_activity_margin"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/period_scoreboard_heigh" />
             </LinearLayout>

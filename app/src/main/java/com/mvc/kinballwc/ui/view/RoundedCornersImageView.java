@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.mvc.kinballwc.R;
@@ -18,6 +17,8 @@ import com.mvc.kinballwc.R;
  */
 public class RoundedCornersImageView extends ImageView {
 
+    private static final int DEFAULT_RADIUS = 20;
+
     private int radius;
 
     public RoundedCornersImageView(Context context, AttributeSet attrs) {
@@ -25,8 +26,7 @@ public class RoundedCornersImageView extends ImageView {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RoundedCornersImageView, 0, 0);
         try {
 //            float radius = context.getResources().getInteger(R.integer.abc_config_activityDefaultDur);
-            int defaultRadius = 20; // TODO
-            radius = ta.getInteger(R.styleable.RoundedCornersImageView_cornerRadius, defaultRadius);
+            radius = ta.getInteger(R.styleable.RoundedCornersImageView_cornerRadius, DEFAULT_RADIUS);
         } finally {
             ta.recycle();
         }

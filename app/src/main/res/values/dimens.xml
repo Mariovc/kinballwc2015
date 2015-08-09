@@ -41,7 +41,10 @@
 
 
     <!--matches list-->
-    <dimen name="matches_logo_margin_top">4dp</dimen>
+    <dimen name="matches_logo_margin_top">8dp</dimen>
     <dimen name="team_margin">4dp</dimen>
     <dimen name="score_margin">12dp</dimen>
+    <dimen name="matches_logo_height">60dp</dimen>
+    <dimen name="matches_logo_width">60dp</dimen>
+
 </resources>

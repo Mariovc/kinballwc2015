@@ -50,7 +50,7 @@ public class MatchesTabFragment extends Fragment {
         mAdapter = new MatchRecyclerAdapter(new ArrayList<Match>());
         mRecyclerView.setAdapter(mAdapter);
 
-//        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);

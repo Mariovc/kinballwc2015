@@ -20,18 +20,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Game #1"
                 android:id="@+id/matchTitleTV"
                 android:textColor="@color/black"
-                android:layout_alignTop="@+id/matchLiveTextView"
-                android:layout_alignBottom="@+id/matchLiveTextView"
+                android:layout_alignTop="@+id/matchLiveTV"
+                android:layout_alignBottom="@+id/matchLiveTV"
                 android:singleLine="true"
                 android:gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="• live"
+                android:text="@string/live_text"
                 android:id="@+id/matchLiveTV"
                 android:textColor="@color/live_font"
                 android:layout_margin="2dp"
@@ -43,8 +42,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18/08 11:45"
                 android:id="@+id/matchDateTV"
+                android:textColor="@color/black"
+                android:layout_alignTop="@+id/matchLiveTV"
+                android:layout_alignBottom="@+id/matchLiveTV"
+                android:singleLine="true"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/matchHourTV"
+                android:layout_toStartOf="@+id/matchHourTV"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/matchHourTV"
                 android:textColor="@color/black"
                 android:layout_alignTop="@+id/matchLiveTV"
                 android:layout_alignBottom="@+id/matchLiveTV"
@@ -69,37 +81,33 @@
                 android:gravity="center"
                 android:layout_marginRight="@dimen/team_margin">
 
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Les Dragons de Montréal"
-                    android:id="@+id/matchTeam1NameTextView"
-                    android:textSize="13sp"
-                    android:padding="2dp"
-                    android:maxLines="2"
+                    android:text="@string/team1_color"
                     android:gravity="center"
                     android:textColor="@color/team1_font"
-                    android:ellipsize="end"
-                    android:background="@drawable/background_team1" />
+                    android:background="@color/blue_team"
+                    android:paddingLeft="@dimen/score_margin"
+                    android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/matchTeam1ImageIV"
-                    android:src="@drawable/flag_spain"
-                    android:layout_marginTop="@dimen/logo_margin_top" />
-
+                    android:layout_height="@dimen/matches_logo_height"
+                    android:id="@+id/matchTeam1LogoIV"
+                    android:src="@drawable/placeholder"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="18"
-                    android:id="@+id/matchTeam1ScoreTextView"
-                    android:gravity="center"
-                    android:textColor="@color/team1_font"
-                    android:layout_marginTop="@dimen/matches_logo_margin_top"
-                    android:background="@drawable/background_team1"
-                    android:paddingLeft="@dimen/score_margin"
-                    android:paddingRight="@dimen/score_margin" />
+                    android:id="@+id/matchTeam1NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,36 +120,32 @@
                 android:layout_marginLeft="@dimen/team_margin">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="A.D. KCB Kin-Ball Team"
-                    android:id="@+id/matchTeam2NameTextView"
-                    android:textSize="13sp"
-                    android:padding="2dp"
-                    android:maxLines="2"
+                    android:text="@string/team2_color"
                     android:gravity="center"
                     android:textColor="@color/team2_font"
-                    android:ellipsize="end"
-                    android:background="@drawable/background_team2" />
+                    android:background="@color/grey_team"
+                    android:paddingLeft="@dimen/score_margin"
+                    android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/matchTeam2ImageIV"
-                    android:src="@drawable/flag_spain"
-                    android:layout_marginTop="@dimen/logo_margin_top" />
+                    android:layout_height="@dimen/matches_logo_height"
+                    android:id="@+id/matchTeam2LogoIV"
+                    android:src="@drawable/placeholder"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="13"
-                    android:id="@+id/matchTeam2ScoreTextView"
-                    android:gravity="center"
-                    android:textColor="@color/team2_font"
-                    android:layout_marginTop="@dimen/logo_margin_top"
-                    android:paddingLeft="@dimen/score_margin"
-                    android:paddingRight="@dimen/score_margin"
-                    android:background="@drawable/background_team2" />
+                    android:id="@+id/matchTeam2NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,36 +157,32 @@
                 android:layout_marginLeft="@dimen/team_margin">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kin-Ball Hannut Lincent"
-                    android:id="@+id/matchTeam3NameTextView"
-                    android:textSize="13sp"
-                    android:padding="2dp"
-                    android:maxLines="2"
+                    android:text="@string/team3_color"
                     android:gravity="center"
                     android:textColor="@color/team3_font"
-                    android:ellipsize="end"
-                    android:background="@drawable/background_team3" />
+                    android:background="@color/black_team"
+                    android:paddingLeft="@dimen/score_margin"
+                    android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/matchTeam3ImageIV"
-                    android:src="@drawable/flag_spain"
-                    android:layout_marginTop="@dimen/logo_margin_top" />
+                    android:layout_height="@dimen/matches_logo_height"
+                    android:id="@+id/matchTeam3LogoIV"
+                    android:src="@drawable/placeholder"
+                    android:scaleType="fitCenter"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7"
-                    android:id="@+id/matchTeam3ScoreTextView"
-                    android:gravity="center"
-                    android:textColor="@color/team3_font"
-                    android:layout_marginTop="@dimen/logo_margin_top"
-                    android:paddingLeft="@dimen/score_margin"
-                    android:paddingRight="@dimen/score_margin"
-                    android:background="@drawable/background_team3" />
+                    android:id="@+id/matchTeam3NameTextView"
+                    android:textSize="13sp"
+                    android:padding="2dp"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal" />
             </LinearLayout>
 
 

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPeriod;
@@ -186,6 +187,7 @@ public class MatchActivity extends BaseActivity {
         Glide.with(this)
                 .load(url)
 //                .placeholder(R.drawable.loading_spinner)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
 
