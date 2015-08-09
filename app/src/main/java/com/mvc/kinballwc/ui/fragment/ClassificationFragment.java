@@ -12,15 +12,16 @@ import android.view.ViewGroup;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.adapter.TabPagerAdapter;
+import com.mvc.kinballwc.utils.Utils;
 
 /**
  * Author: Mario Velasco Casquero
- * Date: 27/6/15
+ * Date: 09/08/2015
  * Email: m3ario@gmail.com
  */
-public class MatchesFragment extends Fragment {
+public class ClassificationFragment extends Fragment {
 
-    private static final String TAG = "MatchesFragment";
+    private static final String TAG = "ClassificationFragment";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -30,12 +31,12 @@ public class MatchesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
-        View view = inflater.inflate(R.layout.fragment_matches, container, false);
+        View view = inflater.inflate(R.layout.fragment_classification, container, false);
 
         ((HomeActivity) getActivity()).setupToolbar(view);
 
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        viewPager = (ViewPager) view.findViewById(R.id.classification_viewpager);
+        tabLayout = (TabLayout) view.findViewById(R.id.classification_tabs);
         if (viewPager != null && tabLayout != null) {
             setupTabs();
         }
@@ -44,10 +45,12 @@ public class MatchesFragment extends Fragment {
 
 
     private void setupTabs() {
-        String[] daysArray = getResources().getStringArray(R.array.days);
+        String[] categoryQueries = Utils.getCategories();
+        String[] categoryNames = getResources().getStringArray(R.array.categories);
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getChildFragmentManager());
-        for (int i = 0; i < daysArray.length; i++) {
-            tabPagerAdapter.addFragment(MatchesTabFragment.newInstance(i + 1), daysArray[i]);
+        for (int i = 0; i < categoryNames.length; i++) {
+//            tabPagerAdapter.addFragment(new TeamsTabFragment(), categoryNames[i]);
+            tabPagerAdapter.addFragment(ClassificationTabFragment.newInstance(categoryQueries[i]), categoryNames[i]);
         }
         viewPager.setAdapter(tabPagerAdapter);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);

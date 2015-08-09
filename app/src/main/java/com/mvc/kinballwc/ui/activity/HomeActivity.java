@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mvc.kinballwc.R;
+import com.mvc.kinballwc.ui.fragment.ClassificationFragment;
 import com.mvc.kinballwc.ui.fragment.MatchesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 import com.mvc.kinballwc.utils.Utils;
@@ -24,7 +25,7 @@ import com.mvc.kinballwc.utils.Utils;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 0;
+    private static final int INITIAL_SECTION = 2;
 
     private DrawerLayout mDrawerLayout;
 
@@ -97,6 +98,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_teams:
                 fragment = new TeamsFragment();
+                break;
+            case R.id.nav_classification:
+                fragment = new ClassificationFragment();
                 break;
         }
         return fragment;

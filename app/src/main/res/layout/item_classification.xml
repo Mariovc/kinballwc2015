@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/classification_item_height"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="@dimen/classification_position_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/red_light_2"
+        android:id="@+id/classificationPositionTV" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_weight="1"
+        android:paddingLeft="4dp"
+        android:background="@color/red_light_1"
+        android:id="@+id/classificationTeamNameTV" />
+
+    <TextView
+        android:layout_width="@dimen/classification_match_points_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/default_score"
+        android:background="@color/red_light_2"
+        android:id="@+id/classificationMatch1ScoreTV" />
+
+    <TextView
+        android:layout_width="@dimen/classification_match_points_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/default_score"
+        android:background="@color/red_light_2"
+        android:id="@+id/classificationMatch2ScoreTV" />
+
+    <TextView
+        android:layout_width="@dimen/classification_match_points_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/default_score"
+        android:background="@color/red_light_2"
+        android:id="@+id/classificationMatch3ScoreTV" />
+
+    <TextView
+        android:layout_width="@dimen/classification_total_points_width"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/default_score"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@color/red_light_1"
+        android:id="@+id/classificationTotalScoreTV" />
+</LinearLayout>

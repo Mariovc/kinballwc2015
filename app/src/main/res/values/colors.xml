@@ -2,19 +2,26 @@
 <resources>
 
     <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_dark_1">#FAFAFA</color>
+    <color name="grey_light_2">#F5F5F5</color>
+    <color name="grey_light_3">#EEEEEE</color>
+    <color name="grey_light_4">#E0E0E0</color>
+    <color name="grey_light_5">#BDBDBD</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="grey_dark_2">#757575</color>
+    <color name="grey_dark_4">#424242</color>
+    <color name="black_team">#151515</color>
     <color name="black">#000000</color>
     <color name="black_transparent">#88000000</color>
-    <color name="black_team">#151515</color>
     <color name="grey_team">#848484</color>
-    <color name="white_dark_1">#F5F5F5</color>
-    <color name="white">#FFFFFF</color>
     <color name="blue_team">#0040FF</color>
     <color name="green_live">#01DF01</color>
-    <color name="yellow_light_5">#FFFDE7</color>
-    <color name="yellow_light_4">#FFF9C4</color>
+    <color name="yellow_light_1">#FFFDE7</color>
+    <color name="yellow_light_2">#FFF9C4</color>
     <color name="yellow_light_3">#FFF59D</color>
-    <color name="yellow_light_2">#FFF176</color>
-    <color name="yellow_light_1">#FFEE58</color>
+    <color name="yellow_light_4">#FFF176</color>
+    <color name="yellow_light_5">#FFEE58</color>
     <color name="yellow">#FFEB3B</color>#FFEBEE
     <color name="red_light_1">#FFEBEE</color>
     <color name="red_light_2">#FFCDD2</color>

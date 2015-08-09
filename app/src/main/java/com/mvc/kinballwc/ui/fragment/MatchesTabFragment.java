@@ -79,10 +79,7 @@ public class MatchesTabFragment extends Fragment {
             public void done(List<Match> itemList, ParseException e) {
                 if (e == null) {
                     Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
-                    // Access the array of results here
                     onMatchesReceived(itemList);
-                    //String firstItemId = itemList.get(0).getName();
-                    //Toast.makeText(getActivity(), firstItemId, Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("item", "Error: " + e.getMessage());
                 }

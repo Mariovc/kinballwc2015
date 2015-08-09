@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ui.activity.HomeActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/labelsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="@dimen/classification_position_width"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:text="@string/position_label"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:background="@color/grey_light_4"
+            android:id="@+id/classificationPositionLabelTV" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:text="@string/team_name_label"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_weight="1"
+            android:background="@color/grey_light_3"
+            android:id="@+id/classificationTeamNameTV" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/matches_label"
+                android:gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:background="@color/grey_light_4"
+                android:id="@+id/textView" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="@color/grey_dark_2" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="@dimen/classification_match_points_width"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/matches1_label"
+                    android:background="@color/grey_light_4"
+                    android:id="@+id/classificationMatch1ScoreTV" />
+
+                <TextView
+                    android:layout_width="@dimen/classification_match_points_width"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/matches2_label"
+                    android:background="@color/grey_light_3"
+                    android:id="@+id/classificationMatch2ScoreTV" />
+
+                <TextView
+                    android:layout_width="@dimen/classification_match_points_width"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/matches3_label"
+                    android:background="@color/grey_light_4"
+                    android:id="@+id/classificationMatch3ScoreTV" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="@dimen/classification_total_points_width"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:text="@string/total_label"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:background="@color/grey_light_3"
+            android:id="@+id/classificationTotalScoreTV" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:id="@+id/imageView5"
+        android:src="@color/grey_dark_4" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

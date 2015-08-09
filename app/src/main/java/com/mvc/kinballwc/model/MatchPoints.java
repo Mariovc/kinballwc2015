@@ -4,10 +4,17 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 /**
- * Created by mario on 28/6/15.
+ * Author: Mario Velasco Casquero
+ * Date: 28/6/15
+ * Email: m3ario@gmail.com
  */
 @ParseClassName("MatchPoints")
 public class MatchPoints extends ParseObject {
+
+    public static final int MATCH_POINTS_FIRST = 10;
+    public static final int MATCH_POINTS_SECOND = 6;
+    public static final int MATCH_POINTS_THIRD = 2;
+
 
     public int getWonPeriods(){
         return getInt("wonPeriods");

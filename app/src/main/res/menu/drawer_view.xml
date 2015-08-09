@@ -25,6 +25,10 @@
             android:id="@+id/nav_teams"
             android:icon="@drawable/ic_team"
             android:title="@string/navigation_drawer_teams" />
+        <item
+            android:id="@+id/nav_classification"
+            android:icon="@drawable/ic_classification"
+            android:title="@string/navigation_drawer_classification" />
     </group>
 
 

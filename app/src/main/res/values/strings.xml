@@ -37,6 +37,7 @@
     <!--NavigationView Menu-->
     <string name="navigation_drawer_matches">Matches</string>
     <string name="navigation_drawer_teams">Teams</string>
+    <string name="navigation_drawer_classification">Classification</string>
 
     <!--Match-->
     <string name="team1_color">Blue</string>
@@ -56,6 +57,16 @@
 
     <!--Team-->
     <string name="show_matches">Show matches</string>
+
+
+    <!--Classification-->
+    <string name="position_label">Pos</string>
+    <string name="team_name_label">Team</string>
+    <string name="matches_label">Matches</string>
+    <string name="matches1_label">1</string>
+    <string name="matches2_label">2</string>
+    <string name="matches3_label">3</string>
+    <string name="total_label">Total</string>
 
 
     <!--<string-array name="days">-->

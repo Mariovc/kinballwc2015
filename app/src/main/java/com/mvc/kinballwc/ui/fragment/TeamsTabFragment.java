@@ -81,13 +81,9 @@ public class TeamsTabFragment extends Fragment {
         query.findInBackground(new FindCallback<Team>() {
             public void done(List<Team> itemList, ParseException e) {
                 if (e == null) {
-//                    Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
-                    // Access the array of results here
                     onTeamsReceived(itemList);
-                    //String firstItemId = itemList.get(0).getName();
-                    //Toast.makeText(getActivity(), firstItemId, Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("item", "Error: " + e.getMessage());
+                    Log.d(TAG, "Error: " + e.getMessage());
                 }
             }
         });
