@@ -12,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPeriod;
+import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.adapter.PeriodFragmentAdapter;
 import com.mvc.kinballwc.utils.Utils;
@@ -139,45 +140,58 @@ public class MatchActivity extends BaseActivity {
         SimpleDateFormat hourFormat = new SimpleDateFormat(getString(R.string.hour_format), Locale.getDefault());
         dateTV.setText(dateFormat.format(match.getDate()));
         hourTV.setText(hourFormat.format(match.getDate()));
-        team1NameTV.setText(match.getTeam1().getName());
-        team2NameTV.setText(match.getTeam2().getName());
-        team3NameTV.setText(match.getTeam3().getName());
-        loadImage(match.getTeam1().getLogo(), team1LogoIV);
-        loadImage(match.getTeam2().getLogo(), team2LogoIV);
-        loadImage(match.getTeam3().getLogo(), team3LogoIV);
-        team1PeriodPointsTV.setText(String.valueOf(match.getTeam1Points().getWonPeriods()));
-        team2PeriodPointsTV.setText(String.valueOf(match.getTeam2Points().getWonPeriods()));
-        team3PeriodPointsTV.setText(String.valueOf(match.getTeam3Points().getWonPeriods()));
-        team1MatchPointsTV.setText(String.valueOf(match.getTeam1Points().getMatchPoints()));
-        team2MatchPointsTV.setText(String.valueOf(match.getTeam2Points().getMatchPoints()));
-        team3MatchPointsTV.setText(String.valueOf(match.getTeam3Points().getMatchPoints()));
-        team1SportPointsTV.setText(String.valueOf(match.getTeam1Points().getSportsmanshipPoints()));
-        team2SportPointsTV.setText(String.valueOf(match.getTeam2Points().getSportsmanshipPoints()));
-        team3SportPointsTV.setText(String.valueOf(match.getTeam3Points().getSportsmanshipPoints()));
-        team1TotalPointsTV.setText(String.valueOf(match.getTeam1Points().getTotalPoints()));
-        team2TotalPointsTV.setText(String.valueOf(match.getTeam2Points().getTotalPoints()));
-        team3TotalPointsTV.setText(String.valueOf(match.getTeam3Points().getTotalPoints()));
-        team1NameTV.setOnClickListener(onClickTeam1);
-        team1NameTV.setOnClickListener(onClickTeam2);
-        team1NameTV.setOnClickListener(onClickTeam3);
-//        ParseObject period1 = ParseObject.create("MatchPeriod");
-//        period1.put("team1Score", 11);
-//        period1.put("team2Score", 9);
-//        period1.put("team3Score", 7);
-//        ParseObject period2 = ParseObject.create("MatchPeriod");
-//        period2.put("team1Score", 4);
-//        period2.put("team2Score", 4
-// );
-//        period2.put("team3Score", 4);
-//        ArrayList<ParseObject> periods = new ArrayList<>();
-//        periods.add(period1);
-//        periods.add(period2);
-//        match.put("periods", periods);
-//        match.saveInBackground();
+        Team team1 = match.getTeam1();
+        Team team2 = match.getTeam2();
+        Team team3 = match.getTeam3();
+        if (team1 != null) {
+            team1NameTV.setText(team1.getName());
+            loadImage(team1.getLogo(), team1LogoIV);
+            team1NameTV.setOnClickListener(new OnTeamClick(team1));
+            team1LogoIV.setOnClickListener(new OnTeamClick(team1));
+        }
+        if (team2 != null) {
+            team2NameTV.setText(team2.getName());
+            loadImage(team2.getLogo(), team2LogoIV);
+            team2NameTV.setOnClickListener(new OnTeamClick(team2));
+            team2LogoIV.setOnClickListener(new OnTeamClick(team2));
+        }
+        if (team3 != null) {
+            team3NameTV.setText(team3.getName());
+            loadImage(team3.getLogo(), team3LogoIV);
+            team3NameTV.setOnClickListener(new OnTeamClick(team3));
+            team3LogoIV.setOnClickListener(new OnTeamClick(team3));
+        }
+        MatchPoints matchPoints1 = match.getTeam1Points();
+        MatchPoints matchPoints2 = match.getTeam2Points();
+        MatchPoints matchPoints3 = match.getTeam3Points();
+        if (matchPoints1 != null) {
+            team1PeriodPointsTV.setText(String.valueOf(matchPoints1.getWonPeriods()));
+            team1MatchPointsTV.setText(String.valueOf(matchPoints1.getMatchPoints()));
+            team1SportPointsTV.setText(String.valueOf(matchPoints1.getSportsmanshipPoints()));
+            team1TotalPointsTV.setText(String.valueOf(matchPoints1.getTotalPoints()));
+        }
+        if (matchPoints2 != null) {
+            team2PeriodPointsTV.setText(String.valueOf(matchPoints3.getWonPeriods()));
+            team2MatchPointsTV.setText(String.valueOf(matchPoints3.getMatchPoints()));
+            team2SportPointsTV.setText(String.valueOf(matchPoints3.getSportsmanshipPoints()));
+            team2TotalPointsTV.setText(String.valueOf(matchPoints3.getTotalPoints()));
+        }
+        if (matchPoints3 != null) {
+            team3PeriodPointsTV.setText(String.valueOf(matchPoints3.getWonPeriods()));
+            team3MatchPointsTV.setText(String.valueOf(matchPoints3.getMatchPoints()));
+            team3SportPointsTV.setText(String.valueOf(matchPoints3.getSportsmanshipPoints()));
+            team3TotalPointsTV.setText(String.valueOf(matchPoints3.getTotalPoints()));
+        }
+
         List<MatchPeriod> periods = match.getPeriods();
+        if (periods == null) {
+            periods = new ArrayList<>();
+        }
         if (periods.size() == 0) {
             MatchPeriod emptyPeriod = (MatchPeriod) ParseObject.create("MatchPeriod");
             periods.add(emptyPeriod);
+            match.setPeriods(periods);
+            match.saveInBackground();
         }
         mAdapter.setPeriods(periods);
         mPager.setCurrentItem(periods.size() - 1);
@@ -197,24 +211,17 @@ public class MatchActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private View.OnClickListener onClickTeam1 = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            launchTeamActivity(mMatch.getTeam1());
-        }
-    };
+    class OnTeamClick implements View.OnClickListener {
 
-    private View.OnClickListener onClickTeam2 = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            launchTeamActivity(mMatch.getTeam2());
-        }
-    };
+        private Team mTeam;
 
-    private View.OnClickListener onClickTeam3 = new View.OnClickListener() {
+        public OnTeamClick(Team mTeam) {
+            this.mTeam = mTeam;
+        }
+
         @Override
         public void onClick(View v) {
-            launchTeamActivity(mMatch.getTeam3());
+            launchTeamActivity(mTeam);
         }
-    };
+    }
 }

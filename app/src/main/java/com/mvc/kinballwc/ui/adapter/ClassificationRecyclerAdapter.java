@@ -20,7 +20,6 @@ import java.util.List;
 public class ClassificationRecyclerAdapter
         extends RecyclerView.Adapter<ClassificationRecyclerAdapter.ViewHolder> {
 
-    private static final String TAG = "ClassificationRecyclerAdapter";
 
     private Context mContext;
     private List<Score> mScores;

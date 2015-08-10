@@ -1,7 +1,5 @@
 package com.mvc.kinballwc.model;
 
-import android.app.Application;
-
 import com.mvc.kinballwc.application.App;
 import com.mvc.kinballwc.utils.Utils;
 import com.parse.ParseClassName;
@@ -34,6 +32,10 @@ public class Team extends ParseObject {
         return getList("players");
     }
 
+    public String getNations() {
+        return getString("nations");
+    }
+
     public void setName(String name){
         put("name", name);
     }
@@ -49,6 +51,11 @@ public class Team extends ParseObject {
     public void setPlayers(List<Player> players) {
         put("players", players);
     }
+
+    public void setNations(String nations){
+        put("nations", nations);
+    }
+
 
     public static class NameComparator implements Comparator<Team> {
         @Override

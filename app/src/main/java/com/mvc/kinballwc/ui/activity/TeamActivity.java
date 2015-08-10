@@ -50,7 +50,6 @@ public class TeamActivity extends BaseActivity {
 
     private ImageView imageIV;
     private ImageView expandedImageView;
-    private ImageView logoIV;
     private ProgressBar progressBar;
     private CollapsingToolbarLayout collapsingToolbar;
 
@@ -64,7 +63,6 @@ public class TeamActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        logoIV = (ImageView) findViewById(R.id.teamLogo);
         imageIV = (ImageView) findViewById(R.id.backdrop);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         expandedImageView = (ImageView) findViewById(R.id.expanded_image);
@@ -72,11 +70,10 @@ public class TeamActivity extends BaseActivity {
         imageIV.setOnClickListener(new ExpandOnClickListener(imageIV, null));
 
         collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-//        collapsingToolbar.setExpandedTitleColor(Color.YELLOW);
         collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mAdapter = new PlayerRecyclerAdapter(this, new ArrayList<Player>());
+        mAdapter = new PlayerRecyclerAdapter(this, new ArrayList<Player>(), null);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setClipToPadding(false);
 
@@ -119,6 +116,7 @@ public class TeamActivity extends BaseActivity {
     private void onTeamReceived(final Team team) {
         mTeam = team;
 
+        mAdapter.setTeam(team);
         mAdapter.setPlayers(team.getPlayers());
         mAdapter.notifyDataSetChanged();
         mRecyclerView.invalidate();
@@ -133,12 +131,6 @@ public class TeamActivity extends BaseActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .into(imageIV);
-        Glide.with(this)
-                .load(team.getLogo())
-                .placeholder(R.drawable.placeholder)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .fitCenter()
-                .into(logoIV);
 
         imageIV.setOnClickListener(new ExpandOnClickListener(imageIV, team.getImage()));
     }

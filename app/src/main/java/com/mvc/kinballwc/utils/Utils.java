@@ -44,7 +44,9 @@ public class Utils {
 
     public static String getTranslatedCategory(Context context, String category) {
         String categoryName;
-        if (category.equalsIgnoreCase(NATIONS_MAN)) {
+        if (category == null) {
+            categoryName = "";
+        } else if (category.equalsIgnoreCase(NATIONS_MAN)) {
             categoryName = context.getString(R.string.category_nations_man);
         } else if(category.equalsIgnoreCase(NATIONS_WOMAN)) {
             categoryName = context.getString(R.string.category_nations_woman);

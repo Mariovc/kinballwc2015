@@ -33,21 +33,6 @@
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax" />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    app:layout_collapseMode="pin">
-
-                    <ImageView
-                        android:id="@+id/teamLogo"
-                        android:layout_width="@dimen/team_logo_height"
-                        android:layout_height="@dimen/team_logo_height"
-                        android:scaleType="centerCrop"
-                        android:layout_gravity="bottom|end" />
-
-                </FrameLayout>
-
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"

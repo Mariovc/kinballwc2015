@@ -20,8 +20,8 @@
     </style>
 
     <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">28sp</item>
-        <!--<item name="android:textColor">@color/red</item>-->
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/transparent</item>
         <item name="android:textStyle">bold</item>
 
     </style>

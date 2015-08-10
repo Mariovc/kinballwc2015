@@ -6,10 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,6 +17,7 @@ import com.bumptech.glide.request.target.Target;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Player;
 import com.mvc.kinballwc.model.Role;
+import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.activity.TeamActivity;
 import com.mvc.kinballwc.utils.Utils;
 
@@ -37,10 +36,12 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private TeamActivity activity;
     private List<Player> mPlayers;
+    private Team mTeam;
 
-    public PlayerRecyclerAdapter(TeamActivity activity, List<Player> players) {
+    public PlayerRecyclerAdapter(TeamActivity activity, List<Player> players, Team team) {
         this.activity = activity;
         this.mPlayers = players;
+        this.mTeam = team;
     }
 
     @Override
@@ -50,12 +51,10 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     .inflate(R.layout.item_player, parent, false);
             return new VHItem(view);
         } else if (viewType == TYPE_HEADER) {
-            TextView tv = new TextView(parent.getContext());
-//            ImageView iv = new ImageView(parent.getContext());
-//            iv.setImageResource(R.drawable.placeholder);
-//            tv.setText("header");
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_team_header, parent, false);
             // TODO
-            return new VHHeader(tv);
+            return new VHHeader(view);
         }
 
         throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
@@ -81,7 +80,15 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             }
 
         } else if (holder instanceof VHHeader) {
-            //cast holder to VHHeader and set data for header.
+            VHHeader itemHolder = (VHHeader) holder;
+            if (mTeam != null) {
+                View.OnClickListener onClickListener =
+                        activity.new ExpandOnClickListener(itemHolder.logoIV, mTeam.getLogo());
+                itemHolder.logoIV.setOnClickListener(onClickListener);
+                loadImage(itemHolder.logoIV, mTeam.getLogo());
+                itemHolder.teamNameTV.setText(mTeam.getName());
+                itemHolder.nationsTV.setText(mTeam.getNations());
+            }
         }
     }
 
@@ -110,6 +117,10 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.mPlayers = players;
     }
 
+    public void setTeam(Team team) {
+        this.mTeam = team;
+    }
+
     class VHItem extends RecyclerView.ViewHolder {
 
         public final View mView;
@@ -128,10 +139,18 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class VHHeader extends RecyclerView.ViewHolder {
-        Button button;
 
-        public VHHeader(View itemView) {
-            super(itemView);
+        public final View view;
+        public final ImageView logoIV;
+        public final TextView teamNameTV;
+        public final TextView nationsTV;
+
+        public VHHeader(View view) {
+            super(view);
+            this.view = view;
+            this.logoIV = (ImageView) view.findViewById(R.id.teamLogoIV);
+            this.teamNameTV = (TextView) view.findViewById(R.id.teamNameTV);
+            this.nationsTV = (TextView) view.findViewById(R.id.nationsTV);
         }
     }
 

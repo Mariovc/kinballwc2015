@@ -3,7 +3,6 @@ package com.mvc.kinballwc.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
+import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.activity.MatchActivity;
 
 import java.text.SimpleDateFormat;
@@ -63,12 +60,21 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         SimpleDateFormat hourFormat = new SimpleDateFormat(context.getString(R.string.hour_format), Locale.getDefault());
         holder.mDateTV.setText(dateFormat.format(match.getDate()));
         holder.mHourTV.setText(hourFormat.format(match.getDate()));
-        holder.mTeam1NameTV.setText(match.getTeam1().getName());
-        holder.mTeam2NameTV.setText(match.getTeam2().getName());
-        holder.mTeam3NameTV.setText(match.getTeam3().getName());
-        loadImage(holder.mTeam1LogoIV, match.getTeam1().getLogo());
-        loadImage(holder.mTeam2LogoIV, match.getTeam2().getLogo());
-        loadImage(holder.mTeam3LogoIV, match.getTeam3().getLogo());
+        Team team1 = match.getTeam1();
+        Team team2 = match.getTeam2();
+        Team team3 = match.getTeam3();
+        if (team1 != null) {
+            holder.mTeam1NameTV.setText(team1.getName());
+            loadImage(holder.mTeam1LogoIV, team1.getLogo());
+        }
+        if (team2 != null) {
+            holder.mTeam2NameTV.setText(team2.getName());
+            loadImage(holder.mTeam2LogoIV, team2.getLogo());
+        }
+        if (team3 != null) {
+            holder.mTeam3NameTV.setText(team3.getName());
+            loadImage(holder.mTeam3LogoIV, team3.getLogo());
+        }
     }
 
     @Override

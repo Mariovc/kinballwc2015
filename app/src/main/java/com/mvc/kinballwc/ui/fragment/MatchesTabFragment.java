@@ -1,6 +1,5 @@
 package com.mvc.kinballwc.ui.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -71,9 +70,6 @@ public class MatchesTabFragment extends Fragment {
         query.include("team1");
         query.include("team2");
         query.include("team3");
-        query.include("team1Points");
-        query.include("team2Points");
-        query.include("team3Points");
         query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.findInBackground(new FindCallback<Match>() {
             public void done(List<Match> itemList, ParseException e) {
