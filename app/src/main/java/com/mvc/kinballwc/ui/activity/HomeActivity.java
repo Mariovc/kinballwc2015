@@ -8,7 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -16,6 +16,7 @@ import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.ClassificationFragment;
 import com.mvc.kinballwc.ui.fragment.MatchesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
+import com.mvc.kinballwc.utils.SocialNetworkUtils;
 import com.mvc.kinballwc.utils.Utils;
 
 /**
@@ -25,7 +26,7 @@ import com.mvc.kinballwc.utils.Utils;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 2;
+    private static final int INITIAL_SECTION = 1;
 
     private DrawerLayout mDrawerLayout;
 
@@ -49,11 +50,24 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.collapsing_menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.menu_twitter:
+                SocialNetworkUtils.launchTwitter(this);
+                return true;
+            case R.id.menu_facebook:
+                SocialNetworkUtils.launchFacebook(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
