@@ -34,7 +34,6 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -83,7 +82,7 @@ public class TeamsTabFragment extends Fragment {
                 if (e == null) {
                     onTeamsReceived(itemList);
                 } else {
-                    Log.d(TAG, "Error: " + e.getMessage());
+                    Log.e(TAG, "Error: " + e.getMessage());
                 }
             }
         });

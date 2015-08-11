@@ -3,6 +3,7 @@ package com.mvc.kinballwc.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import java.util.Locale;
 
 public class MatchActivity extends BaseActivity {
 
+    public static final String TAG = "MatchActivity";
     public static final String MATCH_ID_EXTRA = "matchId";
 
 
@@ -120,6 +122,7 @@ public class MatchActivity extends BaseActivity {
         query.include("team2Points");
         query.include("team3Points");
         query.include("periods");
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.getInBackground(matchId, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
@@ -133,6 +136,10 @@ public class MatchActivity extends BaseActivity {
     }
 
     private void onMatchReceived(Match match) {
+        if (isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         mMatch = match;
         setToolbarTitle(match.getTitle());
         categoryTV.setText(Utils.getTranslatedCategory(this, match.getCategory()));

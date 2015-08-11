@@ -70,14 +70,14 @@ public class MatchesTabFragment extends Fragment {
         query.include("team1");
         query.include("team2");
         query.include("team3");
-        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.findInBackground(new FindCallback<Match>() {
             public void done(List<Match> itemList, ParseException e) {
                 if (e == null) {
                     Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
                     onMatchesReceived(itemList);
                 } else {
-                    Log.d("item", "Error: " + e.getMessage());
+                    Log.e(TAG, "Error: " + e.getMessage());
                 }
             }
         });

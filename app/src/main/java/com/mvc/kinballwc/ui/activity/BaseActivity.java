@@ -18,6 +18,8 @@ public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = "BaseActivity";
 
+    protected boolean isActivityDestroyed = false;
+
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
@@ -30,6 +32,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isActivityDestroyed = true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

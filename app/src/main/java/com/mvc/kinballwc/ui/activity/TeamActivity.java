@@ -11,6 +11,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
@@ -34,6 +35,8 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 
 public class TeamActivity extends BaseActivity {
+
+    private static final String TAG = "TeamsActivity";
 
     public static final String EXTRA_TEAM_ID = "teamId";
     private static final int SHORT_ANIMATION_DURATION = 200;
@@ -101,6 +104,7 @@ public class TeamActivity extends BaseActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Team");
         query.include("players");
         query.include("players.roles");
+        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
         query.getInBackground(teamObjectId, new GetCallback<ParseObject>() {
             public void done(ParseObject object, ParseException e) {
                 if (e == null) {
@@ -114,6 +118,10 @@ public class TeamActivity extends BaseActivity {
     }
 
     private void onTeamReceived(final Team team) {
+        if (isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         mTeam = team;
 
         mAdapter.setTeam(team);

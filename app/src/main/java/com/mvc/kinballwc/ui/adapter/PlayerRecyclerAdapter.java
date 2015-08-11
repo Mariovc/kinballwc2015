@@ -2,6 +2,7 @@ package com.mvc.kinballwc.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +88,12 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 itemHolder.logoIV.setOnClickListener(onClickListener);
                 loadImage(itemHolder.logoIV, mTeam.getLogo());
                 itemHolder.teamNameTV.setText(mTeam.getName());
-                itemHolder.nationsTV.setText(mTeam.getNations());
+                if (TextUtils.isEmpty(mTeam.getNations())) {
+                    itemHolder.nationsTV.setVisibility(View.GONE);
+                } else {
+                    itemHolder.nationsTV.setVisibility(View.VISIBLE);
+                    itemHolder.nationsTV.setText(mTeam.getNations());
+                }
             }
         }
     }

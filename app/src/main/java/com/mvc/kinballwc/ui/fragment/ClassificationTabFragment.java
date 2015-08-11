@@ -81,7 +81,7 @@ public class ClassificationTabFragment extends Fragment {
                 if (e == null) {
                     onMatchesReceived(itemList);
                 } else {
-                    Log.d(TAG, "Error: " + e.getMessage());
+                    Log.e(TAG, "Error: " + e.getMessage());
                 }
             }
         });

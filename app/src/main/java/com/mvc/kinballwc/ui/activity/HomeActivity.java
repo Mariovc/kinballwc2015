@@ -29,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final int INITIAL_SECTION = 1;
 
     private DrawerLayout mDrawerLayout;
+    protected boolean isActivityDestroyed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onStart();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isActivityDestroyed = true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

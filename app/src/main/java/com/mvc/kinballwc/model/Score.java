@@ -1,8 +1,5 @@
 package com.mvc.kinballwc.model;
 
-import com.mvc.kinballwc.application.App;
-import com.mvc.kinballwc.utils.Utils;
-
 import java.util.Comparator;
 
 /**
@@ -97,6 +94,9 @@ public class Score {
                     result = score2.getSecondPositionCount() - score1.getSecondPositionCount();
                     if (result == 0) {
                         result = score2.getWonPeriodsCount() - score1.getWonPeriodsCount();
+                        if (result == 0) {
+                            result = score1.getName().compareTo(score2.getName());
+                        }
                     }
                 }
             }
