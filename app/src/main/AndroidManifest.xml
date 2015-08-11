@@ -22,6 +22,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activity.MatchesActivity"
+            android:label="@string/title_activity_matches"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.MatchActivity"
             android:label="@string/title_activity_match"
             android:screenOrientation="portrait">

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
+import com.mvc.kinballwc.ui.activity.MatchesActivity;
 import com.mvc.kinballwc.ui.adapter.MatchRecyclerAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -33,6 +35,8 @@ public class MatchesTabFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private int tabNumber;
+    private String mCategoryFilter;
+    private String mTeamFilter;
 
     public static MatchesTabFragment newInstance(int tabNumber) {
         MatchesTabFragment fragment = new MatchesTabFragment();
@@ -40,6 +44,13 @@ public class MatchesTabFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        mCategoryFilter = bundle.getString(MatchesActivity.EXTRA_CATEGORY, null);
+        mTeamFilter = bundle.getString(MatchesActivity.EXTRA_TEAM, null);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,13 +71,20 @@ public class MatchesTabFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (!TextUtils.isEmpty(mTeamFilter)) {
+            makeTeamQuery(mTeamFilter);
+        } else {
+            makeSimpleQuery();
+        }
+    }
+
+    private void makeSimpleQuery() {
         Log.d(TAG, "ParseQuery get matches, tab: " + tabNumber);
-        // Define the class we would like to query
         ParseQuery<Match> query = ParseQuery.getQuery(Match.class);
-        // Define our query conditions
-        //query.whereEqualTo("owner", ParseUser.getCurrentUser());
-        // Execute the find asynchronously
         // TODO make query with date
+        if (!TextUtils.isEmpty(mCategoryFilter)){
+            query.whereEqualTo("category", mCategoryFilter);
+        }
         query.include("team1");
         query.include("team2");
         query.include("team3");
@@ -81,6 +99,40 @@ public class MatchesTabFragment extends Fragment {
                 }
             }
         });
+    }
+
+
+
+    private void makeTeamQuery(String mTeamFilter) {
+        ParseQuery<Match> team1Query = getTeamQuery("team1.name", mTeamFilter);
+        ParseQuery<Match> team2Query = getTeamQuery("team2.name", mTeamFilter);
+        ParseQuery<Match> team3Query = getTeamQuery("team3.name", mTeamFilter);
+        List<ParseQuery<Match>> queries = new ArrayList<>();
+        queries.add(team1Query);
+        queries.add(team2Query);
+        queries.add(team3Query);
+        ParseQuery<Match> mainQuery = ParseQuery.or(queries);
+        mainQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+        mainQuery.findInBackground(new FindCallback<Match>() {
+            public void done(List<Match> itemList, ParseException e) {
+                if (e == null) {
+                    Log.d(TAG, "ParseQuery ok, tab: " + tabNumber + " matches: itemList: " + itemList.size());
+                    onMatchesReceived(itemList);
+                } else {
+                    Log.e(TAG, "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    private ParseQuery<Match> getTeamQuery(String field, String teamId) {
+        ParseQuery<Match> query = ParseQuery.getQuery(Match.class);
+        // TODO make query with date
+        query.whereEqualTo(field, teamId);
+        query.include("team1");
+        query.include("team2");
+        query.include("team3");
+        return query;
     }
 
 

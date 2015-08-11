@@ -34,6 +34,7 @@
 
 
     <!--Activities-->
+    <string name="title_activity_matches">Matches</string>
     <string name="title_activity_match">Match</string>
     <string name="title_activity_team">Team</string>
 

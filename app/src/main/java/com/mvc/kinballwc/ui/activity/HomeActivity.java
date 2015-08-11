@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.ClassificationFragment;
-import com.mvc.kinballwc.ui.fragment.MatchesFragment;
+import com.mvc.kinballwc.ui.fragment.MatchesSelectionFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 import com.mvc.kinballwc.utils.SocialNetworkUtils;
 import com.mvc.kinballwc.utils.Utils;
@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
         Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_matches:
-                fragment = new MatchesFragment();
+                fragment = new MatchesSelectionFragment();
                 break;
             case R.id.nav_teams:
                 fragment = new TeamsFragment();
