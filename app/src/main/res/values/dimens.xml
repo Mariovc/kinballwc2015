@@ -6,4 +6,55 @@
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
+
+
+    <dimen name="tabs_height">44dp</dimen>
+
+    <!--teams-->
+    <dimen name="team_logo_width">60dp</dimen>
+
+    <!--team-->
+    <dimen name="logo_height">80dp</dimen>
+    <dimen name="logo_max_width">120dp</dimen>
+    <dimen name="team_name_text_size">24sp</dimen>
+    <dimen name="detail_backdrop_height">256dp</dimen>
+    <dimen name="recycler_padding_bottom">70dp</dimen>
+    <dimen name="matches_button_margin_bottom">15dp</dimen>
+    <dimen name="matches_button_height">45dp</dimen>
+    <dimen name="matches_button_padding">16dp</dimen>
+    <dimen name="matches_button_textSize">16sp</dimen>
+    <dimen name="matches_button_elevation">4dp</dimen>
+    <dimen name="matches_button_radius">4dp</dimen>
+    <dimen name="matches_expanded_image_elevation">8dp</dimen>
+
+    <!--player-->
+    <dimen name="player_image_width">60dp</dimen>
+
+
+    <!--match-->
+    <dimen name="team_logo_height">80dp</dimen>
+    <dimen name="logo_margin_top">4dp</dimen>
+    <dimen name="points_width">100dp</dimen>
+    <dimen name="total_points_font_size">18sp</dimen>
+    <dimen name="match_activity_margin">8dp</dimen>
+    <dimen name="period_scoreboard_heigh">110dp</dimen>
+    <dimen name="period_color_heigh">20dp</dimen>
+    <dimen name="period_score_width">60dp</dimen>
+    <dimen name="period_scoreboard_margin">2dp</dimen>
+
+
+    <!--matches list-->
+    <dimen name="matches_logo_margin_top">8dp</dimen>
+    <dimen name="team_margin">0dp</dimen>
+    <dimen name="score_margin">12dp</dimen>
+    <dimen name="matches_logo_height">60dp</dimen>
+    <dimen name="matches_logo_width">60dp</dimen>
+
+
+    <!--clasification-->
+    <dimen name="classification_position_width">30dp</dimen>
+    <dimen name="classification_match_points_width">24dp</dimen>
+    <dimen name="classification_total_points_width">44dp</dimen>
+    <dimen name="classification_matches_label_width">90dp</dimen>
+    <dimen name="classification_item_height">30dp</dimen>
 </resources>

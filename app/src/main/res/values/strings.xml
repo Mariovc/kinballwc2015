@@ -1,14 +1,119 @@
 <resources>
-    <string name="app_name">KinballWC</string>
+    <string name="app_name">Kin-Ball WC\'15</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <!--Categories-->
+    <string name="category_nations_man">NATIONS MEN</string>
+    <string name="category_nations_woman">NATIONS WOMEN</string>
+    <string name="category_clubs_pro">CLUBS PRO</string>
+    <string name="category_clubs_amateur">CLUBS AMATEUR</string>
+    <string name="category_all">ALL CATEGORIES</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!--Roles-->
+    <string name="role_player">Player</string>
+    <string name="role_coach">Head Coach</string>
+    <string name="role_first_assistant_coach">First Assistant Coach</string>
+    <string name="role_second_assistant_coach">Second Assistant Coach</string>
 
-    <string name="action_example">Example action</string>
+    <!--Countries-->
+    <string name="country_austria">Austria</string>
+    <string name="country_belgium">Belgium</string>
+    <string name="country_czech_republic">Czech Republic</string>
+    <string name="country_switzerland">Switzerland</string>
+    <string name="country_japan">Japan</string>
+    <string name="country_canada">Canada</string>
+    <string name="country_slovakia">Slovakia</string>
+    <string name="country_south_korea">South Korea</string>
+    <string name="country_spain">Spain</string>
+    <string name="country_france">France</string>
+    <string name="country_china">China</string>
+    <string name="country_denmark">Denmark</string>
 
-    <string name="action_settings">Settings</string>
+    <!--Courts-->
+    <string name="court1">Court 1</string>
+    <string name="court2">Court 2</string>
+    <string name="court3">Central court</string>
+    <string-array name="courts">
+        <item>@string/court1</item>
+        <item>@string/court2</item>
+        <item>@string/court3</item>
+    </string-array>
+
+
+
+    <!--Menu-->
+    <string name="menu_twitter">Twitter</string>
+    <string name="menu_facebook">Facebook</string>
+
+
+    <!--Activities-->
+    <string name="title_activity_matches">Matches</string>
+    <string name="title_activity_match">Match</string>
+    <string name="title_activity_team">Team</string>
+
+
+    <!--NavigationView Menu-->
+    <string name="navigation_drawer_matches">Matches</string>
+    <string name="navigation_drawer_teams">Teams</string>
+    <string name="navigation_drawer_classification">Classification</string>
+
+    <!--Match-->
+    <string name="team1_color">Blue</string>
+    <string name="team2_color">Grey</string>
+    <string name="team3_color">Black</string>
+    <string name="period_title">Period %1$d</string>
+    <string name="default_score">-</string>
+    <string name="period_points">Period points</string>
+    <string name="match_points">Match points</string>
+    <string name="sportsmanship_points">Sportsmanship Points</string>
+    <string name="total_points">Total points</string>
+    <string name="date_format">dd/MM</string>
+    <string name="hour_format">HH:mm</string>
+
+    <!--Matches-->
+    <string name="live_text">• live</string>
+
+    <!--Team-->
+    <string name="show_matches">Show matches</string>
+
+
+    <!--Classification-->
+    <string name="position_label">Pos</string>
+    <string name="team_name_label">Team</string>
+    <string name="matches_label">Matches</string>
+    <string name="matches1_label">1</string>
+    <string name="matches2_label">2</string>
+    <string name="matches3_label">3</string>
+    <string name="total_label">Total</string>
+
+
+    <!--<string-array name="days">-->
+        <!--<item>18/08</item>-->
+        <!--<item>19/08</item>-->
+        <!--<item>20/08</item>-->
+        <!--<item>21/08</item>-->
+        <!--<item>22/08</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="days">-->
+        <!--<item>Day 1</item>-->
+        <!--<item>Day 2</item>-->
+        <!--<item>Day 3</item>-->
+        <!--<item>Day 4</item>-->
+        <!--<item>Day 5</item>-->
+    <!--</string-array>-->
+    <string-array name="days">
+        <item>Day 1</item>
+        <item>Day 2</item>
+        <item>Day 3</item>
+        <item>Semifinals</item>
+        <item>Finals</item>
+    </string-array>
+
+
+    <string-array name="categories">
+        <item>@string/category_nations_man</item>
+        <item>@string/category_nations_woman</item>
+        <item>@string/category_clubs_pro</item>
+        <item>@string/category_clubs_amateur</item>
+    </string-array>
+
 </resources>
