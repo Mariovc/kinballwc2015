@@ -45,7 +45,7 @@
 
     <!--matches list-->
     <dimen name="matches_logo_margin_top">8dp</dimen>
-    <dimen name="team_margin">4dp</dimen>
+    <dimen name="team_margin">0dp</dimen>
     <dimen name="score_margin">12dp</dimen>
     <dimen name="matches_logo_height">60dp</dimen>
     <dimen name="matches_logo_width">60dp</dimen>
@@ -53,8 +53,8 @@
 
     <!--clasification-->
     <dimen name="classification_position_width">30dp</dimen>
-    <dimen name="classification_match_points_width">30dp</dimen>
-    <dimen name="classification_total_points_width">50dp</dimen>
+    <dimen name="classification_match_points_width">24dp</dimen>
+    <dimen name="classification_total_points_width">44dp</dimen>
     <dimen name="classification_matches_label_width">90dp</dimen>
     <dimen name="classification_item_height">30dp</dimen>
 </resources>

@@ -40,7 +40,8 @@ public class MatchActivity extends BaseActivity {
     private PeriodFragmentAdapter mAdapter;
     private TitlePageIndicator mIndicator;
 
-    private TextView categoryTV;
+    private TextView titleTV;
+    private TextView courtTV;
     private TextView dateTV;
     private TextView hourTV;
     private TextView team1NameTV;
@@ -68,7 +69,8 @@ public class MatchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match);
 
-        categoryTV = (TextView) findViewById(R.id.matchCategoryTV);
+        titleTV = (TextView) findViewById(R.id.matchTitleTV);
+        courtTV = (TextView) findViewById(R.id.matchCourtTV);
         dateTV = (TextView) findViewById(R.id.matchDateTV);
         hourTV = (TextView) findViewById(R.id.matchHourTV);
         team1NameTV = (TextView) findViewById(R.id.matchTeam1NameTV);
@@ -141,8 +143,9 @@ public class MatchActivity extends BaseActivity {
             return;
         }
         mMatch = match;
-        setToolbarTitle(match.getTitle());
-        categoryTV.setText(Utils.getTranslatedCategory(this, match.getCategory()));
+        setToolbarTitle(Utils.getTranslatedCategory(this, match.getCategory()));
+        titleTV.setText(match.getTitle());
+        courtTV.setText(match.getCourtString());
         SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.getDefault());
         SimpleDateFormat hourFormat = new SimpleDateFormat(getString(R.string.hour_format), Locale.getDefault());
         dateTV.setText(dateFormat.format(match.getDate()));

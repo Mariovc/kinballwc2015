@@ -26,7 +26,7 @@ import com.mvc.kinballwc.utils.Utils;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 1;
+    private static final int INITIAL_SECTION = 0;
 
     private DrawerLayout mDrawerLayout;
     protected boolean isActivityDestroyed = false;

@@ -48,6 +48,7 @@
                 android:layout_alignBottom="@+id/matchLiveTV"
                 android:singleLine="true"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:layout_toLeftOf="@+id/matchHourTV"
                 android:layout_toStartOf="@+id/matchHourTV"
                 android:layout_marginEnd="16dp"
@@ -93,7 +94,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_height"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam1LogoIV"
                     android:src="@drawable/placeholder"
@@ -131,7 +132,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_height"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam2LogoIV"
                     android:src="@drawable/placeholder"
@@ -169,7 +170,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_height"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam3LogoIV"
                     android:src="@drawable/placeholder"

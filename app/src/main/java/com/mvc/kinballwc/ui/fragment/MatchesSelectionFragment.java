@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mvc.kinballwc.R;
+import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.activity.MatchesActivity;
+import com.mvc.kinballwc.utils.Utils;
 
 /**
  * Author: Mario Velasco Casquero
@@ -30,20 +32,39 @@ public class MatchesSelectionFragment extends Fragment {
 
         ((HomeActivity) getActivity()).setupToolbar(view);
 
-        Button button = (Button) view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MatchesActivity.class);
-                intent.putExtra(MatchesActivity.EXTRA_CATEGORY, "CLUBS PRO");
-//                intent.putExtra(MatchesActivity.EXTRA_TEAM, "Cn0pwgKidy");
-                startActivity(intent);
-            }
-        });
+        Button nationsMenButton = (Button) view.findViewById(R.id.nationsMenButton);
+        Button nationsWomenButton = (Button) view.findViewById(R.id.nationsWomenButton);
+        Button clubsProButton = (Button) view.findViewById(R.id.clubsProButton);
+        Button clubsAmateurButton = (Button) view.findViewById(R.id.clubsAmateurButton);
+        Button allButton = (Button) view.findViewById(R.id.allButton);
+        nationsMenButton.setOnClickListener(new OnCategoryClick(Utils.NATIONS_MAN));
+        nationsWomenButton.setOnClickListener(new OnCategoryClick(Utils.NATIONS_WOMAN));
+        clubsProButton.setOnClickListener(new OnCategoryClick(Utils.CLUBS_PRO));
+        clubsAmateurButton.setOnClickListener(new OnCategoryClick(Utils.CLUBS_AMATEUR));
+        allButton.setOnClickListener(new OnCategoryClick(null));
         return view;
     }
 
 
+    private void launchMatchesActivity(String category) {
+        Intent intent = new Intent(getActivity(), MatchesActivity.class);
+        intent.putExtra(MatchesActivity.EXTRA_CATEGORY, category);
+//                intent.putExtra(MatchesActivity.EXTRA_TEAM, "Cn0pwgKidy");
+        startActivity(intent);
+    }
 
+    class OnCategoryClick implements View.OnClickListener {
+
+        private String mCategory;
+
+        public OnCategoryClick(String category) {
+            this.mCategory = category;
+        }
+
+        @Override
+        public void onClick(View v) {
+            launchMatchesActivity(mCategory);
+        }
+    }
 
 }

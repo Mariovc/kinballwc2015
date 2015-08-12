@@ -66,14 +66,26 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         if (team1 != null) {
             holder.mTeam1NameTV.setText(team1.getName());
             loadImage(holder.mTeam1LogoIV, team1.getLogo());
+        } else {
+            holder.mTeam1NameTV.setText("");
+//            holder.mTeam1LogoIV.setImageResource(R.drawable.placeholder);
+            holder.mTeam1LogoIV.setImageBitmap(null);
         }
         if (team2 != null) {
             holder.mTeam2NameTV.setText(team2.getName());
             loadImage(holder.mTeam2LogoIV, team2.getLogo());
+        } else {
+            holder.mTeam2NameTV.setText("");
+//            holder.mTeam2LogoIV.setImageResource(R.drawable.placeholder);
+            holder.mTeam2LogoIV.setImageBitmap(null);
         }
         if (team3 != null) {
             holder.mTeam3NameTV.setText(team3.getName());
             loadImage(holder.mTeam3LogoIV, team3.getLogo());
+        } else {
+            holder.mTeam3NameTV.setText("");
+//            holder.mTeam3LogoIV.setImageResource(R.drawable.placeholder);
+            holder.mTeam3LogoIV.setImageBitmap(null);
         }
     }
 

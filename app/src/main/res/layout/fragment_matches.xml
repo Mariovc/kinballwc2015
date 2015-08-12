@@ -23,14 +23,35 @@
 
         <LinearLayout
             android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button" />
+                android:text="@string/category_nations_man"
+                android:id="@+id/nationsMenButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_nations_woman"
+                android:id="@+id/nationsWomenButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_clubs_pro"
+                android:id="@+id/clubsProButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_clubs_amateur"
+                android:id="@+id/clubsAmateurButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_all"
+                android:id="@+id/allButton" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

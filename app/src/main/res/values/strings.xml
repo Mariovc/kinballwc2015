@@ -6,6 +6,7 @@
     <string name="category_nations_woman">NATIONS WOMEN</string>
     <string name="category_clubs_pro">CLUBS PRO</string>
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
+    <string name="category_all">ALL CATEGORIES</string>
 
     <!--Roles-->
     <string name="role_player">Player</string>
@@ -26,6 +27,17 @@
     <string name="country_france">France</string>
     <string name="country_china">China</string>
     <string name="country_denmark">Denmark</string>
+
+    <!--Courts-->
+    <string name="court1">Court 1</string>
+    <string name="court2">Court 2</string>
+    <string name="court3">Central court</string>
+    <string-array name="courts">
+        <item>@string/court1</item>
+        <item>@string/court2</item>
+        <item>@string/court3</item>
+    </string-array>
+
 
 
     <!--Menu-->

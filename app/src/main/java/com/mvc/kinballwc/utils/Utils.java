@@ -13,10 +13,10 @@ import com.mvc.kinballwc.R;
  */
 public class Utils {
 
-    private static final String NATIONS_MAN = "NATIONS MEN";
-    private static final String NATIONS_WOMAN = "NATIONS WOMEN";
-    private static final String CLUBS_PRO = "CLUBS PRO";
-    private static final String CLUBS_AMATEUR = "CLUBS AMATEUR";
+    public static final String NATIONS_MAN = "NATIONS MEN";
+    public static final String NATIONS_WOMAN = "NATIONS WOMEN";
+    public static final String CLUBS_PRO = "CLUBS PRO";
+    public static final String CLUBS_AMATEUR = "CLUBS AMATEUR";
 
 
     private static final String ROLE_PLAYER = "Player";

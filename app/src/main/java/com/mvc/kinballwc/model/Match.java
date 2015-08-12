@@ -1,8 +1,13 @@
 package com.mvc.kinballwc.model;
 
+import android.content.Context;
+
+import com.mvc.kinballwc.R;
+import com.mvc.kinballwc.application.App;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +63,17 @@ public class Match extends ParseObject{
         return getList("periods");
     }
 
+    public int getCourt() {
+        return  getInt("court");
+    }
+
+    public String getCourtString() {
+        Context context = App.getAppContext();
+        String[] courts = context.getResources().getStringArray(R.array.courts);
+        String court = courts[getCourt()-1];
+        return court;
+    }
+
     public void setState(String state){
         put("state", state);
     }
@@ -100,5 +116,23 @@ public class Match extends ParseObject{
 
     public void setPeriods(List<MatchPeriod> periods) {
         put("periods", periods);
+    }
+
+    public void setCourt(int court) {
+        put("court", court);
+    }
+
+    public static class MatchComparator implements Comparator<Match> {
+        @Override
+        public int compare(Match match1, Match match2) {
+            int result = match1.getDate().compareTo(match2.getDate());
+            if (result == 0) {
+                result = match1.getCourt() - match2.getCourt();
+                if (result == 0) {
+                    result = match1.getTitle().compareTo(match2.getTitle());
+                }
+            }
+            return result;
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.adapter.TabPagerAdapter;
 import com.mvc.kinballwc.ui.fragment.MatchesTabFragment;
+import com.mvc.kinballwc.utils.Utils;
 
 /**
  * Author: Mario Velasco Casquero
@@ -36,6 +37,7 @@ public class MatchesActivity extends BaseActivity{
 
         mCategoryFilter = getIntent().getStringExtra(EXTRA_CATEGORY);
         mClubFilter = getIntent().getStringExtra(EXTRA_TEAM);
+        setToolbarTitle(Utils.getTranslatedCategory(this, mCategoryFilter));
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -50,7 +52,7 @@ public class MatchesActivity extends BaseActivity{
         String[] daysArray = getResources().getStringArray(R.array.days);
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         for (int i = 0; i < daysArray.length; i++) {
-            MatchesTabFragment matchesTabFragment = MatchesTabFragment.newInstance(i + 1);
+            MatchesTabFragment matchesTabFragment = MatchesTabFragment.newInstance(i);
             Bundle bundle = new Bundle();
             bundle.putString(EXTRA_CATEGORY, mCategoryFilter);
             bundle.putString(EXTRA_TEAM, mClubFilter);
