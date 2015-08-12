@@ -8,6 +8,7 @@ import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPeriod;
 import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.Player;
+import com.mvc.kinballwc.model.Referee;
 import com.mvc.kinballwc.model.Role;
 import com.mvc.kinballwc.model.Team;
 import com.parse.Parse;
@@ -49,6 +50,8 @@ public class App extends Application{
         ParseObject.registerSubclass(MatchPoints.class);
         ParseObject.registerSubclass(MatchPeriod.class);
         ParseObject.registerSubclass(Role.class);
+        ParseObject.registerSubclass(Referee.class);
+
 
         // Initialize the instance of Parse
         Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);

@@ -2,6 +2,7 @@
 <resources>
 
     <color name="transparent">#00000000</color>
+    <color name="white_transparent">#AAFFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="white_dark_1">#FAFAFA</color>
     <color name="grey_light_2">#F5F5F5</color>
@@ -54,7 +55,7 @@
     <color name="team2_font">@color/white</color>
     <color name="team3_font">@color/white</color>
     <color name="live_font">@color/red</color>
-    <color name="live_background">@color/transparent</color>
+    <color name="live_background">@color/white_transparent</color>
     <color name="live_border">@color/red</color>
 
     <!--Match-->

@@ -15,6 +15,7 @@ import android.view.View;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.ClassificationFragment;
 import com.mvc.kinballwc.ui.fragment.MatchesSelectionFragment;
+import com.mvc.kinballwc.ui.fragment.RefereesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 import com.mvc.kinballwc.utils.SocialNetworkUtils;
 import com.mvc.kinballwc.utils.Utils;
@@ -29,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private static final int INITIAL_SECTION = 0;
 
     private DrawerLayout mDrawerLayout;
+    private Fragment fragment;
     protected boolean isActivityDestroyed = false;
 
     @Override
@@ -43,6 +45,18 @@ public class HomeActivity extends AppCompatActivity {
         if (Utils.isFistTime(this)) {
             mDrawerLayout.openDrawer(GravityCompat.START);
             Utils.setFistTime(this, false);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fragment instanceof RefereesFragment &&
+                ((RefereesFragment) fragment).allowBackPressed()) {
+            if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerLayout)) {
+                mDrawerLayout.closeDrawer(mDrawerLayout);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -111,7 +125,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private Fragment getFragmentForMenuItem(MenuItem menuItem) {
-        Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_matches:
                 fragment = new MatchesSelectionFragment();
@@ -121,6 +134,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_classification:
                 fragment = new ClassificationFragment();
+                break;
+            case R.id.nav_referees:
+                fragment = new RefereesFragment();
                 break;
         }
         return fragment;

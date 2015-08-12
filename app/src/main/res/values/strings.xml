@@ -7,6 +7,8 @@
     <string name="category_clubs_pro">CLUBS PRO</string>
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
     <string name="category_all">ALL CATEGORIES</string>
+    <string name="category_world_cup">WORLD CUP</string>
+    <string name="category_championship">CHAMPIONSHIP</string>
 
     <!--Roles-->
     <string name="role_player">Player</string>
@@ -55,6 +57,7 @@
     <string name="navigation_drawer_matches">Matches</string>
     <string name="navigation_drawer_teams">Teams</string>
     <string name="navigation_drawer_classification">Classification</string>
+    <string name="navigation_drawer_referees">Referees</string>
 
     <!--Match-->
     <string name="team1_color">Blue</string>
@@ -70,7 +73,7 @@
     <string name="hour_format">HH:mm</string>
 
     <!--Matches-->
-    <string name="live_text">• live</string>
+    <string name="live_text">• playing</string>
 
     <!--Team-->
     <string name="show_matches">Show matches</string>
@@ -84,6 +87,7 @@
     <string name="matches2_label">2</string>
     <string name="matches3_label">3</string>
     <string name="total_label">Total</string>
+    <string name="select_category_text">Categories:</string>
 
 
     <!--<string-array name="days">-->
@@ -116,4 +120,8 @@
         <item>@string/category_clubs_amateur</item>
     </string-array>
 
+    <string-array name="categoriesReferees">
+        <item>@string/category_world_cup</item>
+        <item>@string/category_championship</item>
+    </string-array>
 </resources>

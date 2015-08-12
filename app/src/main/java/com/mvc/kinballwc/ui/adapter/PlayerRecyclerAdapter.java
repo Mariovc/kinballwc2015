@@ -54,7 +54,6 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         } else if (viewType == TYPE_HEADER) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.layout_team_header, parent, false);
-            // TODO
             return new VHHeader(view);
         }
 

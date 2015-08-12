@@ -18,6 +18,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_classification"
+            android:icon="@drawable/ic_classification"
+            android:title="@string/navigation_drawer_classification" />
+        <item
             android:id="@+id/nav_matches"
             android:icon="@drawable/ic_score"
             android:title="@string/navigation_drawer_matches" />
@@ -26,9 +30,9 @@
             android:icon="@drawable/ic_team"
             android:title="@string/navigation_drawer_teams" />
         <item
-            android:id="@+id/nav_classification"
-            android:icon="@drawable/ic_classification"
-            android:title="@string/navigation_drawer_classification" />
+            android:id="@+id/nav_referees"
+            android:icon="@drawable/ic_referees"
+            android:title="@string/navigation_drawer_referees" />
     </group>
 
 

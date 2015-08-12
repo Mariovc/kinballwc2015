@@ -49,6 +49,16 @@
     <dimen name="score_margin">12dp</dimen>
     <dimen name="matches_logo_height">60dp</dimen>
     <dimen name="matches_logo_width">60dp</dimen>
+    <dimen name="live_text_size">42sp</dimen>
+    <dimen name="live_lateral_padding">16dp</dimen>
+
+
+    <!--matches category selection-->
+    <dimen name="button_margin">8dp</dimen>
+    <dimen name="button_height">80dp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="button_elevation">44dp</dimen>
+    <dimen name="button_padding">12dp</dimen>
 
 
     <!--clasification-->
@@ -57,4 +67,7 @@
     <dimen name="classification_total_points_width">44dp</dimen>
     <dimen name="classification_matches_label_width">90dp</dimen>
     <dimen name="classification_item_height">30dp</dimen>
+    <dimen name="classification_tab_padding">8dp</dimen>
+    <dimen name="select_category_text_size">20sp</dimen>
+    <dimen name="select_category_margin">8dp</dimen>
 </resources>

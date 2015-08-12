@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.mvc.kinballwc.R;
-import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.activity.MatchesActivity;
 import com.mvc.kinballwc.utils.Utils;
@@ -28,7 +27,7 @@ public class MatchesSelectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Log.d(TAG, "onCreate");
-        View view = inflater.inflate(R.layout.fragment_matches, container, false);
+        View view = inflater.inflate(R.layout.fragment_matches_selection, container, false);
 
         ((HomeActivity) getActivity()).setupToolbar(view);
 

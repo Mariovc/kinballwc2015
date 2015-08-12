@@ -27,29 +27,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
-import com.mvc.kinballwc.model.Team;
-import com.mvc.kinballwc.ui.adapter.TeamRecyclerAdapter;
+import com.mvc.kinballwc.model.Referee;
+import com.mvc.kinballwc.ui.adapter.RefereeRecyclerAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-public class TeamsTabFragment extends Fragment {
+public class RefereesTabFragment extends Fragment {
 
     private static final String TAG = "TeamsTabFragment";
 
+    private RefereesFragment mRefereeFragment;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private String mCategoryQuery;
 
 
-    public static TeamsTabFragment newInstance(String categoryQuery) {
-        TeamsTabFragment fragment = new TeamsTabFragment();
+    public static RefereesTabFragment newInstance(RefereesFragment refereesFragment, String categoryQuery) {
+        RefereesTabFragment fragment = new RefereesTabFragment();
+        fragment.mRefereeFragment = refereesFragment;
         fragment.mCategoryQuery = categoryQuery;
         return fragment;
     }
@@ -58,14 +58,14 @@ public class TeamsTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRecyclerView = (RecyclerView) inflater.inflate(
-                R.layout.fragment_teams_tab, container, false);
+                R.layout.fragment_referees_tab, container, false);
         setupRecyclerView(mRecyclerView);
         return mRecyclerView;
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(new TeamRecyclerAdapter(getActivity(), new ArrayList<Team>()));
+        recyclerView.setAdapter(new RefereeRecyclerAdapter(mRefereeFragment, new ArrayList<Referee>()));
         mRecyclerView.setHasFixedSize(true);
     }
 
@@ -74,13 +74,13 @@ public class TeamsTabFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        ParseQuery<Team> query = ParseQuery.getQuery(Team.class);
+        ParseQuery<Referee> query = ParseQuery.getQuery(Referee.class);
         query.whereEqualTo("category", mCategoryQuery);
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
-        query.findInBackground(new FindCallback<Team>() {
-            public void done(List<Team> itemList, ParseException e) {
+        query.findInBackground(new FindCallback<Referee>() {
+            public void done(List<Referee> itemList, ParseException e) {
                 if (e == null) {
-                    onTeamsReceived(itemList);
+                    onRefereesReceived(itemList);
                 } else {
                     Log.e(TAG, "Error: " + e.getMessage());
                 }
@@ -89,9 +89,8 @@ public class TeamsTabFragment extends Fragment {
     }
 
 
-    private void onTeamsReceived(List<Team> itemList) {
-        Collections.sort(itemList, new Team.NameComparator());
-        mAdapter = new TeamRecyclerAdapter(getActivity(), itemList);
+    private void onRefereesReceived(List<Referee> itemList) {
+        mAdapter = new RefereeRecyclerAdapter(mRefereeFragment, itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }
 

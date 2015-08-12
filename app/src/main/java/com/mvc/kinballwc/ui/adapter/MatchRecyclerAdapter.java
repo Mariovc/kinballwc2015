@@ -142,7 +142,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
         @Override
         public void onClick(View view) {
-            mListener.onClick(view, getPosition()); // TODO deprecated
+            mListener.onClick(view, getLayoutPosition());
         }
 
         public interface MatchViewHolderClicks {

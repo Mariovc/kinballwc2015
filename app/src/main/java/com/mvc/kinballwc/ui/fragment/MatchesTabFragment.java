@@ -18,13 +18,10 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Author: Mario Velasco Casquero
@@ -34,8 +31,6 @@ import java.util.Locale;
 public class MatchesTabFragment extends Fragment {
 
     private static final String TAG = "MatchesTabFragment";
-    private static final String[] filterDates = new String[]{"18/08/2015", "19/08/2015",
-            "20/08/2015", "21/08/2015", "22/08/2015", "23/08/2015"};
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -87,14 +82,13 @@ public class MatchesTabFragment extends Fragment {
 
     private void makeSimpleQuery() {
         Log.d(TAG, "ParseQuery get matches, tab: " + tabNumber);
+        String[] filterDates = MatchesActivity.dates;
         ParseQuery<Match> query = ParseQuery.getQuery(Match.class);
-        // TODO make query with date
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
         Date filterDate1, filterDate2;
         try {
-            filterDate1 = format.parse(filterDates[tabNumber]);
+            filterDate1 = MatchesActivity.format.parse(filterDates[tabNumber]);
             query.whereGreaterThanOrEqualTo("date", filterDate1);
-            filterDate2 = format.parse(filterDates[tabNumber+1]);
+            filterDate2 = MatchesActivity.format.parse(filterDates[tabNumber+1]);
             query.whereLessThan("date", filterDate2);
         } catch (java.text.ParseException e) {
             e.printStackTrace();

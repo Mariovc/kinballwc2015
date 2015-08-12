@@ -17,6 +17,8 @@ public class Utils {
     public static final String NATIONS_WOMAN = "NATIONS WOMEN";
     public static final String CLUBS_PRO = "CLUBS PRO";
     public static final String CLUBS_AMATEUR = "CLUBS AMATEUR";
+    public static final String CATEGORY_WORLD_CUP = "WORLD CUP";
+    public static final String CATEGORY_CHAMPIONSHIP = "CHAMPIONSHIP";
 
 
     private static final String ROLE_PLAYER = "Player";
@@ -45,13 +47,15 @@ public class Utils {
     public static String getTranslatedCategory(Context context, String category) {
         String categoryName;
         if (category == null) {
-            categoryName = "";
+            categoryName = context.getString(R.string.category_all);
         } else if (category.equalsIgnoreCase(NATIONS_MAN)) {
             categoryName = context.getString(R.string.category_nations_man);
         } else if(category.equalsIgnoreCase(NATIONS_WOMAN)) {
             categoryName = context.getString(R.string.category_nations_woman);
         } else if(category.equalsIgnoreCase(CLUBS_PRO)) {
             categoryName = context.getString(R.string.category_clubs_pro);
+        } else if(category.equalsIgnoreCase(CLUBS_AMATEUR)) {
+            categoryName = context.getString(R.string.category_clubs_amateur);
         } else if(category.equalsIgnoreCase(CLUBS_AMATEUR)) {
             categoryName = context.getString(R.string.category_clubs_amateur);
         } else {
@@ -62,6 +66,12 @@ public class Utils {
 
     public static String[] getCategories() {
         String[] categories = {NATIONS_MAN, NATIONS_WOMAN, CLUBS_PRO, CLUBS_AMATEUR};
+        return categories;
+    }
+
+
+    public static String[] getCategoriesRefees() {
+        String[] categories = {CATEGORY_WORLD_CUP, CATEGORY_CHAMPIONSHIP};
         return categories;
     }
 

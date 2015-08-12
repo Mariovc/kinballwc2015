@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:paddingTop="@dimen/classification_tab_padding"
+    android:paddingLeft="@dimen/classification_tab_padding"
+    android:paddingRight="@dimen/classification_tab_padding"
     tools:context=".ui.activity.HomeActivity"
     android:orientation="vertical">
 
@@ -107,6 +109,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:scrollbars="vertical"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/classification_tab_padding"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

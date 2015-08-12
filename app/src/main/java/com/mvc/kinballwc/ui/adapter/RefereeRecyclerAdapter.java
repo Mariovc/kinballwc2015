@@ -1,7 +1,5 @@
 package com.mvc.kinballwc.ui.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,13 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.mvc.kinballwc.R;
-import com.mvc.kinballwc.model.Team;
-import com.mvc.kinballwc.ui.activity.TeamActivity;
+import com.mvc.kinballwc.model.Referee;
+import com.mvc.kinballwc.ui.fragment.RefereesFragment;
 import com.mvc.kinballwc.utils.Utils;
 
 import java.util.List;
@@ -27,19 +26,17 @@ import java.util.List;
  * Date: 02/08/2015
  * Email: m3ario@gmail.com
  */
-public class TeamsRecyclerAdapter
-        extends RecyclerView.Adapter<TeamsRecyclerAdapter.ViewHolder> {
+public class RefereeRecyclerAdapter
+        extends RecyclerView.Adapter<RefereeRecyclerAdapter.ViewHolder> {
 
-    private static final String TAG = "TeamsRecyclerAdapter";
-    private static final int ROUNDED_PIXELS = 20;
-    private Context mContext;
-    private List<Team> mTeams;
+    private static final String TAG = "TeamRecyclerAdapter";
+    private RefereesFragment mFragment;
+    private List<Referee> mReferees;
     private BitmapPool mPool;
 
-    public TeamsRecyclerAdapter(Context context, List<Team> teams) {
-        this.mContext = context;
-        this.mTeams = teams;
-        mPool = Glide.get(context).getBitmapPool();
+    public RefereeRecyclerAdapter(RefereesFragment fragment, List<Referee> referees) {
+        this.mFragment = fragment;
+        this.mReferees = referees;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,32 +61,27 @@ public class TeamsRecyclerAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_team, parent, false);
+                .inflate(R.layout.item_referee, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Team team = mTeams.get(position);
-        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), team.getName()));
+        final Referee referee = mReferees.get(position);
+        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), referee.getName()));
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, TeamActivity.class);
-                intent.putExtra(TeamActivity.EXTRA_TEAM_ID, team.getObjectId());
-                context.startActivity(intent);
-            }
-        });
+        loadImage(holder.mImageView, referee.getImage());
 
-        loadImage(holder.mImageView, team.getLogo());
+        View.OnClickListener onClickListener =
+                mFragment.new ExpandOnClickListener(holder.mImageView, referee.getImage());
+        holder.mView.setOnClickListener(onClickListener);
     }
 
     private void loadImage(final ImageView imageView, final String url) {
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.drawable.placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
@@ -109,6 +101,6 @@ public class TeamsRecyclerAdapter
 
     @Override
     public int getItemCount() {
-        return mTeams.size();
+        return mReferees.size();
     }
 }
