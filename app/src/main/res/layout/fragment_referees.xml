@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,11 +29,10 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/referees_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:layout_height="match_parent" />
 
 
-    </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/expanded_image"
