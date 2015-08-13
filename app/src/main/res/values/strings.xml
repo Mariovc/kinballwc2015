@@ -8,7 +8,7 @@
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
     <string name="category_all">ALL CATEGORIES</string>
     <string name="category_world_cup">WORLD CUP</string>
-    <string name="category_championship">CHAMPIONSHIP</string>
+    <string name="category_championship">WORLD CLUB CHAMPIONSHIP</string>
 
     <!--Roles-->
     <string name="role_player">Player</string>

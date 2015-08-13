@@ -55,11 +55,22 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         Context context = holder.mTitleTV.getContext();
         Match match = mMatchList.get(position);
         holder.mTitleTV.setText(match.getTitle());
+        if (match.getCourt() == 3) {
+            holder.mCourtTV.setVisibility(View.GONE);
+        } else {
+            holder.mCourtTV.setVisibility(View.VISIBLE);
+            holder.mCourtTV.setText(match.getCourtString());
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat(context.getString(R.string.date_format),
                 Locale.getDefault());
         SimpleDateFormat hourFormat = new SimpleDateFormat(context.getString(R.string.hour_format), Locale.getDefault());
-        holder.mDateTV.setText(dateFormat.format(match.getDate()));
-        holder.mHourTV.setText(hourFormat.format(match.getDate()));
+        if (match.getDateToShow() == null) {
+            holder.mDateTV.setText(dateFormat.format(match.getDate()));
+            holder.mHourTV.setText(hourFormat.format(match.getDate()));
+        } else {
+            holder.mDateTV.setText(dateFormat.format(match.getDateToShow()));
+            holder.mHourTV.setText(hourFormat.format(match.getDateToShow()));
+        }
         Team team1 = match.getTeam1();
         Team team2 = match.getTeam2();
         Team team3 = match.getTeam3();
@@ -98,7 +109,8 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.drawable.placeholder)
-//                .fitCenter()
+                .fitCenter()
+                .animate(android.R.anim.fade_in)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
@@ -114,6 +126,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
         public MatchViewHolderClicks mListener;
         public TextView mTitleTV;
+        public TextView mCourtTV;
         public TextView mLiveLabelTV;
         public TextView mDateTV;
         public TextView mHourTV;
@@ -128,6 +141,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
             super(v);
             mListener = onClickListener;
             mTitleTV = (TextView) v.findViewById(R.id.matchTitleTV);
+            mCourtTV = (TextView) v.findViewById(R.id.matchCourtTV);
             mLiveLabelTV = (TextView) v.findViewById(R.id.matchLiveTV);
             mDateTV = (TextView) v.findViewById(R.id.matchDateTV);
             mHourTV = (TextView) v.findViewById(R.id.matchHourTV);

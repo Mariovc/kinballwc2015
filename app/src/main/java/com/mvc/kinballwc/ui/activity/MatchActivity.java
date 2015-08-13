@@ -148,8 +148,13 @@ public class MatchActivity extends BaseActivity {
         courtTV.setText(match.getCourtString());
         SimpleDateFormat dateFormat = new SimpleDateFormat(getString(R.string.date_format), Locale.getDefault());
         SimpleDateFormat hourFormat = new SimpleDateFormat(getString(R.string.hour_format), Locale.getDefault());
-        dateTV.setText(dateFormat.format(match.getDate()));
-        hourTV.setText(hourFormat.format(match.getDate()));
+        if (match.getDateToShow() == null) {
+            dateTV.setText(dateFormat.format(match.getDate()));
+            hourTV.setText(hourFormat.format(match.getDate()));
+        } else {
+            dateTV.setText(dateFormat.format(match.getDateToShow()));
+            hourTV.setText(hourFormat.format(match.getDateToShow()));
+        }
         Team team1 = match.getTeam1();
         Team team2 = match.getTeam2();
         Team team3 = match.getTeam3();

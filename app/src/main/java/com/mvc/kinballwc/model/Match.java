@@ -47,6 +47,10 @@ public class Match extends ParseObject{
         return getDate("date");
     }
 
+    public Date getDateToShow() {
+        return getDate("dateToShow");
+    }
+
     public MatchPoints getTeam1Points() {
         return (MatchPoints) getParseObject("team1Points");
     }
@@ -102,6 +106,10 @@ public class Match extends ParseObject{
         put("date", date);
     }
 
+    public void setDateToShow(Date date) {
+        put("dateToShow", date);
+    }
+
     public void setTeam1Points(MatchPoints matchPoints1) {
         put("team1Points", matchPoints1);
     }
@@ -125,7 +133,20 @@ public class Match extends ParseObject{
     public static class MatchComparator implements Comparator<Match> {
         @Override
         public int compare(Match match1, Match match2) {
-            int result = match1.getDate().compareTo(match2.getDate());
+            Date date1;
+            Date date2;
+            if (match1.getDateToShow() == null) {
+                date1 = match1.getDate();
+            } else {
+                date1 = match1.getDateToShow();
+            }
+            if (match2.getDateToShow() == null) {
+                date2 = match2.getDate();
+            } else {
+                date2 = match2.getDateToShow();
+            }
+
+            int result = date1.compareTo(date2);
             if (result == 0) {
                 result = match1.getCourt() - match2.getCourt();
                 if (result == 0) {

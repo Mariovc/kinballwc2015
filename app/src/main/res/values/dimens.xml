@@ -48,7 +48,8 @@
     <dimen name="team_margin">0dp</dimen>
     <dimen name="score_margin">12dp</dimen>
     <dimen name="matches_logo_height">60dp</dimen>
-    <dimen name="matches_logo_width">60dp</dimen>
+    <dimen name="matches_logo_width">80dp</dimen>
+    <dimen name="matches_logo_margin">8dp</dimen>
     <dimen name="live_text_size">42sp</dimen>
     <dimen name="live_lateral_padding">16dp</dimen>
 
