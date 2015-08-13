@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Match;
+import com.mvc.kinballwc.ui.activity.BaseActivity;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.activity.MatchesActivity;
 import com.mvc.kinballwc.ui.adapter.MatchRecyclerAdapter;
 import com.parse.FindCallback;
@@ -148,6 +150,10 @@ public class MatchesTabFragment extends Fragment {
 
 
     private void onMatchesReceived(List<Match> itemList) {
+        if (getActivity() == null || ((BaseActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         Collections.sort(itemList, new Match.MatchComparator());
         mAdapter = new MatchRecyclerAdapter(itemList);
         mRecyclerView.swapAdapter(mAdapter, false);

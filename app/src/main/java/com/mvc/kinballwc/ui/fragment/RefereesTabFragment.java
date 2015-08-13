@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Referee;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.adapter.RefereeRecyclerAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -90,6 +91,10 @@ public class RefereesTabFragment extends Fragment {
 
 
     private void onRefereesReceived(List<Referee> itemList) {
+        if (getActivity() == null || ((HomeActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         mAdapter = new RefereeRecyclerAdapter(mRefereeFragment, itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }

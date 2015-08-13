@@ -14,6 +14,8 @@ import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.Score;
 import com.mvc.kinballwc.model.Team;
+import com.mvc.kinballwc.ui.activity.BaseActivity;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.adapter.ClassificationRecyclerAdapter;
 import com.mvc.kinballwc.utils.Utils;
 import com.parse.FindCallback;
@@ -89,6 +91,10 @@ public class ClassificationTabFragment extends Fragment {
 
 
     private void onMatchesReceived(List<Match> matchList) {
+        if (getActivity() == null || ((HomeActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         HashMap<String, Score> scoresMap = new HashMap<>();
         for (Match match : matchList) {
             fillScore(scoresMap, match.getTeam1(), match.getTeam1Points());

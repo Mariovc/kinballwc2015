@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Team;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.adapter.TeamRecyclerAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -90,6 +91,10 @@ public class TeamsTabFragment extends Fragment {
 
 
     private void onTeamsReceived(List<Team> itemList) {
+        if (getActivity() == null || ((HomeActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         Collections.sort(itemList, new Team.NameComparator());
         mAdapter = new TeamRecyclerAdapter(getActivity(), itemList);
         mRecyclerView.swapAdapter(mAdapter, false);

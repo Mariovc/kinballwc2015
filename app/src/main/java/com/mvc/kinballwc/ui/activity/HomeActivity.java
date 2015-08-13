@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private Fragment fragment;
-    protected boolean isActivityDestroyed = false;
+    public boolean isActivityDestroyed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +50,13 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (fragment instanceof RefereesFragment &&
-                ((RefereesFragment) fragment).allowBackPressed()) {
-            if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mDrawerLayout)) {
-                mDrawerLayout.closeDrawer(mDrawerLayout);
+        boolean allowBackupPressed = true;
+        if (fragment instanceof RefereesFragment) {
+            allowBackupPressed = ((RefereesFragment) fragment).allowBackPressed();
+        }
+        if (allowBackupPressed) {
+            if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                mDrawerLayout.closeDrawers();
             } else {
                 super.onBackPressed();
             }

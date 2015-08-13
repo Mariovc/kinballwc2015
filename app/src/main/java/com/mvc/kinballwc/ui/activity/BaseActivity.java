@@ -18,7 +18,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = "BaseActivity";
 
-    protected boolean isActivityDestroyed = false;
+    public boolean isActivityDestroyed = false;
 
     @Override
     public void setContentView(int layoutResID) {
