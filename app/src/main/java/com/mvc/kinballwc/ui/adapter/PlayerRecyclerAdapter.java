@@ -86,7 +86,7 @@ public class PlayerRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         activity.new ExpandOnClickListener(itemHolder.logoIV, mTeam.getLogo());
                 itemHolder.logoIV.setOnClickListener(onClickListener);
                 loadImage(itemHolder.logoIV, mTeam.getLogo());
-                itemHolder.teamNameTV.setText(mTeam.getName());
+                itemHolder.teamNameTV.setText(Utils.getTranslatedCountry(activity, mTeam.getName()));
                 if (TextUtils.isEmpty(mTeam.getNations())) {
                     itemHolder.nationsTV.setVisibility(View.GONE);
                 } else {

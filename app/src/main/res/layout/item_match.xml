@@ -14,7 +14,6 @@
         android:layout_margin="4dp">
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -24,12 +23,32 @@
                 android:id="@+id/matchTitleTV"
                 android:textColor="@color/black"
                 android:singleLine="true"
-                android:layout_toLeftOf="@+id/matchHourTV"
+                android:ellipsize="end"
+                android:text="esto es un probar que tal"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:ellipsize="start"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp" />
 
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/matchCourtTV"
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="Central Court"
+                android:layout_toRightOf="@+id/matchTitleTV"
+                android:layout_toEndOf="@+id/matchTitleTV"
+                android:layout_toLeftOf="@+id/matchDateTV"
+                android:layout_toStartOf="@+id/matchDateTV"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,11 +57,11 @@
                 android:textColor="@color/black"
                 android:singleLine="true"
                 android:gravity="center"
-                android:visibility="gone"
+                android:text="18/08"
                 android:layout_toLeftOf="@+id/matchHourTV"
                 android:layout_toStartOf="@+id/matchHourTV"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,8 +70,10 @@
                 android:textColor="@color/black"
                 android:singleLine="true"
                 android:gravity="center"
+                android:text="10.33"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_weight="0" />
         </RelativeLayout>
 
         <LinearLayout
