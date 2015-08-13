@@ -109,7 +109,8 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.drawable.placeholder)
-//                .fitCenter()
+                .fitCenter()
+                .animate(android.R.anim.fade_in)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
