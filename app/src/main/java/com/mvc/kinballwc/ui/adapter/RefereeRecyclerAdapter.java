@@ -68,7 +68,7 @@ public class RefereeRecyclerAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Referee referee = mReferees.get(position);
-        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), referee.getName()));
+        holder.mTextView.setText(referee.getName());
 
         loadImage(holder.mImageView, referee.getImage());
 

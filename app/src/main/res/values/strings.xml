@@ -6,9 +6,9 @@
     <string name="category_nations_woman">NATIONS WOMEN</string>
     <string name="category_clubs_pro">CLUBS PRO</string>
     <string name="category_clubs_amateur">CLUBS AMATEUR</string>
-    <string name="category_all">ALL CATEGORIES</string>
     <string name="category_world_cup">WORLD CUP</string>
     <string name="category_championship">WORLD CLUB CHAMPIONSHIP</string>
+    <string name="category_all">ALL CATEGORIES</string>
 
     <!--Roles-->
     <string name="role_player">Player</string>
@@ -74,6 +74,11 @@
 
     <!--Matches-->
     <string name="live_text">• playing</string>
+    <string name="category_nations_man_button">Nations\nMen</string>
+    <string name="category_nations_woman_button">Nations\nWomen</string>
+    <string name="category_clubs_pro_button">Clubs\nPro</string>
+    <string name="category_clubs_amateur_button">Clubs\nAmateur</string>
+    <string name="category_all_button">All Categories</string>
 
     <!--Team-->
     <string name="show_matches">Show matches</string>
@@ -108,7 +113,7 @@
         <item>Day 1</item>
         <item>Day 2</item>
         <item>Day 3</item>
-        <item>Semifinals</item>
+        <item>Semi-Finals</item>
         <item>Finals</item>
     </string-array>
 

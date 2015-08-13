@@ -39,7 +39,7 @@
                 android:id="@+id/matchCourtTV"
                 android:textColor="@color/black"
                 android:singleLine="true"
-                android:ellipsize="end"
+                android:ellipsize="middle"
                 android:gravity="center"
                 android:layout_toRightOf="@+id/matchTitleTV"
                 android:layout_toEndOf="@+id/matchTitleTV"

@@ -29,19 +29,6 @@ public class Utils {
     private static final String SHARED_PREFERENCES = "app shared preferences";
     private static final String PREF_IS_FIRST_TIME = "isFirstTime";
 
-    private static final String COUNTRY_BELGIUM = "BELGICA";
-    private static final String COUNTRY_CZECH_REPUBLIC = "REPUBLICA CHECA";
-    private static final String COUNTRY_SWITZERLAND = "SUIZA";
-    private static final String COUNTRY_JAPAN = "JAPON";
-    private static final String COUNTRY_CANADA = "CANADA";
-    private static final String COUNTRY_SLOVAKIA = "ESLOVAQUIA";
-    private static final String COUNTRY_AUSTRIA = "AUSTRIA";
-    private static final String COUNTRY_SOUTH_KOREA = "COREA DEL SUR";
-    private static final String COUNTRY_SPAIN = "ESPAÑA";
-    private static final String COUNTRY_FRANCE = "FRANCIA";
-    private static final String COUNTRY_DENMARK = "DINAMARCA";
-    private static final String COUNTRY_CHINA = "CHINA";
-
 
 
     public static String getTranslatedCategory(Context context, String category) {
@@ -89,38 +76,6 @@ public class Utils {
             roleName = role;
         }
         return roleName;
-    }
-
-    public static String getTranslatedCountry(Context context, String country) {
-        String countryName;
-        if (country.equalsIgnoreCase(COUNTRY_AUSTRIA)) {
-            countryName = context.getString(R.string.country_austria);
-        } else if (country.equalsIgnoreCase(COUNTRY_BELGIUM)) {
-            countryName = context.getString(R.string.country_belgium);
-        } else if (country.equalsIgnoreCase(COUNTRY_CANADA)) {
-            countryName = context.getString(R.string.country_canada);
-        } else if (country.equalsIgnoreCase(COUNTRY_CZECH_REPUBLIC)) {
-            countryName = context.getString(R.string.country_czech_republic);
-        } else if (country.equalsIgnoreCase(COUNTRY_CHINA)) {
-            countryName = context.getString(R.string.country_china);
-        } else if (country.equalsIgnoreCase(COUNTRY_DENMARK)) {
-            countryName = context.getString(R.string.country_denmark);
-        } else if (country.equalsIgnoreCase(COUNTRY_FRANCE)) {
-            countryName = context.getString(R.string.country_france);
-        } else if (country.equalsIgnoreCase(COUNTRY_JAPAN)) {
-            countryName = context.getString(R.string.country_japan);
-        } else if (country.equalsIgnoreCase(COUNTRY_SLOVAKIA)) {
-            countryName = context.getString(R.string.country_slovakia);
-        } else if (country.equalsIgnoreCase(COUNTRY_SOUTH_KOREA)) {
-            countryName = context.getString(R.string.country_south_korea);
-        } else if (country.equalsIgnoreCase(COUNTRY_SPAIN)) {
-            countryName = context.getString(R.string.country_spain);
-        } else if (country.equalsIgnoreCase(COUNTRY_SWITZERLAND)) {
-            countryName = context.getString(R.string.country_switzerland);
-        } else {
-            countryName = country;
-        }
-        return countryName;
     }
 
     public static boolean isFistTime(Context context) {

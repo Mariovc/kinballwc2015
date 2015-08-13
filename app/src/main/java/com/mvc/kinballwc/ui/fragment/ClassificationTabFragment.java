@@ -117,7 +117,7 @@ public class ClassificationTabFragment extends Fragment {
             score = scoresMap.get(teamId);
         } else {
             score = new Score();
-            score.setName(Utils.getTranslatedCountry(getActivity(), team.getName()));
+            score.setName(team.getName());
         }
         if (matchPoints != null) {
             if (score.getMatch3Score() == 0) {

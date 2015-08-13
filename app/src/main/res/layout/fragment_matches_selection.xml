@@ -44,10 +44,11 @@
                     android:padding="@dimen/button_padding"
                     android:elevation="@dimen/button_elevation"
                     android:textSize="@dimen/button_text_size"
-                    android:background="@drawable/background_button"
+                    android:textAllCaps="false"
+                    android:background="@drawable/background_men_button"
                     android:textColor="@color/matches_button_text_color"
                     android:layout_margin="@dimen/button_margin"
-                    android:text="@string/category_nations_man"
+                    android:text="@string/category_nations_man_button"
                     android:id="@+id/nationsMenButton"
                     android:layout_weight="1"/>
                 <Button
@@ -56,10 +57,11 @@
                     android:padding="@dimen/button_padding"
                     android:elevation="@dimen/button_elevation"
                     android:textSize="@dimen/button_text_size"
-                    android:background="@drawable/background_button"
+                    android:textAllCaps="false"
+                    android:background="@drawable/background_women_button"
                     android:textColor="@color/matches_button_text_color"
                     android:layout_margin="@dimen/button_margin"
-                    android:text="@string/category_nations_woman"
+                    android:text="@string/category_nations_woman_button"
                     android:id="@+id/nationsWomenButton"
                     android:layout_weight="1" />
 
@@ -77,10 +79,11 @@
                     android:padding="@dimen/button_padding"
                     android:elevation="@dimen/button_elevation"
                     android:textSize="@dimen/button_text_size"
-                    android:background="@drawable/background_button"
+                    android:background="@drawable/background_pro_button"
                     android:textColor="@color/matches_button_text_color"
                     android:layout_margin="@dimen/button_margin"
-                    android:text="@string/category_clubs_pro"
+                    android:textAllCaps="false"
+                    android:text="@string/category_clubs_pro_button"
                     android:id="@+id/clubsProButton"
                     android:layout_weight="1" />
                 <Button
@@ -89,10 +92,11 @@
                     android:padding="@dimen/button_padding"
                     android:elevation="@dimen/button_elevation"
                     android:textSize="@dimen/button_text_size"
-                    android:background="@drawable/background_button"
+                    android:textAllCaps="false"
+                    android:background="@drawable/background_amateur_button"
                     android:textColor="@color/matches_button_text_color"
                     android:layout_margin="@dimen/button_margin"
-                    android:text="@string/category_clubs_amateur"
+                    android:text="@string/category_clubs_amateur_button"
                     android:id="@+id/clubsAmateurButton"
                     android:layout_weight="1" />
 
@@ -103,10 +107,11 @@
                 android:padding="@dimen/button_padding"
                 android:elevation="@dimen/button_elevation"
                 android:textSize="@dimen/button_text_size"
-                android:background="@drawable/background_button"
+                android:textAllCaps="false"
+                android:background="@drawable/background_all_button"
                 android:textColor="@color/matches_button_text_color"
                 android:layout_margin="@dimen/button_margin"
-                android:text="@string/category_all"
+                android:text="@string/category_all_button"
                 android:id="@+id/allButton" />
         </LinearLayout>
 

@@ -68,7 +68,7 @@ public class TeamRecyclerAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Team team = mTeams.get(position);
-        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), team.getName()));
+        holder.mTextView.setText(team.getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
