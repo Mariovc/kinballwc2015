@@ -22,7 +22,7 @@ public class SocialNetworkUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         } catch (Exception e) {
             // no Twitter app, revert to browser
-            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/" + TWITTER_USERID));
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/intent/user?user_id=" + TWITTER_USERID));
         }
         context.startActivity(intent);
     }
