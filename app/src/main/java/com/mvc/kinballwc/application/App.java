@@ -12,13 +12,17 @@ import com.mvc.kinballwc.model.Referee;
 import com.mvc.kinballwc.model.Role;
 import com.mvc.kinballwc.model.Team;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
 /**
- * Created by mario on 23/6/15.
+ * Author: Mario Velasco Casquero
+ * Date: 23/6/15
+ * Email: m3ario@gmail.com
  */
 public class App extends Application{
 
@@ -29,19 +33,16 @@ public class App extends Application{
     private static Context context;
 
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
-
         App.context = getApplicationContext();
         // Initialize the singletons so their instances
         // are bound to the application process.
         initParse();
-        // subscribePushNotifications();
+        subscribePushNotifications();
     }
 
-    protected void initParse()
-    {
+    protected void initParse() {
 
         // Register your parse models here
         ParseObject.registerSubclass(Team.class);
@@ -56,7 +57,7 @@ public class App extends Application{
         // Initialize the instance of Parse
         Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);
 
-
+        ParseInstallation.getCurrentInstallation().saveInBackground();
     }
 
     private void subscribePushNotifications() {
