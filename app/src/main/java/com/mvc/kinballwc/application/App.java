@@ -13,6 +13,7 @@ import com.mvc.kinballwc.model.Role;
 import com.mvc.kinballwc.model.Team;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.parse.ParseCrashReporting;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
@@ -53,6 +54,8 @@ public class App extends Application{
         ParseObject.registerSubclass(Role.class);
         ParseObject.registerSubclass(Referee.class);
 
+        // Enable Crash Reporting
+        ParseCrashReporting.enable(this);
 
         // Initialize the instance of Parse
         Parse.initialize(this, PARSE_APPLICATION_ID, PARSE_CLIENT_KEY);

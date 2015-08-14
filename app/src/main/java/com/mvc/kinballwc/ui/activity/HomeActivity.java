@@ -19,6 +19,7 @@ import com.mvc.kinballwc.ui.fragment.RefereesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 import com.mvc.kinballwc.utils.SocialNetworkUtils;
 import com.mvc.kinballwc.utils.Utils;
+import com.parse.ParseAnalytics;
 
 /**
  * Author: Mario Velasco Casquero
@@ -37,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Track app opens.
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
