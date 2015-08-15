@@ -8,8 +8,8 @@ android {
         applicationId "com.mvc.kinballwc"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 3
-        versionName "0.8.2"
+        versionCode 5
+        versionName "1.0.0"
     }
     buildTypes {
         debug {

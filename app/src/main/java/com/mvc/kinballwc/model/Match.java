@@ -130,6 +130,10 @@ public class Match extends ParseObject{
         put("court", court);
     }
 
+    public String getChannelForPush() {
+        return "m" + getObjectId();
+    }
+
     public static class MatchComparator implements Comparator<Match> {
         @Override
         public int compare(Match match1, Match match2) {

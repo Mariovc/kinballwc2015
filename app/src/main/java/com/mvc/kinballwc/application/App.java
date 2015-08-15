@@ -32,6 +32,7 @@ public class App extends Application{
     public static final String PARSE_CLIENT_KEY = "A1Tf4HM97nufDKb0A9IEWlyllwRJgcMV1TwDO0LK";
 
     private static Context context;
+    public static boolean allowEdit = true;
 
     @Override
     public void onCreate() {
