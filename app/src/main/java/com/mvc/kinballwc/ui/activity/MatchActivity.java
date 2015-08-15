@@ -3,14 +3,13 @@ package com.mvc.kinballwc.ui.activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -23,6 +22,7 @@ import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.Team;
 import com.mvc.kinballwc.ui.adapter.PeriodFragmentAdapter;
 import com.mvc.kinballwc.ui.fragment.PeriodFragment;
+import com.mvc.kinballwc.utils.PushUtils;
 import com.mvc.kinballwc.utils.Utils;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -36,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MatchActivity extends BaseActivity {
 
@@ -48,6 +50,9 @@ public class MatchActivity extends BaseActivity {
 
     private PeriodBroadcastReceiver broadcastReceiver;
     private boolean subscribed = false;
+    private boolean isFirstLoad = true;
+    private int pageSelected;
+    private Timer timer;
 
     private ViewPager mPager;
     private PeriodFragmentAdapter mAdapter;
@@ -75,14 +80,6 @@ public class MatchActivity extends BaseActivity {
     private TextView team1TotalPointsTV;
     private TextView team2TotalPointsTV;
     private TextView team3TotalPointsTV;
-    private Button upScore1Button;
-    private Button upScore2Button;
-    private Button upScore3Button;
-    private Button downScore1Button;
-    private Button downScore2Button;
-    private Button downScore3Button;
-    private View upButtonsLayout;
-    private View downButtonsLayout;
 
 
     @Override
@@ -120,15 +117,25 @@ public class MatchActivity extends BaseActivity {
     }
 
     private void setButtons() {
+        Button upScore1Button = (Button) findViewById(R.id.upScore1Button);
+        Button upScore2Button = (Button) findViewById(R.id.upScore2Button);
+        Button upScore3Button = (Button) findViewById(R.id.upScore3Button);
+        Button downScore1Button = (Button) findViewById(R.id.downScore1Button);
+        Button downScore2Button = (Button) findViewById(R.id.downScore2Button);
+        Button downScore3Button = (Button) findViewById(R.id.downScore3Button);
+        View upButtonsLayout = findViewById(R.id.upButtonsLayout);
+        View downButtonsLayout = findViewById(R.id.downButtonsLayout);
+        Button addButton = (Button) findViewById(R.id.addButton);
+        Button removeButton = (Button) findViewById(R.id.removeButton);
+        Button asyncButton = (Button) findViewById(R.id.asyncButton);
+        Button instantButton = (Button) findViewById(R.id.instantButton);
         if (App.allowEdit) {
-            upScore1Button = (Button) findViewById(R.id.upScore1Button);
-            upScore2Button = (Button) findViewById(R.id.upScore2Button);
-            upScore3Button = (Button) findViewById(R.id.upScore3Button);
-            downScore1Button = (Button) findViewById(R.id.downScore1Button);
-            downScore2Button = (Button) findViewById(R.id.downScore2Button);
-            downScore3Button = (Button) findViewById(R.id.downScore3Button);
-            upButtonsLayout = findViewById(R.id.upButtonsLayout);
-            downButtonsLayout = findViewById(R.id.downButtonsLayout);
+            upButtonsLayout.setVisibility(View.VISIBLE);
+            downButtonsLayout.setVisibility(View.VISIBLE);
+            addButton.setVisibility(View.VISIBLE);
+            removeButton.setVisibility(View.VISIBLE);
+            asyncButton.setVisibility(View.VISIBLE);
+            instantButton.setVisibility(View.VISIBLE);
 
             upScore1Button.setOnClickListener(new OnButtonClick(1, true));
             upScore2Button.setOnClickListener(new OnButtonClick(2, true));
@@ -136,6 +143,18 @@ public class MatchActivity extends BaseActivity {
             downScore1Button.setOnClickListener(new OnButtonClick(1, false));
             downScore2Button.setOnClickListener(new OnButtonClick(2, false));
             downScore3Button.setOnClickListener(new OnButtonClick(3, false));
+
+            addButton.setOnClickListener(onAddClick);
+            removeButton.setOnClickListener(onRemoveClick);
+            asyncButton.setOnClickListener(onModeAsyncClick);
+            instantButton.setOnClickListener(onModeInstantClick);
+        } else {
+            upButtonsLayout.setVisibility(View.GONE);
+            downButtonsLayout.setVisibility(View.GONE);
+            addButton.setVisibility(View.GONE);
+            removeButton.setVisibility(View.GONE);
+            asyncButton.setVisibility(View.GONE);
+            instantButton.setVisibility(View.GONE);
         }
     }
 
@@ -150,6 +169,19 @@ public class MatchActivity extends BaseActivity {
         indicator.setViewPager(mPager);
         indicator.setFooterIndicatorStyle(TitlePageIndicator.IndicatorStyle.Triangle);
         mIndicator = indicator;
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                pageSelected = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
     }
 
 
@@ -243,30 +275,26 @@ public class MatchActivity extends BaseActivity {
         if (periods.size() == 0) {
             MatchPeriod emptyPeriod = (MatchPeriod) ParseObject.create("MatchPeriod");
             periods.add(emptyPeriod);
-            mMatch.setPeriods(periods);
             mMatch.saveInBackground();
         }
         updatePeriods(periods, mMatch.getChannelForPush());
+        if (isFirstLoad) {
+            isFirstLoad = false;
+            mPager.setCurrentItem(periods.size() - 1);
+        } else {
+            mPager.setCurrentItem(pageSelected);
+        }
 
         registerReceiver();
         subscribeToPush();
     }
 
     private void updatePeriods(List<MatchPeriod> periods, String channelPush) {
+        mMatch.setPeriods(periods);
         mAdapter = new PeriodFragmentAdapter(getSupportFragmentManager(),
                 this, periods, channelPush);
-//        for (int i = 0; i < periods.size(); i++) {
-//            MatchPeriod period = periods.get(i);
-//            PeriodFragment periodFragment = (PeriodFragment) mAdapter.getActiveFragment(mPager, i);
-//            if (periodFragment != null) {
-//                periodFragment.setScore(1, period.getTeam1Score());
-//                periodFragment.setScore(2, period.getTeam2Score());
-//                periodFragment.setScore(3, period.getTeam3Score());
-//            }
-//        }
         mPager.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-        mPager.setCurrentItem(periods.size() - 1);
     }
 
     @Override
@@ -275,6 +303,7 @@ public class MatchActivity extends BaseActivity {
         if (mMatchId != null) {
             getMatch(mMatchId);
         }
+        setTimer();
         registerReceiver();
         subscribeToPush();
     }
@@ -282,15 +311,36 @@ public class MatchActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        stopTimer();
         unregisterReceiver();
         unsubscribeToPush();
     }
 
+    private void stopTimer() {
+        timer.cancel();
+        timer = null;
+    }
+
+    private void setTimer() {
+        timer = new Timer();
+        timer.schedule(new RefreshTask(), App.refreshTime * 1000);
+    }
+
+    public class RefreshTask extends TimerTask {
+        @Override
+        public void run() {
+            Log.d(TAG, "Refreshing match task, useGCM: "+ App.useGCM + " time: " + App.refreshTime);
+            if (!App.useGCM) {
+                if (mMatchId != null) {
+                    getMatch(mMatchId);
+                }
+            }
+            timer.schedule(new RefreshTask(), App.refreshTime * 1000);
+        }
+    }
+
     private void registerReceiver() {
         if (broadcastReceiver == null && mMatch != null) {
-            int lastPeriodNum = mMatch.getPeriods().size() - 1;
-//            PeriodFragment periodFragment = (PeriodFragment) mAdapter.getActiveFragment(mPager, lastPeriodNum);
-//            broadcastReceiver = new PeriodBroadcastReceiver(periodFragment);
             broadcastReceiver = new PeriodBroadcastReceiver(this);
             registerReceiver(broadcastReceiver, new IntentFilter(PeriodBroadcastReceiver.PERIOD_INTENT_ACTION));
         }
@@ -351,6 +401,42 @@ public class MatchActivity extends BaseActivity {
         }
     }
 
+    public void onAddPeriod(String periodId) {
+        boolean periodExists = false;
+        final MatchPeriod emptyPeriod = (MatchPeriod) ParseObject.create("MatchPeriod");
+        emptyPeriod.setObjectId(periodId);
+        List<MatchPeriod> periods = mMatch.getPeriods();
+        for (MatchPeriod period : periods) {
+            if (period.getObjectId().equals(periodId)) {
+                periodExists = true;
+                break;
+            }
+        }
+        if (!periodExists) {
+            periods.add(emptyPeriod);
+            updatePeriods(periods, mMatch.getChannelForPush());
+            mPager.setCurrentItem(periods.size() - 1);
+        }
+    }
+
+    public void onRemovePeriod(String periodId) {
+        boolean periodExists = false;
+        MatchPeriod periodToRemove = null;
+        List<MatchPeriod> periods = mMatch.getPeriods();
+        for (MatchPeriod period : periods) {
+            if (period.getObjectId().equals(periodId)) {
+                periodExists = true;
+                periodToRemove = period;
+                break;
+            }
+        }
+        if (periodExists) {
+            periods.remove(periodToRemove);
+            updatePeriods(periods, mMatch.getChannelForPush());
+            mPager.setCurrentItem(periods.size() - 1);
+        }
+    }
+
     private void loadImage(String url, ImageView imageView) {
         Glide.with(this)
                 .load(url)
@@ -403,4 +489,75 @@ public class MatchActivity extends BaseActivity {
             }
         }
     }
+
+    private View.OnClickListener onAddClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mMatch != null) {
+                final MatchPeriod emptyPeriod = (MatchPeriod) ParseObject.create("MatchPeriod");
+                List<MatchPeriod> periods = mMatch.getPeriods();
+                periods.add(emptyPeriod);
+                mMatch.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            Log.d(TAG, "period added and saved: " + emptyPeriod.getObjectId());
+                            PushUtils.sendAddPush(mMatch.getChannelForPush(), emptyPeriod.getObjectId());
+                        }
+                    }
+                });
+                updatePeriods(periods, mMatch.getChannelForPush());
+                mPager.setCurrentItem(periods.size() - 1);
+            }
+        }
+    };
+
+    private View.OnClickListener onRemoveClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mMatch != null && mPager != null) {
+                boolean periodExists = false;
+                MatchPeriod periodToRemove = null;
+                int currentPeriod = mPager.getCurrentItem();
+                PeriodFragment periodFragment =
+                        (PeriodFragment) mAdapter.getActiveFragment(mPager, currentPeriod);
+                String periodId = periodFragment.getPeriod().getObjectId();
+                if(periodId == null) {
+                    Toast.makeText(MatchActivity.this, "Error. Try again later", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<MatchPeriod> periods = mMatch.getPeriods();
+                for (MatchPeriod period : periods) {
+                    if (period.getObjectId().equals(periodId)) {
+                        periodExists = true;
+                        periodToRemove = period;
+                        break;
+                    }
+                }
+                if (periodExists) {
+                    periods.remove(periodToRemove);
+                    updatePeriods(periods, mMatch.getChannelForPush());
+                    mPager.setCurrentItem(periods.size() - 1);
+                    mMatch.saveInBackground();
+                    PushUtils.sendRemovePush(mMatch.getChannelForPush(), periodToRemove.getObjectId());
+                }
+            }
+        }
+    };
+
+    private View.OnClickListener onModeAsyncClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            PushUtils.sendConfigPush(false, 10);
+            Toast.makeText(MatchActivity.this, "Async mode active", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private View.OnClickListener onModeInstantClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            PushUtils.sendConfigPush(true, 10);
+            Toast.makeText(MatchActivity.this, "Instant mode active", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

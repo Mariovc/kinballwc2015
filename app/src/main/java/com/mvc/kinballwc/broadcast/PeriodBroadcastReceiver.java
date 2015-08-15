@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 
+import com.mvc.kinballwc.application.App;
 import com.mvc.kinballwc.ui.activity.MatchActivity;
 import com.mvc.kinballwc.ui.fragment.PeriodFragment;
 
@@ -19,6 +20,14 @@ public class PeriodBroadcastReceiver extends BroadcastReceiver {
 
     public static final String PERIOD_INTENT_ACTION = "com.mvc.kinballwc.PERIOD_UPDATE";
 
+    public static final String FIELD_PERIOD_ID = "periodId";
+    public static final String FIELD_TEAM_POSITION = "teamPos";
+    public static final String FIELD_SCORE = "score";
+    public static final String FIELD_UPDATE = "update";
+    public static final String FIELD_ADD = "add";
+    public static final String FIELD_REMOVE = "remove";
+    public static final String FIELD_ACTION = "action";
+
     private MatchActivity mMatchActivity;
 
     public PeriodBroadcastReceiver(MatchActivity matchActivity) {
@@ -27,12 +36,16 @@ public class PeriodBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent == null) {
-            return;
+        String action = intent.getStringExtra(FIELD_ACTION);
+        String periodId = intent.getStringExtra(FIELD_PERIOD_ID);
+        if (action.equals(FIELD_UPDATE)) {
+            int teamPos = intent.getIntExtra(FIELD_TEAM_POSITION, 0);
+            int score = intent.getIntExtra(FIELD_SCORE, 0);
+            mMatchActivity.onUpdatePeriod(periodId, teamPos, score);
+        } else if (action.equals(FIELD_ADD)) {
+            mMatchActivity.onAddPeriod(periodId);
+        } else if (action.equals(FIELD_REMOVE)) {
+            mMatchActivity.onRemovePeriod(periodId);
         }
-        String periodId = intent.getStringExtra("periodId");
-        int teamPos = intent.getIntExtra("teamPos", 0);
-        int score = intent.getIntExtra("score", 0);
-        mMatchActivity.onUpdatePeriod(periodId, teamPos, score);
     }
 }

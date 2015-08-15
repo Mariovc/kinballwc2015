@@ -22,6 +22,8 @@ import android.widget.ViewSwitcher.ViewFactory;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.MatchPeriod;
+import com.mvc.kinballwc.utils.PushUtils;
+import com.mvc.kinballwc.utils.Utils;
 import com.parse.ParsePush;
 
 import org.json.JSONException;
@@ -76,20 +78,17 @@ public final class PeriodFragment extends Fragment {
         switch (teamPos) {
             case 1:
                 newScore = score1 +1;
-                period.setTeam1Score(newScore);
                 break;
             case 2:
                 newScore = score2 +1;
-                period.setTeam2Score(newScore);
                 break;
             case 3:
                 newScore = score3 +1;
-                period.setTeam3Score(newScore);
                 break;
         }
         setScore(teamPos, newScore);
         period.saveInBackground();
-        sendPush(period.getObjectId(), teamPos, newScore);
+        PushUtils.sendUpdatePush(channelPush, period.getObjectId(), teamPos, newScore);
     }
 
     public void decrementScore(int teamPos) {
@@ -97,20 +96,17 @@ public final class PeriodFragment extends Fragment {
         switch (teamPos) {
             case 1:
                 newScore = score1 -1;
-                period.setTeam1Score(newScore);
                 break;
             case 2:
                 newScore = score2 -1;
-                period.setTeam2Score(newScore);
                 break;
             case 3:
                 newScore = score3 -1;
-                period.setTeam3Score(newScore);
                 break;
         }
         setScore(teamPos, newScore);
         period.saveInBackground();
-        sendPush(period.getObjectId(), teamPos, newScore);
+        PushUtils.sendUpdatePush(channelPush, period.getObjectId(), teamPos, newScore);
     }
 
 
@@ -120,14 +116,17 @@ public final class PeriodFragment extends Fragment {
             case 1:
                 score1 = score;
                 setText(team1Score, score);
+                period.setTeam1Score(score);
                 break;
             case 2:
                 score2 = score;
                 setText(team2Score, score);
+                period.setTeam2Score(score);
                 break;
             case 3:
                 score3 = score;
                 setText(team3Score, score);
+                period.setTeam3Score(score);
                 break;
         }
     }
@@ -137,21 +136,9 @@ public final class PeriodFragment extends Fragment {
         switcher.setText(text);
     }
 
-    private void sendPush(String periodId, int teamPos, int score) {
-        ParsePush push = new ParsePush();
-        JSONObject periodJson = new JSONObject();
-        try {
-            periodJson.put("periodId", periodId);
-            periodJson.put("teamPos", teamPos);
-            periodJson.put("score", score);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        push.setChannel(channelPush);
-        push.setData(periodJson);
-        push.sendInBackground();
+    public MatchPeriod getPeriod() {
+        return period;
     }
-
 
     private ViewFactory switcherFactory = new ViewSwitcher.ViewFactory() {
         @Override
