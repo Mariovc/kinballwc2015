@@ -88,110 +88,140 @@
 
             </RelativeLayout>
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/teamsLinear"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textView4"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/logo_margin_top"
-                        android:background="@color/team1"
-                        android:gravity="center"
-                        android:text="@string/team1_color"
-                        android:textColor="@color/team1_font" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam1LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/team_logo_height" />
-
-                    <TextView
-                        android:id="@+id/matchTeam1NameTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/logo_margin_top"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/logo_margin_top"
+                            android:background="@color/team1"
+                            android:gravity="center"
+                            android:text="@string/team1_color"
+                            android:textColor="@color/team1_font" />
+
+                        <ImageView
+                            android:id="@+id/matchTeam1LogoIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/team_logo_height" />
+
+                        <TextView
+                            android:id="@+id/matchTeam1NameTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/logo_margin_top"
+                            android:layout_weight="1"
+                            android:gravity="center" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/logo_margin_top"
+                            android:background="@color/team2"
+                            android:gravity="center"
+                            android:text="@string/team2_color"
+                            android:textColor="@color/team2_font" />
+
+                        <ImageView
+                            android:id="@+id/matchTeam2LogoIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/team_logo_height" />
+
+
+                        <TextView
+                            android:id="@+id/matchTeam2NameTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/logo_margin_top"
+                            android:layout_weight="1"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/logo_margin_top"
+                            android:background="@color/team3"
+                            android:gravity="center"
+                            android:text="@string/team3_color"
+                            android:textColor="@color/team3_font" />
+
+                        <ImageView
+                            android:id="@+id/matchTeam3LogoIV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/team_logo_height" />
+
+
+                        <TextView
+                            android:id="@+id/matchTeam3NameTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/logo_margin_top"
+                            android:layout_weight="1"
+                            android:gravity="center" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/live_text"
+                    android:id="@+id/matchLiveTV"
+                    android:textColor="@color/live_font"
+                    android:textSize="@dimen/live_text_size"
+                    android:layout_margin="2dp"
+                    android:paddingLeft="@dimen/live_lateral_padding"
+                    android:paddingRight="@dimen/live_lateral_padding"
+                    android:background="@drawable/background_live"
+                    android:layout_centerInParent="true"
+                    android:singleLine="true"
+                    android:visibility="invisible" />
+
+                <RelativeLayout
+                    android:id="@+id/teamsRelativeLayout"
+                    android:layout_alignTop="@+id/teamsLinear"
+                    android:layout_alignBottom="@+id/teamsLinear"
+                    android:layout_alignLeft="@+id/teamsLinear"
+                    android:layout_alignRight="@+id/teamsLinear"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/logo_margin_top"
-                        android:background="@color/team2"
-                        android:gravity="center"
-                        android:text="@string/team2_color"
-                        android:textColor="@color/team2_font" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam2LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/team_logo_height" />
-
-
-                    <TextView
-                        android:id="@+id/matchTeam2NameTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/logo_margin_top"
-                        android:layout_weight="1"
-                        android:gravity="center" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/logo_margin_top"
-                        android:background="@color/team3"
-                        android:gravity="center"
-                        android:text="@string/team3_color"
-                        android:textColor="@color/team3_font" />
-
-                    <ImageView
-                        android:id="@+id/matchTeam3LogoIV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/team_logo_height" />
-
-
-                    <TextView
-                        android:id="@+id/matchTeam3NameTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/logo_margin_top"
-                        android:layout_weight="1"
-                        android:gravity="center" />
-                </LinearLayout>
-            </LinearLayout>
 
 
             <RelativeLayout
@@ -332,7 +362,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam1PeriodPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -340,9 +370,10 @@
                             android:background="@color/team1"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team1_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam2PeriodPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -350,9 +381,10 @@
                             android:background="@color/team2"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team2_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam3PeriodPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -360,6 +392,7 @@
                             android:background="@color/team3"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team3_font" />
                     </LinearLayout>
                 </LinearLayout>
@@ -382,7 +415,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam1MatchPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -390,9 +423,10 @@
                             android:background="@color/team1"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team1_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam2MatchPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -400,9 +434,10 @@
                             android:background="@color/team2"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team2_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam3MatchPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -410,6 +445,7 @@
                             android:background="@color/team3"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team3_font" />
                     </LinearLayout>
                 </LinearLayout>
@@ -432,7 +468,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam1SportPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -440,9 +476,10 @@
                             android:background="@color/team1"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team1_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam2SportPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -450,9 +487,10 @@
                             android:background="@color/team2"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team2_font" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam3SportPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -460,6 +498,7 @@
                             android:background="@color/team3"
                             android:gravity="center"
                             android:text="@string/default_score"
+                            android:textSize="@dimen/points_font_size"
                             android:textColor="@color/team3_font" />
                     </LinearLayout>
                 </LinearLayout>
@@ -485,7 +524,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam1TotalPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -497,7 +536,7 @@
                             android:textSize="@dimen/total_points_font_size"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam2TotalPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -509,7 +548,7 @@
                             android:textSize="@dimen/total_points_font_size"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <EditText
                             android:id="@+id/matchTeam3TotalPointsTV"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -523,6 +562,13 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:id="@+id/saveButton"
+                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
 

@@ -129,4 +129,8 @@
         <item>@string/category_world_cup</item>
         <item>@string/category_championship</item>
     </string-array>
+    <string name="title_activity_secret">SecretActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -26,6 +26,7 @@ public class PeriodBroadcastReceiver extends BroadcastReceiver {
     public static final String FIELD_UPDATE = "update";
     public static final String FIELD_ADD = "add";
     public static final String FIELD_REMOVE = "remove";
+    public static final String FIELD_REFRESH = "refresh";
     public static final String FIELD_ACTION = "action";
 
     private MatchActivity mMatchActivity;
@@ -46,6 +47,8 @@ public class PeriodBroadcastReceiver extends BroadcastReceiver {
             mMatchActivity.onAddPeriod(periodId);
         } else if (action.equals(FIELD_REMOVE)) {
             mMatchActivity.onRemovePeriod(periodId);
+        } else if (action.equals(FIELD_REFRESH)) {
+            mMatchActivity.onRefresh();
         }
     }
 }

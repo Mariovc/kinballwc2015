@@ -39,7 +39,7 @@ public class App extends Application{
     public static final String PREF_REFRESH_TIME = "prefTime";
 
     private static Context context;
-    public static boolean allowEdit = true;
+    public static boolean allowEdit = false; // TODO
     public static boolean useGCM = true;
     public static int refreshTime;
 

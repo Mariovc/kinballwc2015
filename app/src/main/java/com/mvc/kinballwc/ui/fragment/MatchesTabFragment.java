@@ -61,7 +61,7 @@ public class MatchesTabFragment extends Fragment {
         Log.d(TAG, "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_matches_tab, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        mAdapter = new MatchRecyclerAdapter(new ArrayList<Match>());
+        mAdapter = new MatchRecyclerAdapter(getActivity(), new ArrayList<Match>());
         mRecyclerView.setAdapter(mAdapter);
 
         mRecyclerView.setHasFixedSize(true);
@@ -155,7 +155,7 @@ public class MatchesTabFragment extends Fragment {
             return;
         }
         Collections.sort(itemList, new Match.MatchComparator());
-        mAdapter = new MatchRecyclerAdapter(itemList);
+        mAdapter = new MatchRecyclerAdapter(getActivity(), itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }
 

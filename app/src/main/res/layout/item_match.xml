@@ -100,7 +100,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam1LogoIV"
                     android:layout_marginLeft="@dimen/matches_logo_margin"
@@ -139,7 +139,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam2LogoIV"
                     android:layout_marginLeft="@dimen/matches_logo_margin"
@@ -179,7 +179,7 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam3LogoIV"
                     android:layout_marginLeft="@dimen/matches_logo_margin"

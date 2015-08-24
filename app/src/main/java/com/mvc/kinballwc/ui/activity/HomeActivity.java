@@ -28,7 +28,7 @@ import com.parse.ParseAnalytics;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 1; //TODO
+    private static final int INITIAL_SECTION = 0; //TODO
 
     private DrawerLayout mDrawerLayout;
     private Fragment fragment;

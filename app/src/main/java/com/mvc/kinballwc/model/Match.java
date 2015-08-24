@@ -19,6 +19,17 @@ import java.util.List;
 @ParseClassName("Match")
 public class Match extends ParseObject{
 
+    public static final String LIVE = "LIVE";
+    public static final String FINISHED = "FINISHED";
+
+    public boolean isLive() {
+        if (getState().equals(LIVE)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getState(){
         return getString("state");
     }

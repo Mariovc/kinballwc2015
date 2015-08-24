@@ -1,12 +1,20 @@
 package com.mvc.kinballwc.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,8 +59,10 @@ public class MatchActivity extends BaseActivity {
     private PeriodBroadcastReceiver broadcastReceiver;
     private boolean subscribed = false;
     private boolean isFirstLoad = true;
+    private int secretTimesClicked = 0;
     private int pageSelected;
     private Timer timer;
+    private Animation animation;
 
     private ViewPager mPager;
     private PeriodFragmentAdapter mAdapter;
@@ -68,18 +78,19 @@ public class MatchActivity extends BaseActivity {
     private ImageView team1LogoIV;
     private ImageView team2LogoIV;
     private ImageView team3LogoIV;
-    private TextView team1PeriodPointsTV;
-    private TextView team2PeriodPointsTV;
-    private TextView team3PeriodPointsTV;
-    private TextView team1MatchPointsTV;
-    private TextView team2MatchPointsTV;
-    private TextView team3MatchPointsTV;
-    private TextView team1SportPointsTV;
-    private TextView team2SportPointsTV;
-    private TextView team3SportPointsTV;
-    private TextView team1TotalPointsTV;
-    private TextView team2TotalPointsTV;
-    private TextView team3TotalPointsTV;
+    private EditText team1PeriodPointsTV;
+    private EditText team2PeriodPointsTV;
+    private EditText team3PeriodPointsTV;
+    private EditText team1MatchPointsTV;
+    private EditText team2MatchPointsTV;
+    private EditText team3MatchPointsTV;
+    private EditText team1SportPointsTV;
+    private EditText team2SportPointsTV;
+    private EditText team3SportPointsTV;
+    private EditText team1TotalPointsTV;
+    private EditText team2TotalPointsTV;
+    private EditText team3TotalPointsTV;
+    private TextView liveTV;
 
 
     @Override
@@ -97,21 +108,23 @@ public class MatchActivity extends BaseActivity {
         team1LogoIV = (ImageView) findViewById(R.id.matchTeam1LogoIV);
         team2LogoIV = (ImageView) findViewById(R.id.matchTeam2LogoIV);
         team3LogoIV = (ImageView) findViewById(R.id.matchTeam3LogoIV);
-        team1PeriodPointsTV = (TextView) findViewById(R.id.matchTeam1PeriodPointsTV);
-        team2PeriodPointsTV = (TextView) findViewById(R.id.matchTeam2PeriodPointsTV);
-        team3PeriodPointsTV = (TextView) findViewById(R.id.matchTeam3PeriodPointsTV);
-        team1MatchPointsTV = (TextView) findViewById(R.id.matchTeam1MatchPointsTV);
-        team2MatchPointsTV = (TextView) findViewById(R.id.matchTeam2MatchPointsTV);
-        team3MatchPointsTV = (TextView) findViewById(R.id.matchTeam3MatchPointsTV);
-        team1SportPointsTV = (TextView) findViewById(R.id.matchTeam1SportPointsTV);
-        team2SportPointsTV = (TextView) findViewById(R.id.matchTeam2SportPointsTV);
-        team3SportPointsTV = (TextView) findViewById(R.id.matchTeam3SportPointsTV);
-        team1TotalPointsTV = (TextView) findViewById(R.id.matchTeam1TotalPointsTV);
-        team2TotalPointsTV = (TextView) findViewById(R.id.matchTeam2TotalPointsTV);
-        team3TotalPointsTV = (TextView) findViewById(R.id.matchTeam3TotalPointsTV);
+        team1PeriodPointsTV = (EditText) findViewById(R.id.matchTeam1PeriodPointsTV);
+        team2PeriodPointsTV = (EditText) findViewById(R.id.matchTeam2PeriodPointsTV);
+        team3PeriodPointsTV = (EditText) findViewById(R.id.matchTeam3PeriodPointsTV);
+        team1MatchPointsTV = (EditText) findViewById(R.id.matchTeam1MatchPointsTV);
+        team2MatchPointsTV = (EditText) findViewById(R.id.matchTeam2MatchPointsTV);
+        team3MatchPointsTV = (EditText) findViewById(R.id.matchTeam3MatchPointsTV);
+        team1SportPointsTV = (EditText) findViewById(R.id.matchTeam1SportPointsTV);
+        team2SportPointsTV = (EditText) findViewById(R.id.matchTeam2SportPointsTV);
+        team3SportPointsTV = (EditText) findViewById(R.id.matchTeam3SportPointsTV);
+        team1TotalPointsTV = (EditText) findViewById(R.id.matchTeam1TotalPointsTV);
+        team2TotalPointsTV = (EditText) findViewById(R.id.matchTeam2TotalPointsTV);
+        team3TotalPointsTV = (EditText) findViewById(R.id.matchTeam3TotalPointsTV);
+        titleTV.setOnClickListener(onSecretClicked);
         setPeriodViewPager();
-        setButtons();
 
+        liveTV = (TextView) findViewById(R.id.matchLiveTV);
+        animation = AnimationUtils.loadAnimation(this, R.anim.fade_in_fade_out);
 
         mMatchId = getIntent().getStringExtra(MATCH_ID_EXTRA);
     }
@@ -129,6 +142,8 @@ public class MatchActivity extends BaseActivity {
         Button removeButton = (Button) findViewById(R.id.removeButton);
         Button asyncButton = (Button) findViewById(R.id.asyncButton);
         Button instantButton = (Button) findViewById(R.id.instantButton);
+        Button saveButton = (Button) findViewById(R.id.saveButton);
+        View view = findViewById(R.id.teamsRelativeLayout);
         if (App.allowEdit) {
             upButtonsLayout.setVisibility(View.VISIBLE);
             downButtonsLayout.setVisibility(View.VISIBLE);
@@ -136,6 +151,7 @@ public class MatchActivity extends BaseActivity {
             removeButton.setVisibility(View.VISIBLE);
             asyncButton.setVisibility(View.VISIBLE);
             instantButton.setVisibility(View.VISIBLE);
+            saveButton.setVisibility(View.VISIBLE);
 
             upScore1Button.setOnClickListener(new OnButtonClick(1, true));
             upScore2Button.setOnClickListener(new OnButtonClick(2, true));
@@ -148,6 +164,23 @@ public class MatchActivity extends BaseActivity {
             removeButton.setOnClickListener(onRemoveClick);
             asyncButton.setOnClickListener(onModeAsyncClick);
             instantButton.setOnClickListener(onModeInstantClick);
+            saveButton.setOnClickListener(onSaveClick);
+            view.setOnClickListener(onLiveClick);
+            view.setVisibility(View.VISIBLE);
+
+            enableEditText(team1PeriodPointsTV);
+            enableEditText(team2PeriodPointsTV);
+            enableEditText(team3PeriodPointsTV);
+            enableEditText(team1MatchPointsTV);
+            enableEditText(team2MatchPointsTV);
+            enableEditText(team3MatchPointsTV);
+            enableEditText(team1SportPointsTV);
+            enableEditText(team2SportPointsTV);
+            enableEditText(team3SportPointsTV);
+            enableEditText(team1TotalPointsTV);
+            enableEditText(team2TotalPointsTV);
+            enableEditText(team3TotalPointsTV);
+
         } else {
             upButtonsLayout.setVisibility(View.GONE);
             downButtonsLayout.setVisibility(View.GONE);
@@ -155,6 +188,39 @@ public class MatchActivity extends BaseActivity {
             removeButton.setVisibility(View.GONE);
             asyncButton.setVisibility(View.GONE);
             instantButton.setVisibility(View.GONE);
+            saveButton.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
+
+            disableEditText(team1PeriodPointsTV);
+            disableEditText(team2PeriodPointsTV);
+            disableEditText(team3PeriodPointsTV);
+            disableEditText(team1MatchPointsTV);
+            disableEditText(team2MatchPointsTV);
+            disableEditText(team3MatchPointsTV);
+            disableEditText(team1SportPointsTV);
+            disableEditText(team2SportPointsTV);
+            disableEditText(team3SportPointsTV);
+            disableEditText(team1TotalPointsTV);
+            disableEditText(team2TotalPointsTV);
+            disableEditText(team3TotalPointsTV);
+        }
+    }
+    private void disableEditText(EditText editText){
+        editText.setEnabled(false);
+        editText.setInputType(InputType.TYPE_NULL);
+    }
+    private void enableEditText(EditText editText) {
+        editText.setEnabled(true);
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+    }
+    private void hideKeyBoard() {
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
@@ -172,7 +238,8 @@ public class MatchActivity extends BaseActivity {
 
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
             @Override
             public void onPageSelected(int position) {
@@ -180,12 +247,16 @@ public class MatchActivity extends BaseActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
     }
 
 
     private void getMatch(String matchId) {
+        if (mMatchId == null) {
+            return;
+        }
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Match");
         query.include("team1");
         query.include("team2");
@@ -256,10 +327,10 @@ public class MatchActivity extends BaseActivity {
             team1TotalPointsTV.setText(String.valueOf(matchPoints1.getTotalPoints()));
         }
         if (matchPoints2 != null) {
-            team2PeriodPointsTV.setText(String.valueOf(matchPoints3.getWonPeriods()));
-            team2MatchPointsTV.setText(String.valueOf(matchPoints3.getMatchPoints()));
-            team2SportPointsTV.setText(String.valueOf(matchPoints3.getSportsmanshipPoints()));
-            team2TotalPointsTV.setText(String.valueOf(matchPoints3.getTotalPoints()));
+            team2PeriodPointsTV.setText(String.valueOf(matchPoints2.getWonPeriods()));
+            team2MatchPointsTV.setText(String.valueOf(matchPoints2.getMatchPoints()));
+            team2SportPointsTV.setText(String.valueOf(matchPoints2.getSportsmanshipPoints()));
+            team2TotalPointsTV.setText(String.valueOf(matchPoints2.getTotalPoints()));
         }
         if (matchPoints3 != null) {
             team3PeriodPointsTV.setText(String.valueOf(matchPoints3.getWonPeriods()));
@@ -284,6 +355,11 @@ public class MatchActivity extends BaseActivity {
         } else {
             mPager.setCurrentItem(pageSelected);
         }
+        if (mMatch.isLive()) {
+            liveTV.startAnimation(animation);
+        } else {
+            liveTV.clearAnimation();
+        }
 
         registerReceiver();
         subscribeToPush();
@@ -300,9 +376,9 @@ public class MatchActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (mMatchId != null) {
-            getMatch(mMatchId);
-        }
+        setButtons();
+        hideKeyBoard();
+        getMatch(mMatchId);
         setTimer();
         registerReceiver();
         subscribeToPush();
@@ -311,6 +387,7 @@ public class MatchActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        saveData();
         stopTimer();
         unregisterReceiver();
         unsubscribeToPush();
@@ -331,9 +408,7 @@ public class MatchActivity extends BaseActivity {
         public void run() {
             Log.d(TAG, "Refreshing match task, useGCM: "+ App.useGCM + " time: " + App.refreshTime);
             if (!App.useGCM) {
-                if (mMatchId != null) {
-                    getMatch(mMatchId);
-                }
+                getMatch(mMatchId);
             }
             timer.schedule(new RefreshTask(), App.refreshTime * 1000);
         }
@@ -437,6 +512,10 @@ public class MatchActivity extends BaseActivity {
         }
     }
 
+    public void onRefresh() {
+        getMatch(mMatchId);
+    }
+
     private void loadImage(String url, ImageView imageView) {
         Glide.with(this)
                 .load(url)
@@ -451,7 +530,7 @@ public class MatchActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    class OnTeamClick implements View.OnClickListener {
+    class OnTeamClick implements OnClickListener {
 
         private Team mTeam;
 
@@ -465,7 +544,7 @@ public class MatchActivity extends BaseActivity {
         }
     }
 
-    class OnButtonClick implements View.OnClickListener {
+    class OnButtonClick implements OnClickListener {
 
         private int teamPos;
         private boolean increment;
@@ -478,6 +557,11 @@ public class MatchActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             if (mMatch != null && mPager != null) {
+                if (!mMatch.isLive()) {
+                    mMatch.setState(Match.LIVE);
+                    liveTV.setVisibility(View.VISIBLE);
+                    liveTV.startAnimation(animation);
+                }
                 int currentPeriod = mPager.getCurrentItem();
                 PeriodFragment periodFragment =
                         (PeriodFragment) mAdapter.getActiveFragment(mPager, currentPeriod);
@@ -490,7 +574,7 @@ public class MatchActivity extends BaseActivity {
         }
     }
 
-    private View.OnClickListener onAddClick = new View.OnClickListener() {
+    private OnClickListener onAddClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (mMatch != null) {
@@ -512,7 +596,7 @@ public class MatchActivity extends BaseActivity {
         }
     };
 
-    private View.OnClickListener onRemoveClick = new View.OnClickListener() {
+    private OnClickListener onRemoveClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (mMatch != null && mPager != null) {
@@ -545,7 +629,7 @@ public class MatchActivity extends BaseActivity {
         }
     };
 
-    private View.OnClickListener onModeAsyncClick = new View.OnClickListener() {
+    private OnClickListener onModeAsyncClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             PushUtils.sendConfigPush(false, 10);
@@ -553,11 +637,97 @@ public class MatchActivity extends BaseActivity {
         }
     };
 
-    private View.OnClickListener onModeInstantClick = new View.OnClickListener() {
+    private OnClickListener onModeInstantClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             PushUtils.sendConfigPush(true, 10);
             Toast.makeText(MatchActivity.this, "Instant mode active", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private OnClickListener onSecretClicked = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            secretTimesClicked++;
+            if (secretTimesClicked > 10) {
+                secretTimesClicked = 0;
+                Intent intent = new Intent(MatchActivity.this, SecretActivity.class);
+                startActivity(intent);
+            }
+        }
+    };
+
+    private OnClickListener onLiveClick = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (mMatch.isLive()) {
+                mMatch.setState(Match.FINISHED);
+                liveTV.setVisibility(View.INVISIBLE);
+                liveTV.clearAnimation();
+            } else {
+                mMatch.setState(Match.LIVE);
+                liveTV.setVisibility(View.VISIBLE);
+                liveTV.startAnimation(animation);
+            }
+        }
+    };
+
+    private OnClickListener onSaveClick = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            saveData();
+        }
+    };
+
+    private void saveData() {
+        if (mMatch != null && App.allowEdit) {
+            MatchPoints matchPoints1 = mMatch.getTeam1Points();
+            if (matchPoints1 == null) {
+                matchPoints1 = new MatchPoints();
+            }
+            matchPoints1.setWonPeriods(parseStringToInt(team1PeriodPointsTV.getText().toString()));
+            matchPoints1.setMatchPoints(parseStringToInt(team1MatchPointsTV.getText().toString()));
+            matchPoints1.setSportsmanshipPoints(parseStringToInt(team1SportPointsTV.getText().toString()));
+            matchPoints1.setTotalPoints(parseStringToInt(team1TotalPointsTV.getText().toString()));
+            MatchPoints matchPoints2 = mMatch.getTeam2Points();
+            if (matchPoints2 == null) {
+                matchPoints2 = new MatchPoints();
+            }
+            matchPoints2.setWonPeriods(parseStringToInt(team2PeriodPointsTV.getText().toString()));
+            matchPoints2.setMatchPoints(parseStringToInt(team2MatchPointsTV.getText().toString()));
+            matchPoints2.setSportsmanshipPoints(parseStringToInt(team2SportPointsTV.getText().toString()));
+            matchPoints2.setTotalPoints(parseStringToInt(team2TotalPointsTV.getText().toString()));
+            MatchPoints matchPoints3 = mMatch.getTeam3Points();
+            if (matchPoints3 == null) {
+                matchPoints3 = new MatchPoints();
+            }
+            matchPoints3.setWonPeriods(parseStringToInt(team3PeriodPointsTV.getText().toString()));
+            matchPoints3.setMatchPoints(parseStringToInt(team3MatchPointsTV.getText().toString()));
+            matchPoints3.setSportsmanshipPoints(parseStringToInt(team3SportPointsTV.getText().toString()));
+            matchPoints3.setTotalPoints(parseStringToInt(team3TotalPointsTV.getText().toString()));
+            mMatch.setTeam1Points(matchPoints1);
+            mMatch.setTeam2Points(matchPoints2);
+            mMatch.setTeam3Points(matchPoints3);
+            mMatch.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        PushUtils.sendRefreshPush(mMatch.getChannelForPush());
+                    }
+                }
+            });
+            Toast.makeText(MatchActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+            hideKeyBoard();
+        }
+    }
+
+    private int parseStringToInt(String stringInt){
+        int num = 0;
+        try {
+            num = Integer.parseInt(stringInt);
+        } catch (NumberFormatException e) {
+            Log.d("", "error parsing points");
+        }
+        return num;
+    }
 }

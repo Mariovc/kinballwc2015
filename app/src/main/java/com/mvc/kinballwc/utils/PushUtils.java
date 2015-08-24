@@ -24,6 +24,7 @@ public class PushUtils {
     private static final String ACTION_UPDATE_PERIOD = "updateP";
     private static final String ACTION_ADD_PERIOD = "addP";
     private static final String ACTION_REMOVE_PERIOD = "removeP";
+    private static final String ACTION_REFRESH = "refresh";
 
     private static final String FIELD_PERIOD_ID = "periodId";
     private static final String FIELD_TEAM_POSITION = "teamPos";
@@ -50,6 +51,16 @@ public class PushUtils {
         ParsePush push = new ParsePush();
         push.setData(mainJson);
         push.sendInBackground();
+    }
+
+    public static void sendRefreshPush(String channelPush) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put(FIELD_ACTION, ACTION_REFRESH);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        sendPeriodPush(channelPush, json);
     }
 
     public static void sendUpdatePush(String channelPush, String periodId, int teamPos, int score) {
@@ -126,6 +137,8 @@ public class PushUtils {
                     parseAddPush(context, json);
                 } else if (action.equals(ACTION_REMOVE_PERIOD)) {
                     parseRemovePush(context, json);
+                } else if (action.equals(ACTION_REFRESH)) {
+                    parseRefreshPush(context, json);
                 }
             }
 
@@ -140,6 +153,12 @@ public class PushUtils {
         int time = configJson.optInt(FIELD_REFRESH_TIME);
 
         App.setRefreshConfig(useGCM, time);
+    }
+
+    private static void parseRefreshPush(Context context, JSONObject json) throws JSONException {
+        Intent intent = new Intent(PeriodBroadcastReceiver.PERIOD_INTENT_ACTION);
+        intent.putExtra(PeriodBroadcastReceiver.FIELD_ACTION, PeriodBroadcastReceiver.FIELD_REFRESH);
+        context.sendBroadcast(intent);
     }
 
     private static void parseUpdatePush(Context context, JSONObject json) throws JSONException {

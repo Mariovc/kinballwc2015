@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,10 +29,12 @@ import java.util.Locale;
  */
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     private List<Match> mMatchList;
+    private Animation animation;
 
 
-    public MatchRecyclerAdapter(List<Match> matchList) {
+    public MatchRecyclerAdapter(Context context, List<Match> matchList) {
         mMatchList = matchList;
+        animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_fade_out);
     }
 
     @Override
@@ -97,6 +101,13 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
             holder.mTeam3NameTV.setText("");
 //            holder.mTeam3LogoIV.setImageResource(R.drawable.placeholder);
             holder.mTeam3LogoIV.setImageBitmap(null);
+        }
+        if (match.isLive()) {
+            holder.mLiveLabelTV.setVisibility(View.VISIBLE);
+            holder.mLiveLabelTV.startAnimation(animation);
+        } else {
+            holder.mLiveLabelTV.clearAnimation();
+            holder.mLiveLabelTV.setVisibility(View.GONE);
         }
     }
 
