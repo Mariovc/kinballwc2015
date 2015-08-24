@@ -14,6 +14,8 @@ import com.mvc.kinballwc.model.Match;
 import com.mvc.kinballwc.model.MatchPoints;
 import com.mvc.kinballwc.model.Score;
 import com.mvc.kinballwc.model.Team;
+import com.mvc.kinballwc.ui.activity.BaseActivity;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
 import com.mvc.kinballwc.ui.adapter.ClassificationRecyclerAdapter;
 import com.mvc.kinballwc.utils.Utils;
 import com.parse.FindCallback;
@@ -89,6 +91,11 @@ public class ClassificationTabFragment extends Fragment {
 
 
     private void onMatchesReceived(List<Match> matchList) {
+        if (getActivity() == null || ((HomeActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
+        Collections.sort(matchList, new Match.MatchComparator());
         HashMap<String, Score> scoresMap = new HashMap<>();
         for (Match match : matchList) {
             fillScore(scoresMap, match.getTeam1(), match.getTeam1Points());
@@ -111,9 +118,10 @@ public class ClassificationTabFragment extends Fragment {
             score = scoresMap.get(teamId);
         } else {
             score = new Score();
-            score.setName(Utils.getTranslatedCountry(getActivity(), team.getName()));
+            score.setName(team.getName());
         }
         if (matchPoints != null) {
+            // to avoid change classification with semi-final and finals results
             if (score.getMatch3Score() == 0) {
                 if (matchPoints.getMatchPoints() == MatchPoints.MATCH_POINTS_FIRST) {
                     score.setFirstPositionCount(score.getFirstPositionCount() + 1);
@@ -121,6 +129,7 @@ public class ClassificationTabFragment extends Fragment {
                     score.setSecondPositionCount(score.getSecondPositionCount() + 1);
                 }
                 score.setWonPeriodsCount(score.getWonPeriodsCount() + matchPoints.getWonPeriods());
+                score.setFairPlayPoints(score.getFairPlayPoints() + matchPoints.getSportsmanshipPoints());
                 score.setTotalScore(score.getTotalScore() + matchPoints.getTotalPoints());
             }
             if (score.getMatch1Score() == 0) {

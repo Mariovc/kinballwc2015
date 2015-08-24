@@ -18,6 +18,7 @@ public class Score {
     private int firstPositionCount;
     private int secondPositionCount;
     private int wonPeriodsCount;
+    private int fairPlayPoints;
 
 
     public String getName() {
@@ -84,6 +85,14 @@ public class Score {
         this.wonPeriodsCount = wonPeriodsCount;
     }
 
+    public int getFairPlayPoints() {
+        return fairPlayPoints;
+    }
+
+    public void setFairPlayPoints(int fairPlayPoints) {
+        this.fairPlayPoints = fairPlayPoints;
+    }
+
     public static class ScoreComparator implements Comparator<Score> {
         @Override
         public int compare(Score score1, Score score2) {
@@ -93,9 +102,12 @@ public class Score {
                 if (result == 0) {
                     result = score2.getSecondPositionCount() - score1.getSecondPositionCount();
                     if (result == 0) {
-                        result = score2.getWonPeriodsCount() - score1.getWonPeriodsCount();
+                        result = score2.getFairPlayPoints() - score1.getFairPlayPoints();
                         if (result == 0) {
-                            result = score1.getName().compareTo(score2.getName());
+                            result = score2.getWonPeriodsCount() - score1.getWonPeriodsCount();
+                            if (result == 0) {
+                                result = score1.getName().compareTo(score2.getName());
+                            }
                         }
                     }
                 }

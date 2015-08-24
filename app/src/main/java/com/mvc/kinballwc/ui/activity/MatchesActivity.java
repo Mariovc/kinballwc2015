@@ -10,6 +10,12 @@ import com.mvc.kinballwc.ui.adapter.TabPagerAdapter;
 import com.mvc.kinballwc.ui.fragment.MatchesTabFragment;
 import com.mvc.kinballwc.utils.Utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Author: Mario Velasco Casquero
  * Date: 11/08/2015
@@ -22,6 +28,9 @@ public class MatchesActivity extends BaseActivity{
     public static final String EXTRA_CATEGORY = "filter_category";
     public static final String EXTRA_TEAM = "filter_team";
 
+    public static final String[] dates = new String[]{"18/08/2015", "19/08/2015",
+            "20/08/2015", "21/08/2015", "22/08/2015", "23/08/2015"};
+    public static final DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -46,7 +55,10 @@ public class MatchesActivity extends BaseActivity{
         }
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     private void setupTabs() {
         String[] daysArray = getResources().getStringArray(R.array.days);
@@ -68,5 +80,26 @@ public class MatchesActivity extends BaseActivity{
                 tabLayout.setupWithViewPager(viewPager);
             }
         });
+        selectTodayTab();
     }
+
+    private void selectTodayTab() {
+        int numTabs = getResources().getStringArray(R.array.days).length;
+        int todayTabPosition = numTabs - 1;
+        Date today = new Date();
+        for (int i = 0; i < numTabs; i++) {
+            String dateString = dates[i+1];
+            try {
+                Date filterDate1 = format.parse(dateString);
+                if (today.before(filterDate1)) {
+                    todayTabPosition = i;
+                    break;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        viewPager.setCurrentItem(todayTabPosition, true);
+    }
+
 }

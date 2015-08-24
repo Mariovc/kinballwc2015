@@ -15,9 +15,11 @@ import android.view.View;
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.ui.fragment.ClassificationFragment;
 import com.mvc.kinballwc.ui.fragment.MatchesSelectionFragment;
+import com.mvc.kinballwc.ui.fragment.RefereesFragment;
 import com.mvc.kinballwc.ui.fragment.TeamsFragment;
 import com.mvc.kinballwc.utils.SocialNetworkUtils;
 import com.mvc.kinballwc.utils.Utils;
+import com.parse.ParseAnalytics;
 
 /**
  * Author: Mario Velasco Casquero
@@ -26,15 +28,19 @@ import com.mvc.kinballwc.utils.Utils;
  */
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int INITIAL_SECTION = 0;
+    private static final int INITIAL_SECTION = 0; //TODO
 
     private DrawerLayout mDrawerLayout;
-    protected boolean isActivityDestroyed = false;
+    private Fragment fragment;
+    public boolean isActivityDestroyed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Track app opens.
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -43,6 +49,21 @@ public class HomeActivity extends AppCompatActivity {
         if (Utils.isFistTime(this)) {
             mDrawerLayout.openDrawer(GravityCompat.START);
             Utils.setFistTime(this, false);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        boolean allowBackupPressed = true;
+        if (fragment instanceof RefereesFragment) {
+            allowBackupPressed = ((RefereesFragment) fragment).allowBackPressed();
+        }
+        if (allowBackupPressed) {
+            if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                mDrawerLayout.closeDrawers();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -111,7 +132,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private Fragment getFragmentForMenuItem(MenuItem menuItem) {
-        Fragment fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.nav_matches:
                 fragment = new MatchesSelectionFragment();
@@ -121,6 +141,9 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.nav_classification:
                 fragment = new ClassificationFragment();
+                break;
+            case R.id.nav_referees:
+                fragment = new RefereesFragment();
                 break;
         }
         return fragment;

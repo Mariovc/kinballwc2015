@@ -2,6 +2,7 @@
 <resources>
 
     <color name="transparent">#00000000</color>
+    <color name="white_transparent">#AAFFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="white_dark_1">#FAFAFA</color>
     <color name="grey_light_2">#F5F5F5</color>
@@ -16,7 +17,11 @@
     <color name="black_transparent">#88000000</color>
     <color name="grey_team">#848484</color>
     <color name="blue_team">#0040FF</color>
+    <color name="blue">#568bdb</color>
+    <color name="blue_light_3">#90CAF9</color>
     <color name="green_live">#01DF01</color>
+    <color name="green">#9bbd5b</color>
+    <color name="green_light_3">#A5D6A7</color>
     <color name="yellow_light_1">#FFFDE7</color>
     <color name="yellow_light_2">#FFF9C4</color>
     <color name="yellow_light_3">#FFF59D</color>
@@ -32,6 +37,9 @@
     <color name="red_dark_2">#D32F2F</color>
     <color name="red_dark_3">#C62828</color>
     <color name="red_dark_5">#6e1413</color>
+    <color name="red_button">#bd4f4f</color>
+    <color name="pink">#ff73e3</color>
+    <color name="pink_light_3">#F48FB1</color>
 
 
     <!-- Main -->
@@ -46,6 +54,18 @@
     <color name="sliding_tab_divider">@color/transparent</color>
     <color name="sliding_tab_text">@color/text_primary_color</color>
 
+    <!--Matches selection-->
+    <color name="men_button_normal">@color/blue</color>
+    <color name="men_button_pressed">@color/blue_light_3</color>
+    <color name="women_button_normal">@color/pink</color>
+    <color name="women_button_pressed">@color/pink_light_3</color>
+    <color name="pro_button_normal">@color/red_button</color>
+    <color name="pro_button_pressed">@color/red_light_3</color>
+    <color name="amateur_button_normal">@color/green</color>
+    <color name="amateur_button_pressed">@color/green_light_3</color>
+    <color name="all_button_normal">@color/black</color>
+    <color name="all_button_pressed">@color/grey_dark_4</color>
+
     <!-- Matches -->
     <color name="team1">@color/blue_team</color>
     <color name="team2">@color/grey_team</color>
@@ -54,7 +74,7 @@
     <color name="team2_font">@color/white</color>
     <color name="team3_font">@color/white</color>
     <color name="live_font">@color/red</color>
-    <color name="live_background">@color/transparent</color>
+    <color name="live_background">@color/white_transparent</color>
     <color name="live_border">@color/red</color>
 
     <!--Match-->

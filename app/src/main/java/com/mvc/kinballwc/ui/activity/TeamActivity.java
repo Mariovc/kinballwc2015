@@ -131,7 +131,7 @@ public class TeamActivity extends BaseActivity {
 //        mAdapter = new PlayerRecyclerAdapter(this, team.getPlayers());
 //        mRecyclerView.setAdapter(mAdapter);
 
-        collapsingToolbar.setTitle(Utils.getTranslatedCountry(this, team.getName()));
+        collapsingToolbar.setTitle(team.getName());
 
         Glide.with(this)
                 .load(team.getImage())

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -27,19 +27,16 @@ import java.util.List;
  * Date: 02/08/2015
  * Email: m3ario@gmail.com
  */
-public class TeamsRecyclerAdapter
-        extends RecyclerView.Adapter<TeamsRecyclerAdapter.ViewHolder> {
+public class TeamRecyclerAdapter
+        extends RecyclerView.Adapter<TeamRecyclerAdapter.ViewHolder> {
 
-    private static final String TAG = "TeamsRecyclerAdapter";
-    private static final int ROUNDED_PIXELS = 20;
+    private static final String TAG = "TeamRecyclerAdapter";
     private Context mContext;
     private List<Team> mTeams;
-    private BitmapPool mPool;
 
-    public TeamsRecyclerAdapter(Context context, List<Team> teams) {
+    public TeamRecyclerAdapter(Context context, List<Team> teams) {
         this.mContext = context;
         this.mTeams = teams;
-        mPool = Glide.get(context).getBitmapPool();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,7 +68,7 @@ public class TeamsRecyclerAdapter
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Team team = mTeams.get(position);
-        holder.mTextView.setText(Utils.getTranslatedCountry(holder.mTextView.getContext(), team.getName()));
+        holder.mTextView.setText(team.getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +87,7 @@ public class TeamsRecyclerAdapter
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.drawable.placeholder)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .fitCenter()
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override

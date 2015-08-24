@@ -16,9 +16,9 @@ import com.mvc.kinballwc.utils.SocialNetworkUtils;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    private static final String TAG = "BaseActivity";
-
-    protected boolean isActivityDestroyed = false;
+//    private static final String TAG = "BaseActivity";
+//
+    public boolean isActivityDestroyed = false;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -61,7 +61,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void setToolbarTitle(CharSequence title) {
-        Log.d(TAG, "Setting toolbar title to " + title);
         if (title == null) {
             title = getString(R.string.app_name);
         }

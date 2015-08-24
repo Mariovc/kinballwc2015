@@ -69,6 +69,7 @@
         android:elevation="@dimen/matches_button_elevation"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
+        android:visibility="invisible"
         android:text="@string/show_matches"
         android:textColor="@color/matches_button_text_color" />
 

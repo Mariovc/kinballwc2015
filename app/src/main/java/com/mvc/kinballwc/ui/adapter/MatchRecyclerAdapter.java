@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,10 +29,12 @@ import java.util.Locale;
  */
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
     private List<Match> mMatchList;
+    private Animation animation;
 
 
-    public MatchRecyclerAdapter(List<Match> matchList) {
+    public MatchRecyclerAdapter(Context context, List<Match> matchList) {
         mMatchList = matchList;
+        animation = AnimationUtils.loadAnimation(context, R.anim.fade_in_fade_out);
     }
 
     @Override
@@ -55,11 +59,22 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         Context context = holder.mTitleTV.getContext();
         Match match = mMatchList.get(position);
         holder.mTitleTV.setText(match.getTitle());
+        if (match.getCourt() == 3) {
+            holder.mCourtTV.setVisibility(View.GONE);
+        } else {
+            holder.mCourtTV.setVisibility(View.VISIBLE);
+            holder.mCourtTV.setText(match.getCourtString());
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat(context.getString(R.string.date_format),
                 Locale.getDefault());
         SimpleDateFormat hourFormat = new SimpleDateFormat(context.getString(R.string.hour_format), Locale.getDefault());
-        holder.mDateTV.setText(dateFormat.format(match.getDate()));
-        holder.mHourTV.setText(hourFormat.format(match.getDate()));
+        if (match.getDateToShow() == null) {
+            holder.mDateTV.setText(dateFormat.format(match.getDate()));
+            holder.mHourTV.setText(hourFormat.format(match.getDate()));
+        } else {
+            holder.mDateTV.setText(dateFormat.format(match.getDateToShow()));
+            holder.mHourTV.setText(hourFormat.format(match.getDateToShow()));
+        }
         Team team1 = match.getTeam1();
         Team team2 = match.getTeam2();
         Team team3 = match.getTeam3();
@@ -87,6 +102,13 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 //            holder.mTeam3LogoIV.setImageResource(R.drawable.placeholder);
             holder.mTeam3LogoIV.setImageBitmap(null);
         }
+        if (match.isLive()) {
+            holder.mLiveLabelTV.setVisibility(View.VISIBLE);
+            holder.mLiveLabelTV.startAnimation(animation);
+        } else {
+            holder.mLiveLabelTV.clearAnimation();
+            holder.mLiveLabelTV.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -98,7 +120,8 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
         Glide.with(imageView.getContext())
                 .load(url)
                 .placeholder(R.drawable.placeholder)
-//                .fitCenter()
+                .fitCenter()
+                .animate(android.R.anim.fade_in)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
@@ -114,6 +137,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
         public MatchViewHolderClicks mListener;
         public TextView mTitleTV;
+        public TextView mCourtTV;
         public TextView mLiveLabelTV;
         public TextView mDateTV;
         public TextView mHourTV;
@@ -128,6 +152,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
             super(v);
             mListener = onClickListener;
             mTitleTV = (TextView) v.findViewById(R.id.matchTitleTV);
+            mCourtTV = (TextView) v.findViewById(R.id.matchCourtTV);
             mLiveLabelTV = (TextView) v.findViewById(R.id.matchLiveTV);
             mDateTV = (TextView) v.findViewById(R.id.matchDateTV);
             mHourTV = (TextView) v.findViewById(R.id.matchHourTV);
@@ -142,7 +167,7 @@ public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdap
 
         @Override
         public void onClick(View view) {
-            mListener.onClick(view, getPosition()); // TODO deprecated
+            mListener.onClick(view, getLayoutPosition());
         }
 
         public interface MatchViewHolderClicks {

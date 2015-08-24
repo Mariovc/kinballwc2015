@@ -28,7 +28,8 @@ import android.view.ViewGroup;
 
 import com.mvc.kinballwc.R;
 import com.mvc.kinballwc.model.Team;
-import com.mvc.kinballwc.ui.adapter.TeamsRecyclerAdapter;
+import com.mvc.kinballwc.ui.activity.HomeActivity;
+import com.mvc.kinballwc.ui.adapter.TeamRecyclerAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -65,7 +66,7 @@ public class TeamsTabFragment extends Fragment {
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        recyclerView.setAdapter(new TeamsRecyclerAdapter(getActivity(), new ArrayList<Team>()));
+        recyclerView.setAdapter(new TeamRecyclerAdapter(getActivity(), new ArrayList<Team>()));
         mRecyclerView.setHasFixedSize(true);
     }
 
@@ -90,8 +91,12 @@ public class TeamsTabFragment extends Fragment {
 
 
     private void onTeamsReceived(List<Team> itemList) {
+        if (getActivity() == null || ((HomeActivity) getActivity()).isActivityDestroyed) {
+            Log.d(TAG, "Activity is destroyed after Parse query");
+            return;
+        }
         Collections.sort(itemList, new Team.NameComparator());
-        mAdapter = new TeamsRecyclerAdapter(getActivity(), itemList);
+        mAdapter = new TeamRecyclerAdapter(getActivity(), itemList);
         mRecyclerView.swapAdapter(mAdapter, false);
     }
 

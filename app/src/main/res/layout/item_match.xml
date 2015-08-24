@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_centerInParent="true"
         android:layout_margin="4dp">
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -22,49 +22,54 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/matchTitleTV"
                 android:textColor="@color/black"
-                android:layout_alignTop="@+id/matchLiveTV"
-                android:layout_alignBottom="@+id/matchLiveTV"
                 android:singleLine="true"
-                android:gravity="center" />
+                android:ellipsize="end"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp" />
+
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/live_text"
-                android:id="@+id/matchLiveTV"
-                android:textColor="@color/live_font"
-                android:layout_margin="2dp"
-                android:background="@drawable/background_live"
-                android:layout_centerInParent="true"
+                android:id="@+id/matchCourtTV"
+                android:textColor="@color/black"
                 android:singleLine="true"
-                android:visibility="invisible" />
+                android:ellipsize="middle"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/matchTitleTV"
+                android:layout_toEndOf="@+id/matchTitleTV"
+                android:layout_toLeftOf="@+id/matchDateTV"
+                android:layout_toStartOf="@+id/matchDateTV"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/matchDateTV"
                 android:textColor="@color/black"
-                android:layout_alignTop="@+id/matchLiveTV"
-                android:layout_alignBottom="@+id/matchLiveTV"
                 android:singleLine="true"
                 android:gravity="center"
-                android:visibility="invisible"
                 android:layout_toLeftOf="@+id/matchHourTV"
                 android:layout_toStartOf="@+id/matchHourTV"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="4dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/matchHourTV"
                 android:textColor="@color/black"
-                android:layout_alignTop="@+id/matchLiveTV"
-                android:layout_alignBottom="@+id/matchLiveTV"
                 android:singleLine="true"
                 android:gravity="center"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_weight="0" />
         </RelativeLayout>
 
         <LinearLayout
@@ -80,7 +85,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginRight="@dimen/team_margin">
+                android:layout_marginRight="@dimen/team_margin"
+                android:layout_marginEnd="@dimen/team_margin">
 
 
                 <TextView
@@ -94,13 +100,14 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="@dimen/matches_logo_height"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam1LogoIV"
-                    android:src="@drawable/placeholder"
-                    android:scaleType="fitCenter"
-                    android:layout_marginTop="@dimen/matches_logo_margin_top"
-                    android:adjustViewBounds="true" />
+                    android:layout_marginLeft="@dimen/matches_logo_margin"
+                    android:layout_marginStart="@dimen/matches_logo_margin"
+                    android:layout_marginRight="@dimen/matches_logo_margin"
+                    android:layout_marginEnd="@dimen/matches_logo_margin"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,13 +139,14 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="@dimen/matches_logo_height"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam2LogoIV"
-                    android:src="@drawable/placeholder"
-                    android:scaleType="fitCenter"
-                    android:layout_marginTop="@dimen/matches_logo_margin_top"
-                    android:adjustViewBounds="true" />
+                    android:layout_marginLeft="@dimen/matches_logo_margin"
+                    android:layout_marginStart="@dimen/matches_logo_margin"
+                    android:layout_marginRight="@dimen/matches_logo_margin"
+                    android:layout_marginEnd="@dimen/matches_logo_margin"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -157,7 +165,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/team_margin">
+                android:layout_marginLeft="@dimen/team_margin"
+                android:layout_marginStart="@dimen/team_margin">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -170,13 +179,14 @@
                     android:paddingRight="@dimen/score_margin" />
 
                 <ImageView
-                    android:layout_width="@dimen/matches_logo_height"
+                    android:layout_width="@dimen/matches_logo_width"
                     android:layout_height="@dimen/matches_logo_height"
                     android:id="@+id/matchTeam3LogoIV"
-                    android:src="@drawable/placeholder"
-                    android:scaleType="fitCenter"
-                    android:layout_marginTop="@dimen/matches_logo_margin_top"
-                    android:adjustViewBounds="true" />
+                    android:layout_marginLeft="@dimen/matches_logo_margin"
+                    android:layout_marginStart="@dimen/matches_logo_margin"
+                    android:layout_marginRight="@dimen/matches_logo_margin"
+                    android:layout_marginEnd="@dimen/matches_logo_margin"
+                    android:layout_marginTop="@dimen/matches_logo_margin_top" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,5 +204,20 @@
 
     </LinearLayout>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/live_text"
+        android:id="@+id/matchLiveTV"
+        android:textColor="@color/live_font"
+        android:textSize="@dimen/live_text_size"
+        android:layout_margin="2dp"
+        android:paddingLeft="@dimen/live_lateral_padding"
+        android:paddingRight="@dimen/live_lateral_padding"
+        android:background="@drawable/background_live"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

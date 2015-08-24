@@ -32,4 +32,5 @@ public class MatchPeriod extends ParseObject {
     public void setTeam3Score(int score){
         put("team3Score", score);
     }
+
 }
