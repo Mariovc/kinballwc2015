@@ -26,7 +26,7 @@ Developed By
 <a href="https://twitter.com/mariovc">
   <img alt="Follow me on Twitter" src="http://imageshack.us/a/img812/3923/smallth.png" />
 </a>
-<a href="https://es.linkedin.com/in/pedrovgs">
+<a href="https://es.linkedin.com/in/mariovc">
   <img alt="Add me to Linkedin" src="http://imageshack.us/a/img41/7877/smallld.png" />
 </a>
 
@@ -44,7 +44,7 @@ Libraries used on the sample project
 License
 -------
 
-    Copyright 2014 Pedro Vicente Gómez Sánchez
+    Copyright 2014 Mario Velasco Casquero
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
