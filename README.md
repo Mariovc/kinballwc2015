@@ -4,6 +4,9 @@ Kin-Ball World Cup 2015
 
 The official app of the Kin-Ball Sport World Cup 2015. It contains all the interesting event information like matches, results, teams, players and scoreboards in real time. 
 
+<a href="https://play.google.com/store/apps/details?id=com.mvc.kinballwc">
+  <img alt="Get it on Google Play" src="http://halftimeinstitute.org/wp-content/uploads/2015/02/google-play-icon.png" />
+</a>
 
 
 Screenshots
