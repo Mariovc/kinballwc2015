@@ -1,5 +1,5 @@
 Kin-Ball World Cup 2015
-===============
+=======================
 
 
 The official app of the Kin-Ball Sport World Cup 2015. It contains all the interesting event information like matches, results, teams, players and scoreboards in real time. 
@@ -34,8 +34,8 @@ Developed By
 </a>
 
 
-Libraries used on the sample project
-------------------------------------
+Libraries used
+--------------
 
 * [Parse][11]
 * [Design Support Library][12]
