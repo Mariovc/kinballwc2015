@@ -20,8 +20,9 @@ Screenshots
 
 Demo
 ----
+[Youtube video][16]:
 
-[![Demo Kin-Ball WC'15](./art/video-demo.png)](https://www.youtube.com/watch?v=X-JAkZhTP50)
+[![Demo Kin-Ball WC'15](./art/video-demo.gif)]()
 
 
 Developed By
@@ -76,3 +77,4 @@ License
 [13]: https://github.com/bumptech/glide
 [14]: https://github.com/hdodenhof/CircleImageView
 [15]: http://viewpagerindicator.com/
+[16]: https://www.youtube.com/watch?v=X-JAkZhTP50
